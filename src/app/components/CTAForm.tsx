@@ -1,8 +1,7 @@
-
 "use client";
 
 import { motion } from "framer-motion";
-import { useLanguage } from "../layout";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { useState } from "react";
 import { Mail, ChevronDown } from "lucide-react";
 

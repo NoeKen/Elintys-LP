@@ -1,8 +1,7 @@
-
 "use client";
 
 import { motion } from "framer-motion";
-import { useLanguage } from "../layout";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Hero() {
   const { t } = useLanguage();
