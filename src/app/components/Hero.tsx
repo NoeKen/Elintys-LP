@@ -1,14 +1,31 @@
+"use client";
 
 import Image from "next/image";
 import CTAForm from "./CTAForm";
+import { motion } from "framer-motion";
 
 export default function Hero() {
   return (
-    <section className="relative bg-gray-900 text-white overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-indigo-900 via-gray-900 to-blue-900 opacity-50"></div>
+    <section className="relative bg-gray-900 text-white overflow-hidden min-h-screen flex items-center">
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <Image
+          src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
+          alt="Event background"
+          fill
+          className="object-cover opacity-30"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/80 via-gray-900/70 to-blue-900/80"></div>
+      </div>
       
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 text-center">
-        <div className="mb-8">
+        <motion.div 
+          className="mb-8"
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
           <Image 
             src="/elyntis-white-1-mcwlukfj.png"
             alt="Elyntis Logo"
@@ -17,23 +34,73 @@ export default function Hero() {
             className="mx-auto"
             priority
           />
-        </div>
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4">
+        </motion.div>
+        
+        <motion.h1 
+          className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
           La plateforme tout-en-un pour vos événements
-        </h1>
-        <p className="max-w-3xl mx-auto text-lg md:text-xl text-gray-300 mb-6">
+        </motion.h1>
+        
+        <motion.p 
+          className="max-w-3xl mx-auto text-lg md:text-xl text-gray-300 mb-6"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
           Organisez, découvrez et vivez des événements inoubliables.
           <br />
           Connectez organisateurs, lieux et prestataires en un seul endroit.
-        </p>
-        <p className="max-w-4xl mx-auto text-base text-gray-400 mb-10">
-          Créez, gérez et vivez vos événements plus facilement que jamais grâce à une interface intuitive et des outils pensés pour chaque acteur de l’événementiel.
-        </p>
+        </motion.p>
         
-        <div className="max-w-3xl mx-auto">
+        <motion.p 
+          className="max-w-4xl mx-auto text-base text-gray-400 mb-10"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+        >
+          Créez, gérez et vivez vos événements plus facilement que jamais grâce à une interface intuitive et des outils pensés pour chaque acteur de l'événementiel.
+        </motion.p>
+        
+        <motion.div 
+          className="max-w-3xl mx-auto"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.8 }}
+        >
           <CTAForm variant="dark" />
-        </div>
+        </motion.div>
       </div>
+
+      {/* Floating elements animation */}
+      <motion.div
+        className="absolute top-20 left-10 w-20 h-20 bg-white/10 rounded-full"
+        animate={{
+          y: [0, -20, 0],
+          opacity: [0.3, 0.6, 0.3],
+        }}
+        transition={{
+          duration: 4,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+      <motion.div
+        className="absolute bottom-32 right-16 w-16 h-16 bg-indigo-400/20 rounded-full"
+        animate={{
+          y: [0, 20, 0],
+          opacity: [0.4, 0.7, 0.4],
+        }}
+        transition={{
+          duration: 3,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 1,
+        }}
+      />
     </section>
   );
 }
