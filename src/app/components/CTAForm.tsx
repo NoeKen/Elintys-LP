@@ -1,9 +1,9 @@
-
 "use client";
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -21,7 +21,6 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form";
-import { useToast } from "@/hooks/use-toast";
 
 const formSchema = z.object({
   email: z.string().email({ message: "Adresse email invalide." }),
@@ -35,7 +34,7 @@ type CTAFormProps = {
 };
 
 export default function CTAForm({ variant = 'light' }: CTAFormProps) {
-  const { toast } = useToast();
+  const [showSuccess, setShowSuccess] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -48,14 +47,30 @@ export default function CTAForm({ variant = 'light' }: CTAFormProps) {
     
     await new Promise(resolve => setTimeout(resolve, 1000));
 
-    toast({
-      title: "Inscription réussie ! 🎉",
-      description: "Merci de votre intérêt. Nous vous tiendrons informé du lancement d'Elyntis.",
-    });
+    setShowSuccess(true);
     form.reset();
+    
+    setTimeout(() => {
+      setShowSuccess(false);
+    }, 5000);
   }
 
   const isDark = variant === 'dark';
+
+  if (showSuccess) {
+    return (
+      <div className={cn(
+        "w-full p-6 rounded-lg text-center",
+        isDark ? "bg-white/10 text-white" : "bg-green-50 text-green-800"
+      )}>
+        <div className="text-2xl mb-2">🎉</div>
+        <h3 className="font-semibold mb-1">Inscription réussie !</h3>
+        <p className={cn("text-sm", isDark ? "text-gray-300" : "text-green-600")}>
+          Merci de votre intérêt. Nous vous tiendrons informé du lancement d'Elyntis.
+        </p>
+      </div>
+    );
+  }
 
   return (
     <Form {...form}>
