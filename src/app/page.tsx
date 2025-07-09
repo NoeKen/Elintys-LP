@@ -1,19 +1,21 @@
 
-"use client";
-
 import Hero from "./components/Hero";
-import Features from "./components/Features";
+import Problem from "./components/Problem";
+import Solution from "./components/Solution";
 import Audience from "./components/Audience";
-import CTAForm from "./components/CTAForm";
+import Vision from "./components/Vision";
+import FinalCTA from "./components/FinalCTA";
 import Footer from "./components/Footer";
 
 export default function HomePage() {
   return (
     <main className="min-h-screen">
       <Hero />
-      <Features />
+      <Problem />
+      <Solution />
       <Audience />
-      <CTAForm />
+      <Vision />
+      <FinalCTA />
       <Footer />
     </main>
   );
