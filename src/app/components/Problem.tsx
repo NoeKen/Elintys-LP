@@ -7,6 +7,7 @@ import { useRef } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Problem() {
+  const { language } = useLanguage();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -36,7 +37,7 @@ export default function Problem() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
               <div className="absolute bottom-4 left-4 text-white">
-                <p className="text-sm font-medium">Trop d'outils, trop de complexité</p>
+                <p className="text-sm font-medium">{language === "fr" ? "Trop d'outils, trop de complexité" : "Too many tools, too much complexity"}</p>
               </div>
             </div>
             
@@ -69,7 +70,7 @@ export default function Problem() {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              Organiser un événement, c'est compliqué...
+              {language === "fr" ? "Organiser un événement, c'est compliqué..." : "Organizing an event is complicated..."}
             </motion.h2>
             
             <motion.div
@@ -79,7 +80,9 @@ export default function Problem() {
               transition={{ duration: 0.6, delay: 0.6 }}
             >
               <p>
-                Trop d'outils, des prestataires dispersés, des délais courts, et une logistique difficile à gérer.
+                {language === "fr" 
+                  ? "Trop d'outils, des prestataires dispersés, des délais courts, et une logistique difficile à gérer."
+                  : "Too many tools, scattered providers, short deadlines, and difficult logistics to manage."}
               </p>
               
               <motion.div
@@ -88,7 +91,7 @@ export default function Problem() {
                 transition={{ type: "spring", stiffness: 300 }}
               >
                 <p className="font-semibold text-gray-800 text-xl">
-                  Nous pensons qu'il est temps de simplifier tout ça.
+                  {language === "fr" ? "Nous pensons qu'il est temps de simplifier tout ça." : "We think it's time to simplify all this."}
                 </p>
               </motion.div>
             </motion.div>
