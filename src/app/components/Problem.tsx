@@ -4,13 +4,15 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
+import { useLanguage } from "next-translate";
 
 export default function Problem() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { language } = useLanguage();
 
   return (
-    <section className="py-16 px-4 md:px-6 lg:px-8 bg-gray-50 relative overflow-hidden">
+    <section id="problem" className="py-20 bg-white">
       {/* Background pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{

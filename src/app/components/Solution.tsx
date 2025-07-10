@@ -5,10 +5,12 @@ import { MapPin, Ticket, Link, BarChart3 } from "lucide-react";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
+import { useLanguage } from "next-translate";
 
 export default function Solution() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { language } = useLanguage();
 
   const features = [
     {
@@ -38,7 +40,7 @@ export default function Solution() {
   ];
 
   return (
-    <section className="py-16 px-4 md:px-6 lg:px-8 bg-white relative overflow-hidden">
+    <section id="solution" className="py-20 bg-gray-50">
       {/* Background Image */}
       <div className="absolute inset-0 opacity-5">
         <Image
