@@ -5,42 +5,40 @@ import { MapPin, Ticket, Link, BarChart3 } from "lucide-react";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Solution() {
-  const { language } = useLanguage();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   const features = [
     {
       icon: MapPin,
-      title: language === "fr" ? "Un seul espace pour tout centraliser" : "A single space to centralize everything",
-      description: language === "fr" ? "Gérez tous vos événements depuis une interface unique" : "Manage all your events from a single interface",
+      title: "Un seul espace pour tout centraliser",
+      description: "Gérez tous vos événements depuis une interface unique",
       color: "bg-blue-100 text-blue-600"
     },
     {
       icon: Ticket,
-      title: language === "fr" ? "Billetterie, prestataires et lieux en quelques clics" : "Ticketing, providers and venues in a few clicks",
-      description: language === "fr" ? "Trouvez et réservez tout ce dont vous avez besoin rapidement" : "Find and book everything you need quickly",
+      title: "Billetterie, prestataires et lieux en quelques clics",
+      description: "Trouvez et réservez tout ce dont vous avez besoin rapidement",
       color: "bg-green-100 text-green-600"
     },
     {
       icon: Link,
-      title: language === "fr" ? "Connectez organisateurs, prestataires et publics" : "Connect organizers, providers and audiences",
-      description: language === "fr" ? "Une plateforme qui unit tous les acteurs de l'événementiel" : "A platform that unites all players in the event industry",
+      title: "Connectez organisateurs, prestataires et publics",
+      description: "Une plateforme qui unit tous les acteurs de l'événementiel",
       color: "bg-purple-100 text-purple-600"
     },
     {
       icon: BarChart3,
-      title: language === "fr" ? "Suivi simplifié, gestion efficace" : "Simplified monitoring, effective management",
-      description: language === "fr" ? "Tableaux de bord intuitifs pour piloter vos événements" : "Intuitive dashboards to manage your events",
+      title: "Suivi simplifié, gestion efficace",
+      description: "Tableaux de bord intuitifs pour piloter vos événements",
       color: "bg-orange-100 text-orange-600"
     }
   ];
 
   return (
-    <section id="solution" className="py-20 bg-gray-50">
+    <section className="py-16 px-4 md:px-6 lg:px-8 bg-white relative overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 opacity-5">
         <Image
@@ -59,12 +57,10 @@ export default function Solution() {
           transition={{ duration: 0.8 }}
         >
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-            {language === "fr" ? "Une solution unique, pensée pour vous" : "A unique solution, designed for you"}
+            Une solution unique, pensée pour vous
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            {language === "fr" 
-              ? "Nous construisons une plateforme simple et puissante pour faciliter chaque étape de l'organisation d'événements."
-              : "We are building a simple and powerful platform to facilitate every step of event organization."}
+            Nous construisons une plateforme simple et puissante pour faciliter chaque étape de l'organisation d'événements.
           </p>
         </motion.div>
 

@@ -4,15 +4,13 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Problem() {
-  const { language } = useLanguage();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="problem" className="py-20 bg-white">
+    <section className="py-16 px-4 md:px-6 lg:px-8 bg-gray-50 relative overflow-hidden">
       {/* Background pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
@@ -37,7 +35,7 @@ export default function Problem() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
               <div className="absolute bottom-4 left-4 text-white">
-                <p className="text-sm font-medium">{language === "fr" ? "Trop d'outils, trop de complexité" : "Too many tools, too much complexity"}</p>
+                <p className="text-sm font-medium">Trop d'outils, trop de complexité</p>
               </div>
             </div>
             
@@ -70,7 +68,7 @@ export default function Problem() {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              {language === "fr" ? "Organiser un événement, c'est compliqué..." : "Organizing an event is complicated..."}
+              Organiser un événement, c'est compliqué...
             </motion.h2>
             
             <motion.div
@@ -80,9 +78,7 @@ export default function Problem() {
               transition={{ duration: 0.6, delay: 0.6 }}
             >
               <p>
-                {language === "fr" 
-                  ? "Trop d'outils, des prestataires dispersés, des délais courts, et une logistique difficile à gérer."
-                  : "Too many tools, scattered providers, short deadlines, and difficult logistics to manage."}
+                Trop d'outils, des prestataires dispersés, des délais courts, et une logistique difficile à gérer.
               </p>
               
               <motion.div
@@ -91,7 +87,7 @@ export default function Problem() {
                 transition={{ type: "spring", stiffness: 300 }}
               >
                 <p className="font-semibold text-gray-800 text-xl">
-                  {language === "fr" ? "Nous pensons qu'il est temps de simplifier tout ça." : "We think it's time to simplify all this."}
+                  Nous pensons qu'il est temps de simplifier tout ça.
                 </p>
               </motion.div>
             </motion.div>
