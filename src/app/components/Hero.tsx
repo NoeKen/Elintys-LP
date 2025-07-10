@@ -3,11 +3,9 @@
 import Image from "next/image";
 import CTAForm from "./CTAForm";
 import { motion } from "framer-motion";
-import { useLanguage } from "@/hooks/useLanguage";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Hero() {
-  const { language } = useLanguage();
-
   return (
     <section id="hero" className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center px-4 sm:px-6 lg:px-8">
       {/* Background Image */}

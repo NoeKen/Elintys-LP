@@ -4,12 +4,11 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { useLanguage } from "next-translate";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Problem() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const { language } = useLanguage();
 
   return (
     <section id="problem" className="py-20 bg-white">

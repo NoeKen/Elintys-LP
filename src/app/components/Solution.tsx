@@ -5,12 +5,11 @@ import { MapPin, Ticket, Link, BarChart3 } from "lucide-react";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { useLanguage } from "next-translate";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Solution() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const { language } = useLanguage();
 
   const features = [
     {
