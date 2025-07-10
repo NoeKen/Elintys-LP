@@ -3,10 +3,13 @@
 import Image from "next/image";
 import CTAForm from "./CTAForm";
 import { motion } from "framer-motion";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Hero() {
+  const { language } = useLanguage();
+
   return (
-    <section className="relative bg-gray-900 text-white overflow-hidden min-h-screen flex items-center">
+    <section id="hero" className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center px-4 sm:px-6 lg:px-8">
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
@@ -42,7 +45,9 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          La plateforme tout-en-un pour vos événements
+          {language === "fr" 
+            ? "La plateforme tout-en-un pour vos événements" 
+            : "The all-in-one platform for your events"}
         </motion.h1>
         
         <motion.p 
@@ -51,9 +56,13 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          Organisez, découvrez et vivez des événements inoubliables.
+          {language === "fr"
+            ? "Organisez, découvrez et vivez des événements inoubliables."
+            : "Organize, discover and experience unforgettable events."}
           <br />
-          Connectez organisateurs, lieux et prestataires en un seul endroit.
+          {language === "fr"
+            ? "Connectez organisateurs, lieux et prestataires en un seul endroit."
+            : "Connect organizers, venues and providers in one place."}
         </motion.p>
         
         <motion.p 
@@ -62,7 +71,9 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
         >
-          Créez, gérez et vivez vos événements plus facilement que jamais grâce à une interface intuitive et des outils pensés pour chaque acteur de l'événementiel.
+          {language === "fr"
+            ? "Créez, gérez et vivez vos événements plus facilement que jamais grâce à une interface intuitive et des outils pensés pour chaque acteur de l'événementiel."
+            : "Create, manage and experience your events more easily than ever thanks to an intuitive interface and tools designed for each player in the event industry."}
         </motion.p>
         
         <motion.div 

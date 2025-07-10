@@ -1,16 +1,23 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { LanguageProvider } from "@/contexts/LanguageContext";
 import ClientToaster from "./components/ClientToaster";
+import Navbar from "./components/Navbar";
 
-const inter = Inter({ 
+const geistSans = Geist({ 
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-geist-sans",
+});
+
+const geistMono = Geist_Mono({ 
+  subsets: ["latin"],
+  variable: "--font-geist-mono",
 });
 
 export const metadata: Metadata = {
-  title: "Elyntis - La plateforme tout-en-un pour vos événements",
-  description: "Organisez, découvrez et vivez des événements inoubliables. Connectez organisateurs, lieux et prestataires en un seul endroit.",
+  title: "Elyntis - Landing Page",
+  description: "Elyntis landing page",
 };
 
 export default function RootLayout({
@@ -19,10 +26,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className={inter.variable}>
-      <body>
-        {children}
-        <ClientToaster />
+    <html lang="en">
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        <LanguageProvider>
+          <Navbar />
+          <main className="pt-16">
+            {children}
+          </main>
+          <ClientToaster />
+        </LanguageProvider>
       </body>
     </html>
   );
