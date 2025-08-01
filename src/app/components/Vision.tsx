@@ -29,7 +29,7 @@ export default function Vision() {
             className="space-y-6"
           >
             <p className="text-lg text-gray-700 leading-relaxed">
-              Elyntis est né d'un constat simple : organiser ou participer à un événement local reste encore un parcours du combattant. Entre la recherche de prestataires, la location d'un lieu, la billetterie et la communication, tout est éparpillé.
+              elintys est né d'un constat simple : organiser ou participer à un événement local reste encore un parcours du combattant. Entre la recherche de prestataires, la location d'un lieu, la billetterie et la communication, tout est éparpillé.
             </p>
 
             <div className="bg-white p-6 rounded-xl shadow-lg border border-purple-100">
@@ -38,7 +38,7 @@ export default function Vision() {
                 Notre ambition ?
               </h3>
               <p className="text-gray-700 leading-relaxed">
-                Centraliser l'univers de l'événementiel dans une seule application. Qu'il s'agisse d'un anniversaire, d'un concert, d'un salon professionnel ou d'un mariage, <strong>Elyntis connecte toutes les parties prenantes</strong> : organisateurs, prestataires, lieux et participants.
+                Centraliser l'univers de l'événementiel dans une seule application. Qu'il s'agisse d'un anniversaire, d'un concert, d'un salon professionnel ou d'un mariage, <strong>elintys connecte toutes les parties prenantes</strong> : organisateurs, prestataires, lieux et participants.
               </p>
             </div>
 

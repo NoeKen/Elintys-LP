@@ -30,8 +30,8 @@ export default function Hero() {
           transition={{ duration: 0.8 }}
         >
           <Image 
-            src="/elyntis-white-1-mcwlukfj.png"
-            alt="Elyntis Logo"
+            src="/elintys-logo.png"
+            alt="Elintys Logo"
             width={180}
             height={45}
             className="mx-auto"

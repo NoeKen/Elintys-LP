@@ -18,8 +18,8 @@ export default function Footer() {
           <div className="flex-shrink-0">
             <Link href="/">
               <Image 
-                src="/elyntis-white-1-mcwlukfj.png"
-                alt="Elyntis Logo"
+                src="/elintys-logo.png"
+                alt="elintys Logo"
                 width={120}
                 height={30}
               />
@@ -33,14 +33,14 @@ export default function Footer() {
             ))}
           </nav>
           <div className="text-sm text-gray-400">
-            <a href="mailto:hello@elyntis.com" className="hover:text-white transition-colors">
-              hello@elyntis.com
+            <a href="mailto:hello@elintys.com" className="hover:text-white transition-colors">
+              hello@elintys.com
             </a>
           </div>
         </div>
         <div className="mt-8 pt-8 border-t border-gray-800 text-center text-sm text-gray-500">
-          <p>Elyntis — La plateforme événementielle de demain.</p>
-          <p className="mt-1">© 2025 Elyntis. Tous droits réservés.</p>
+          <p>elintys — La plateforme événementielle de demain.</p>
+          <p className="mt-1">© 2025 elintys. Tous droits réservés.</p>
         </div>
       </div>
     </footer>

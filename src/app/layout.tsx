@@ -16,8 +16,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Elyntis - Landing Page",
-  description: "Elyntis landing page",
+  title: "elintys - Landing Page",
+  description: "elintys landing page",
 };
 
 export default function RootLayout({

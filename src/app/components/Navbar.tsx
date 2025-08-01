@@ -1,36 +1,37 @@
-
 "use client";
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Globe } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import Image from "next/image";
+import { motion } from "framer-motion";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { language, toggleLanguage } = useLanguage();
 
   const navItems = [
-    { 
-      label: language === "fr" ? "Accueil" : "Home", 
-      href: "#hero" 
+    {
+      label: language === "fr" ? "Accueil" : "Home",
+      href: "#hero",
     },
-    { 
-      label: language === "fr" ? "Problème" : "Problem", 
-      href: "#problem" 
+    {
+      label: language === "fr" ? "Problème" : "Problem",
+      href: "#problem",
     },
-    { 
-      label: language === "fr" ? "Solution" : "Solution", 
-      href: "#solution" 
+    {
+      label: language === "fr" ? "Solution" : "Solution",
+      href: "#solution",
     },
-    { 
-      label: language === "fr" ? "Fonctionnalités" : "Features", 
-      href: "#features" 
+    {
+      label: language === "fr" ? "Fonctionnalités" : "Features",
+      href: "#features",
     },
-    { 
-      label: language === "fr" ? "Vision" : "Vision", 
-      href: "#vision" 
-    }
+    {
+      label: language === "fr" ? "Vision" : "Vision",
+      href: "#vision",
+    },
   ];
 
   const scrollToSection = (href: string) => {
@@ -47,9 +48,21 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <h1 className="text-2xl font-bold text-blue-600">
-              Elyntis
-            </h1>
+            <motion.div
+              className="mt-2"
+              initial={{ opacity: 0, y: -50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <Image
+                src="/elintys-logo.png"
+                alt="Elintys Logo"
+                width={180}
+                height={45}
+                className="mx-auto"
+                priority
+              />
+            </motion.div>
           </div>
 
           {/* Desktop Navigation */}

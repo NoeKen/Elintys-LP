@@ -66,7 +66,7 @@ export default function CTAForm({ variant = 'light' }: CTAFormProps) {
         <div className="text-2xl mb-2">🎉</div>
         <h3 className="font-semibold mb-1">Inscription réussie !</h3>
         <p className={cn("text-sm", isDark ? "text-gray-300" : "text-green-600")}>
-          Merci de votre intérêt. Nous vous tiendrons informé du lancement d'Elyntis.
+          Merci de votre intérêt. Nous vous tiendrons informé du lancement d'elintys.
         </p>
       </div>
     );

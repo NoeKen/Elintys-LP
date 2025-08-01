@@ -117,7 +117,7 @@ export default function Features() {
               Et bien plus encore...
             </h3>
             <p className="text-gray-700 max-w-2xl mx-auto">
-              Elyntis évolue constamment pour répondre aux besoins de la communauté événementielle. 
+              elintys évolue constamment pour répondre aux besoins de la communauté événementielle. 
               Rejoignez-nous pour façonner l'avenir de l'organisation d'événements !
             </p>
           </div>

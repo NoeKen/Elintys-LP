@@ -62,7 +62,7 @@ export default function Audience() {
             Une plateforme pensée pour chaque profil
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Que vous soyez un professionnel ou un particulier, Elyntis s'adapte à vos besoins.
+            Que vous soyez un professionnel ou un particulier, elintys s'adapte à vos besoins.
           </p>
         </motion.div>
 
