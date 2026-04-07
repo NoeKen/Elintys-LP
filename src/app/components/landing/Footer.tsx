@@ -30,10 +30,10 @@ export default function Footer() {
         {/* Right */}
         <div className="flex flex-col items-end gap-1 text-right">
           <a
-            href="mailto:hello@elintys.com"
+            href="mailto:contact@elintys.com"
             className="text-sm text-white/30 transition-colors hover:text-white/60"
           >
-            hello@elintys.com
+            contact@elintys.com
           </a>
           <p className="text-xs text-white/20">
             © {new Date().getFullYear()} Elintys. Tous droits réservés.

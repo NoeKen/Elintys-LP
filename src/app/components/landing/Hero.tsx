@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import EmailForm from "@/components/ui/EmailForm";
+import EmailForm from "@/app/components/ui/EmailForm";
 
 const TRUST_ITEMS = [
   "Accès bêta gratuit",

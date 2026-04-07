@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
 
-import Navbar from "@/components/landing/Navbar";
-import Hero from "@/components/landing/Hero";
-import Marquee from "@/components/landing/Marquee";
-import Problem from "@/components/landing/Problem";
-import Solution from "@/components/landing/Solution";
-import Stats from "@/components/landing/Stats";
-import Comparison from "@/components/landing/Comparison";
-import FAQ from "@/components/landing/FAQ";
-import CTAFinal from "@/components/landing/CTAFinal";
-import Footer from "@/components/landing/Footer";
+import Navbar from "@/app/components/landing/Navbar";
+import Hero from "@/app/components/landing/Hero";
+import Marquee from "@/app/components/landing/Marquee";
+import Problem from "@/app/components/landing/Problem";
+import Solution from "@/app/components/landing/Solution";
+import Stats from "@/app/components/landing/Stats";
+import Comparison from "@/app/components/landing/Comparison";
+import FAQ from "@/app/components/landing/FAQ";
+import CTAFinal from "@/app/components/landing/CTAFinal";
+import Footer from "@/app/components/landing/Footer";
 
 export const metadata: Metadata = {
   title: "Elintys — Tout le parcours événementiel. Un seul endroit.",
