@@ -110,7 +110,8 @@ export default function Comparison() {
           transition={{ duration: 0.55, delay: 0.22 }}
           className="overflow-hidden rounded-2xl border border-brand-border"
         >
-          <table className="w-full text-sm">
+          <div className="overflow-x-auto">
+          <table className="w-full min-w-[560px] text-sm">
             <thead>
               <tr className="border-b border-brand-border bg-brand-bg">
                 <th className="px-5 py-4 text-left text-xs font-semibold text-brand-soft">
@@ -154,6 +155,7 @@ export default function Comparison() {
               ))}
             </tbody>
           </table>
+          </div>
         </motion.div>
       </div>
     </section>

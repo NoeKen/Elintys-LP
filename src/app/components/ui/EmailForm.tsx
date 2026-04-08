@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { addToWaitlist } from "@/lib/waitlist";
 
 type FormState = "idle" | "loading" | "success" | "error" | "exists";
 
@@ -39,9 +39,17 @@ export default function EmailForm({
     setState("loading");
     setErrorMsg("");
     try {
-      const result = await addToWaitlist(email, source, "fr");
-      if (result.success) {
-        setState(result.alreadyExists ? "exists" : "success");
+      const res = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, source, locale: "fr" }),
+      });
+      const data = await res.json();
+      if (res.status === 429) {
+        setState("error");
+        setErrorMsg("Trop de tentatives. Réessayez dans quelques minutes.");
+      } else if (res.ok) {
+        setState(data.alreadyExists ? "exists" : "success");
       } else {
         setState("error");
         setErrorMsg("Une erreur est survenue. Veuillez réessayer.");
@@ -69,7 +77,7 @@ export default function EmailForm({
 
   return (
     <form onSubmit={handleSubmit} className={cn("flex flex-col gap-2", wrapperClassName)}>
-      <div className="flex gap-2">
+      <div className="flex flex-col gap-2 sm:flex-row">
         <input
           type="email"
           value={email}
@@ -88,11 +96,14 @@ export default function EmailForm({
             inputClassName
           )}
         />
-        <button
+        <motion.button
           type="submit"
           disabled={state === "loading"}
+          whileHover={state === "loading" ? undefined : { y: -2, scale: 1.02 }}
+          whileTap={state === "loading" ? undefined : { scale: 0.98 }}
+          transition={{ duration: 0.18, ease: "easeOut" }}
           className={cn(
-            "flex shrink-0 items-center gap-2 rounded-xl bg-ink px-5 py-3 text-sm font-medium text-white transition-all hover:bg-ink-mid disabled:opacity-60",
+            "flex w-full shrink-0 items-center justify-center gap-2 rounded-xl bg-ink px-5 py-3 text-sm font-medium text-white transition-all hover:bg-ink-mid disabled:opacity-60 sm:w-auto",
             buttonClassName
           )}
         >
@@ -104,7 +115,7 @@ export default function EmailForm({
               <span className="inline-block rotate-45">↗</span>
             </>
           )}
-        </button>
+        </motion.button>
       </div>
       {errorMsg && <p className="text-xs text-red-500">{errorMsg}</p>}
     </form>

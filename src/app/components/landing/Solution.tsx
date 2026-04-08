@@ -59,18 +59,29 @@ export default function Solution() {
           initial={{ opacity: 0, y: 16 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.55, delay: 0.2 }}
-          className="relative mb-14 grid grid-cols-6 gap-4"
+          className="mb-14 overflow-x-auto -mx-6 px-6"
         >
+        <div className="relative grid min-w-[480px] grid-cols-6 gap-4">
           {/* Connecting line */}
           <div className="pointer-events-none absolute left-[4%] right-[4%] top-5 z-0 h-px bg-gradient-to-r from-teal-mid to-teal-light" />
           {STEPS.map((s) => (
-            <div key={s.n} className="relative z-10 flex flex-col items-center gap-2 text-center">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-teal text-sm font-semibold text-white shadow-md">
+            <motion.div
+              key={s.n}
+              whileHover={{ y: -6 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              className="relative z-10 flex flex-col items-center gap-2 text-center"
+            >
+              <motion.div
+                whileHover={{ scale: 1.08, boxShadow: "0 16px 32px -18px rgba(13,148,136,0.65)" }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-teal text-sm font-semibold text-white shadow-md"
+              >
                 {s.n}
-              </div>
+              </motion.div>
               <p className="text-[11px] leading-tight text-brand-mid">{s.label}</p>
-            </div>
+            </motion.div>
           ))}
+        </div>
         </motion.div>
 
         {/* Bento grid */}
@@ -81,7 +92,11 @@ export default function Solution() {
           className="grid grid-cols-1 gap-4 md:grid-cols-3"
         >
           {/* Card 1 — col-span-2, bg-ink */}
-          <div className="rounded-2xl bg-ink p-8 md:col-span-2">
+          <motion.div
+            whileHover={{ y: -10, scale: 1.01 }}
+            transition={{ duration: 0.24, ease: "easeOut" }}
+            className="rounded-2xl bg-ink p-8 md:col-span-2 transition-shadow hover:shadow-[0_26px_60px_-30px_rgba(13,17,23,0.5)]"
+          >
             <div className="mb-2 flex items-center gap-2">
               <span className="rounded-full bg-teal/20 px-2.5 py-0.5 text-[10px] font-semibold text-teal-mid">
                 Étapes 1 → 2
@@ -99,8 +114,10 @@ export default function Solution() {
                 { title: "Créer", fields: ["Titre", "Date", "Lieu"] },
                 { title: "Personnaliser", fields: ["Couverture", "Prix", "Capacité"] },
               ].map((card) => (
-                <div
+                <motion.div
                   key={card.title}
+                  whileHover={{ y: -4, backgroundColor: "rgba(255,255,255,0.08)" }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
                   className="flex-1 rounded-xl border border-white/10 bg-white/5 p-4"
                 >
                   <p className="mb-3 text-xs font-semibold text-white/60">{card.title}</p>
@@ -115,13 +132,17 @@ export default function Solution() {
                       </div>
                     ))}
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
-          </div>
+          </motion.div>
 
           {/* Card 2 — bg-teal */}
-          <div className="rounded-2xl bg-teal p-8">
+          <motion.div
+            whileHover={{ y: -10, scale: 1.015 }}
+            transition={{ duration: 0.24, ease: "easeOut" }}
+            className="rounded-2xl bg-teal p-8 transition-shadow hover:shadow-[0_26px_60px_-30px_rgba(13,148,136,0.55)]"
+          >
             <span className="mb-2 inline-block rounded-full bg-white/20 px-2.5 py-0.5 text-[10px] font-semibold text-white">
               Étape 3
             </span>
@@ -139,13 +160,15 @@ export default function Solution() {
                 { type: "Régulier", price: "75 $" },
                 { type: "Étudiant", price: "45 $" },
               ].map((t) => (
-                <div
+                <motion.div
                   key={t.type}
+                  whileHover={{ x: 4, backgroundColor: "rgba(255,255,255,0.18)" }}
+                  transition={{ duration: 0.18, ease: "easeOut" }}
                   className="mb-1 flex items-center justify-between rounded-lg bg-white/10 px-3 py-1.5"
                 >
                   <span className="text-[11px] text-white">{t.type}</span>
                   <span className="text-[11px] font-medium text-white">{t.price}</span>
-                </div>
+                </motion.div>
               ))}
               {/* QR grid 4×4 */}
               <div className="mt-3 grid grid-cols-4 gap-1">
@@ -157,10 +180,14 @@ export default function Solution() {
                 ))}
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Card 3 — bg-white border */}
-          <div className="rounded-2xl border border-brand-border bg-white p-8">
+          <motion.div
+            whileHover={{ y: -8, scale: 1.01 }}
+            transition={{ duration: 0.22, ease: "easeOut" }}
+            className="rounded-2xl border border-brand-border bg-white p-8 transition-shadow hover:shadow-[0_24px_50px_-28px_rgba(13,17,23,0.28)]"
+          >
             <span className="mb-2 inline-block rounded-full border border-brand-border bg-brand-bg px-2.5 py-0.5 text-[10px] font-semibold text-brand-mid">
               Étape 4
             </span>
@@ -175,7 +202,11 @@ export default function Solution() {
                 { label: "En attente", pct: 24, color: "bg-amber-400" },
                 { label: "Invités", pct: 8, color: "bg-brand-border" },
               ].map((g) => (
-                <div key={g.label}>
+                <motion.div
+                  key={g.label}
+                  whileHover={{ x: 4 }}
+                  transition={{ duration: 0.18, ease: "easeOut" }}
+                >
                   <div className="mb-1 flex justify-between text-xs">
                     <span className="text-brand-mid">{g.label}</span>
                     <span className="font-medium text-ink">{g.pct}%</span>
@@ -186,13 +217,17 @@ export default function Solution() {
                       style={{ width: `${g.pct}%` }}
                     />
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
-          </div>
+          </motion.div>
 
           {/* Card 4 — bg-white border */}
-          <div className="rounded-2xl border border-brand-border bg-white p-8">
+          <motion.div
+            whileHover={{ y: -8, scale: 1.01 }}
+            transition={{ duration: 0.22, ease: "easeOut" }}
+            className="rounded-2xl border border-brand-border bg-white p-8 transition-shadow hover:shadow-[0_24px_50px_-28px_rgba(13,17,23,0.28)]"
+          >
             <span className="mb-2 inline-block rounded-full border border-brand-border bg-brand-bg px-2.5 py-0.5 text-[10px] font-semibold text-brand-mid">
               Étape 5
             </span>
@@ -203,10 +238,14 @@ export default function Solution() {
               Trouvez et mandatez les meilleurs prestataires locaux directement
               depuis la plateforme. Traiteurs, DJ, photographes, décorateurs…
             </p>
-          </div>
+          </motion.div>
 
           {/* Card 5 — bg-ink */}
-          <div className="rounded-2xl bg-ink p-8">
+          <motion.div
+            whileHover={{ y: -8, scale: 1.01 }}
+            transition={{ duration: 0.22, ease: "easeOut" }}
+            className="rounded-2xl bg-ink p-8 transition-shadow hover:shadow-[0_24px_50px_-28px_rgba(13,17,23,0.5)]"
+          >
             <span className="mb-2 inline-block rounded-full bg-white/10 px-2.5 py-0.5 text-[10px] font-semibold text-white/50">
               Étape 6
             </span>
@@ -217,7 +256,7 @@ export default function Solution() {
               Scan QR natif à l&apos;entrée, suivi des présences en direct et
               tableau de bord post-événement avec toutes vos données.
             </p>
-          </div>
+          </motion.div>
         </motion.div>
 
         {/* Tagline finale */}

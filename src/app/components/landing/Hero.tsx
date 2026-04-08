@@ -10,11 +10,25 @@ const TRUST_ITEMS = [
   "Plateforme bilingue FR/EN",
 ];
 
-const fadeUp = (delay: number) => ({
-  initial: { opacity: 0, y: 24 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.55, ease: "easeOut" as const, delay },
-});
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.05,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 32, filter: "blur(6px)" },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.7, ease: "easeOut" as const },
+  },
+};
 
 export default function Hero() {
   return (
@@ -34,10 +48,16 @@ export default function Hero() {
         />
       </div>
 
-      <div className="relative mx-auto flex max-w-3xl flex-col items-center text-center">
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.35 }}
+        variants={containerVariants}
+        className="relative mx-auto flex max-w-3xl flex-col items-center text-center"
+      >
         {/* Badge */}
         <motion.span
-          {...fadeUp(0)}
+          variants={itemVariants}
           className="mb-6 inline-flex items-center rounded-full border border-brand-border bg-brand-bg px-4 py-1.5 text-xs font-medium text-brand-mid"
         >
           Bientôt disponible — Montréal, Québec
@@ -45,7 +65,7 @@ export default function Hero() {
 
         {/* H1 */}
         <motion.h1
-          {...fadeUp(0.08)}
+          variants={itemVariants}
           className="mb-5 text-[clamp(2rem,5vw,3.25rem)] font-[500] leading-tight tracking-tight text-ink"
         >
           Tout le parcours événementiel.{" "}
@@ -54,7 +74,7 @@ export default function Hero() {
 
         {/* Subtitle */}
         <motion.p
-          {...fadeUp(0.16)}
+          variants={itemVariants}
           className="mb-8 max-w-[500px] text-base leading-relaxed text-brand-mid"
         >
           Elintys centralise la billetterie, la gestion des invités, les
@@ -63,7 +83,7 @@ export default function Hero() {
         </motion.p>
 
         {/* EmailForm */}
-        <motion.div {...fadeUp(0.22)} className="mb-4 w-full max-w-md">
+        <motion.div variants={itemVariants} className="mb-4 w-full max-w-md">
           <EmailForm
             source="hero"
             buttonLabel="Obtenir un accès prioritaire"
@@ -72,8 +92,10 @@ export default function Hero() {
 
         {/* Secondary link */}
         <motion.a
-          {...fadeUp(0.28)}
+          variants={itemVariants}
           href="#solution"
+          whileHover={{ x: 6 }}
+          transition={{ duration: 0.22, ease: "easeOut" }}
           className="mb-10 text-sm text-brand-soft transition-colors hover:text-brand-mid"
         >
           Voir comment ça fonctionne →
@@ -81,22 +103,24 @@ export default function Hero() {
 
         {/* Trust items */}
         <motion.div
-          {...fadeUp(0.34)}
+          variants={itemVariants}
           className="flex flex-wrap justify-center gap-3"
         >
           {TRUST_ITEMS.map((item) => (
-            <span
+            <motion.span
               key={item}
+              whileHover={{ y: -4, scale: 1.03 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
               className="flex items-center gap-2 rounded-full bg-teal-light px-3 py-1.5 text-xs font-medium text-teal-dark"
             >
               <span className="flex h-4 w-4 items-center justify-center rounded-full bg-teal text-[10px] text-white font-bold">
                 ✓
               </span>
               {item}
-            </span>
+            </motion.span>
           ))}
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 }

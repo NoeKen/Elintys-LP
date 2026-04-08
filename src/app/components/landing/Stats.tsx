@@ -78,10 +78,15 @@ export default function Stats() {
           className="grid grid-cols-1 divide-y divide-white/[0.08] overflow-hidden rounded-2xl border border-white/[0.08] bg-white/5 md:grid-cols-3 md:divide-x md:divide-y-0"
         >
           {STATS.map((s) => (
-            <div key={s.label} className="flex flex-col items-center px-8 py-10 text-center">
+            <motion.div
+              key={s.label}
+              whileHover={{ y: -8, backgroundColor: "rgba(255,255,255,0.08)" }}
+              transition={{ duration: 0.22, ease: "easeOut" }}
+              className="flex flex-col items-center px-8 py-10 text-center"
+            >
               <p className="mb-2 text-5xl font-[500] text-teal-mid">{s.value}</p>
               <p className="text-sm text-white/40">{s.label}</p>
-            </div>
+            </motion.div>
           ))}
         </motion.div>
       </div>
