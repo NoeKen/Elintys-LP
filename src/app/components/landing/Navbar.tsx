@@ -50,6 +50,7 @@ export default function Navbar() {
           <img
             src="/images/elintys_logo.webp"
             alt="Elintys logo"
+            width={150}
             className="h-8 w-auto object-contain"
             loading="eager"
           />
