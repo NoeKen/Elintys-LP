@@ -107,7 +107,7 @@ const fr = {
       "{count} personnes — organisateurs, prestataires et gestionnaires de lieux — ont déjà rejoint la liste.",
     quote:
       "J'ai construit Elintys parce que l'événementiel mérite mieux. Mieux que des outils déconnectés, mieux que des heures perdues à synchroniser ce qui devrait couler de source. Notre ambition est de devenir la plateforme de référence de toute une industrie — en commençant par Montréal.",
-    signature: "— [Votre prénom], fondateur d'Elintys · Montréal, Québec",
+    signature: "— {nom}, fondateur d'Elintys · Montréal, Québec",
     coverage:
       "Déjà rejoint par des organisateurs de mariages, conférences, galas, festivals et soirées corporatives — ainsi que par des prestataires et gestionnaires d'espaces.",
   },

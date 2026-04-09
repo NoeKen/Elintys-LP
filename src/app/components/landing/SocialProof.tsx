@@ -77,7 +77,7 @@ export default function SocialProof() {
             <p className="text-lg leading-relaxed text-ink">
               &quot;{copy.quote}&quot;
             </p>
-            <footer className="mt-4 text-sm text-brand-mid">{copy.signature}</footer>
+            <footer className="mt-4 text-sm text-brand-mid">{replaceToken(copy.signature, "nom", "Noe Kenfack")}</footer>
           </div>
         </motion.blockquote>
 

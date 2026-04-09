@@ -99,7 +99,7 @@ const en = {
     count: "{count} people — organizers, service providers, and venue managers — have already joined the list.",
     quote:
       "I built Elintys because events deserve better. Better than disconnected tools, better than hours lost syncing what should naturally flow. Our ambition is to become the reference platform for an entire industry — starting with Montreal.",
-    signature: "— [Your first name], founder of Elintys · Montreal, Quebec",
+    signature: "— {nom}, founder of Elintys · Montreal, Quebec",
     coverage:
       "Already joined by wedding planners, conference organizers, gala teams, festivals, and corporate events — along with service providers and venue managers.",
   },
