@@ -1,14 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import EmailForm from "@/app/components/ui/EmailForm";
-
-const TRUST_ITEMS = [
-  "Accès bêta gratuit",
-  "Aucun spam",
-  "Désabonnement en 1 clic",
-  "Plateforme bilingue FR/EN",
-];
+import { useI18n } from "@/contexts/I18nContext";
 
 const containerVariants = {
   hidden: {},
@@ -31,9 +24,11 @@ const itemVariants = {
 };
 
 export default function Hero() {
+  const { messages } = useI18n();
+  const copy = messages.hero;
+
   return (
     <section className="relative overflow-hidden bg-white px-6 pb-24 pt-20">
-      {/* Radial glow */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 flex items-start justify-center"
@@ -55,65 +50,58 @@ export default function Hero() {
         variants={containerVariants}
         className="relative mx-auto flex max-w-3xl flex-col items-center text-center"
       >
-        {/* Badge */}
         <motion.span
           variants={itemVariants}
           className="mb-6 inline-flex items-center rounded-full border border-brand-border bg-brand-bg px-4 py-1.5 text-xs font-medium text-brand-mid"
         >
-          Bientôt disponible — Montréal, Québec
+          {copy.badge}
         </motion.span>
 
-        {/* H1 */}
         <motion.h1
           variants={itemVariants}
           className="mb-5 text-[clamp(2rem,5vw,3.25rem)] font-[500] leading-tight tracking-tight text-ink"
         >
-          Tout le parcours événementiel.{" "}
-          <span className="text-teal">Un seul endroit.</span>
+          {copy.title}
         </motion.h1>
 
-        {/* Subtitle */}
         <motion.p
           variants={itemVariants}
-          className="mb-8 max-w-[500px] text-base leading-relaxed text-brand-mid"
+          className="mb-8 max-w-[680px] text-base leading-relaxed text-brand-mid"
         >
-          Elintys centralise la billetterie, la gestion des invités, les
-          prestataires et le scan d&apos;entrée — pour que vous puissiez vous
-          concentrer sur l&apos;essentiel : votre événement.
+          {copy.subtitle}
         </motion.p>
 
-        {/* EmailForm */}
-        <motion.div variants={itemVariants} className="mb-4 w-full max-w-md">
-          <EmailForm
-            source="hero"
-            buttonLabel="Obtenir un accès prioritaire"
-          />
+        <motion.div variants={itemVariants} className="mb-4">
+          <motion.a
+            href="#cta"
+            whileHover={{ y: -2, scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            transition={{ duration: 0.18, ease: "easeOut" }}
+            className="inline-flex items-center justify-center rounded-xl bg-ink px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-ink-mid"
+          >
+            {copy.primaryCta}
+          </motion.a>
         </motion.div>
 
-        {/* Secondary link */}
         <motion.a
           variants={itemVariants}
-          href="#solution"
+          href="#probleme"
           whileHover={{ x: 6 }}
           transition={{ duration: 0.22, ease: "easeOut" }}
           className="mb-10 text-sm text-brand-soft transition-colors hover:text-brand-mid"
         >
-          Voir comment ça fonctionne →
+          {copy.secondaryCta}
         </motion.a>
 
-        {/* Trust items */}
-        <motion.div
-          variants={itemVariants}
-          className="flex flex-wrap justify-center gap-3"
-        >
-          {TRUST_ITEMS.map((item) => (
+        <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-3">
+          {copy.trust.map((item) => (
             <motion.span
               key={item}
               whileHover={{ y: -4, scale: 1.03 }}
               transition={{ duration: 0.2, ease: "easeOut" }}
               className="flex items-center gap-2 rounded-full bg-teal-light px-3 py-1.5 text-xs font-medium text-teal-dark"
             >
-              <span className="flex h-4 w-4 items-center justify-center rounded-full bg-teal text-[10px] text-white font-bold">
+              <span className="flex h-4 w-4 items-center justify-center rounded-full bg-teal text-[10px] font-bold text-white">
                 ✓
               </span>
               {item}
