@@ -1,13 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import EmailForm from "@/app/components/ui/EmailForm";
-
-const TRUST_ITEMS = [
-  "Accès bêta gratuit",
-  "Aucun engagement",
-  "Vous construisez le produit avec nous",
-];
+import { useI18n } from "@/contexts/I18nContext";
 
 const containerVariants = {
   hidden: {},
@@ -30,6 +24,9 @@ const itemVariants = {
 };
 
 export default function Hero() {
+  const { messages } = useI18n();
+  const copy = messages.hero;
+
   return (
     <section className="relative overflow-hidden bg-white px-6 pb-24 pt-20">
       <div
@@ -57,27 +54,33 @@ export default function Hero() {
           variants={itemVariants}
           className="mb-6 inline-flex items-center rounded-full border border-brand-border bg-brand-bg px-4 py-1.5 text-xs font-medium text-brand-mid"
         >
-          Écosystème bêta — Montréal, Québec
+          {copy.badge}
         </motion.span>
 
         <motion.h1
           variants={itemVariants}
           className="mb-5 text-[clamp(2rem,5vw,3.25rem)] font-[500] leading-tight tracking-tight text-ink"
         >
-          L&apos;événementiel mérite mieux que des outils qui ne se parlent pas.
+          {copy.title}
         </motion.h1>
 
         <motion.p
           variants={itemVariants}
           className="mb-8 max-w-[680px] text-base leading-relaxed text-brand-mid"
         >
-          Elintys réunit organisateurs, prestataires et gestionnaires de lieux
-          dans un seul écosystème — pour que chaque événement soit vécu
-          pleinement, pas seulement géré.
+          {copy.subtitle}
         </motion.p>
 
-        <motion.div variants={itemVariants} className="mb-4 w-full max-w-md">
-          <EmailForm source="hero" buttonLabel="Rejoindre le mouvement →" />
+        <motion.div variants={itemVariants} className="mb-4">
+          <motion.a
+            href="#cta"
+            whileHover={{ y: -2, scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            transition={{ duration: 0.18, ease: "easeOut" }}
+            className="inline-flex items-center justify-center rounded-xl bg-ink px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-ink-mid"
+          >
+            {copy.primaryCta}
+          </motion.a>
         </motion.div>
 
         <motion.a
@@ -87,11 +90,11 @@ export default function Hero() {
           transition={{ duration: 0.22, ease: "easeOut" }}
           className="mb-10 text-sm text-brand-soft transition-colors hover:text-brand-mid"
         >
-          Découvrir la plateforme ↓
+          {copy.secondaryCta}
         </motion.a>
 
         <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-3">
-          {TRUST_ITEMS.map((item) => (
+          {copy.trust.map((item) => (
             <motion.span
               key={item}
               whileHover={{ y: -4, scale: 1.03 }}

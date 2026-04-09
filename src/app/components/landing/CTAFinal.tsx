@@ -3,10 +3,13 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import EmailForm from "@/app/components/ui/EmailForm";
+import { useI18n } from "@/contexts/I18nContext";
 
 export default function CTAFinal() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-60px" });
+  const { messages } = useI18n();
+  const copy = messages.ctaFinal;
 
   return (
     <section id="cta" className="relative overflow-hidden bg-ink px-6 py-28" ref={ref}>
@@ -28,7 +31,7 @@ export default function CTAFinal() {
           transition={{ duration: 0.5 }}
           className="mb-6 inline-flex items-center rounded-full border border-teal/30 bg-teal/10 px-4 py-1.5 text-xs font-medium text-teal-mid"
         >
-          Accès bêta limité
+          {copy.badge}
         </motion.span>
 
         <motion.h2
@@ -37,17 +40,16 @@ export default function CTAFinal() {
           transition={{ duration: 0.5, delay: 0.08 }}
           className="mb-4 text-[clamp(2rem,5vw,3rem)] font-[500] leading-tight tracking-tight text-white"
         >
-          L&apos;événementiel se réinvente. Faites-en partie.
+          {copy.title}
         </motion.h2>
 
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.14 }}
-          className="mb-10 text-base text-white/40"
+          className="mb-10 text-base text-white/50"
         >
-          Les accès bêta sont limités. Inscrivez-vous maintenant —
-          organisateurs, prestataires et gestionnaires de lieux bienvenus.
+          {copy.subtitle}
         </motion.p>
 
         <motion.div
@@ -58,7 +60,7 @@ export default function CTAFinal() {
         >
           <EmailForm
             source="cta"
-            buttonLabel="Rejoindre le mouvement →"
+            buttonLabel={copy.button}
             inputClassName="border-white/15 bg-white/[0.08] text-white placeholder:text-white/30 focus:border-teal"
             buttonClassName="bg-teal hover:bg-teal-dark"
             wrapperClassName="[&_.text-brand-mid]:text-white/60"
@@ -71,7 +73,7 @@ export default function CTAFinal() {
           transition={{ duration: 0.5, delay: 0.28 }}
           className="text-center text-xs text-white/30"
         >
-          Gratuit · Aucun engagement · Désabonnement en un clic
+          {copy.reassurance}
         </motion.div>
       </div>
     </section>

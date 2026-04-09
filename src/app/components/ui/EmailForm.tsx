@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { useI18n } from "@/contexts/I18nContext";
+import { replaceToken } from "@/lib/i18n";
 
 type WaitlistRole = "organisateur" | "prestataire" | "gestionnaire" | "visiteur";
 type FormState = "idle" | "loading" | "success" | "error" | "exists";
@@ -24,6 +26,8 @@ export default function EmailForm({
   wrapperClassName,
   buttonLabel = "Rejoindre la liste d'attente",
 }: EmailFormProps) {
+  const { locale, messages } = useI18n();
+  const copy = messages.form;
   const [firstName, setFirstName] = useState("");
   const [role, setRole] = useState<WaitlistRole | "">("");
   const [email, setEmail] = useState("");
@@ -48,17 +52,17 @@ export default function EmailForm({
     const nextErrors: typeof errors = {};
 
     if (!firstName.trim()) {
-      nextErrors.firstName = "Veuillez entrer votre prénom.";
+      nextErrors.firstName = copy.errors.firstName;
     }
 
     if (!role) {
-      nextErrors.role = "Veuillez sélectionner votre rôle.";
+      nextErrors.role = copy.errors.role;
     }
 
     if (!email.trim()) {
-      nextErrors.email = "Veuillez entrer votre adresse email.";
+      nextErrors.email = copy.errors.emailRequired;
     } else if (!EMAIL_REGEX.test(email)) {
-      nextErrors.email = "Veuillez entrer une adresse email valide.";
+      nextErrors.email = copy.errors.emailInvalid;
     }
 
     if (Object.keys(nextErrors).length > 0) {
@@ -79,23 +83,23 @@ export default function EmailForm({
           role,
           email: email.trim(),
           source,
-          locale: "fr",
+          locale,
         }),
       });
       const data = await res.json();
 
       if (res.status === 429) {
         setState("error");
-        setErrors({ global: "Trop de tentatives. Réessayez dans quelques minutes." });
+        setErrors({ global: copy.errors.rateLimit });
       } else if (res.ok) {
         setState(data.alreadyExists ? "exists" : "success");
       } else {
         setState("error");
-        setErrors({ global: data.error ?? "Une erreur est survenue. Veuillez réessayer." });
+        setErrors({ global: data.error ?? copy.errors.generic });
       }
     } catch {
       setState("error");
-      setErrors({ global: "Une erreur est survenue. Veuillez réessayer." });
+      setErrors({ global: copy.errors.generic });
     }
   }
 
@@ -107,8 +111,8 @@ export default function EmailForm({
         </div>
         <p className="text-sm text-brand-mid">
           {state === "exists"
-            ? "Vous êtes déjà sur la liste ! On vous contacte bientôt."
-            : `Bienvenue ${firstName.trim()} ! Vous êtes sur la liste.`}
+            ? copy.exists
+            : replaceToken(copy.success, "firstName", firstName.trim())}
         </p>
       </div>
     );
@@ -124,8 +128,8 @@ export default function EmailForm({
             setFirstName(e.target.value);
             clearErrors();
           }}
-          placeholder="Votre prénom"
-          aria-label="Votre prénom"
+          placeholder={copy.firstNamePlaceholder}
+          aria-label={copy.firstNamePlaceholder}
           disabled={state === "loading"}
           className={cn(
             "w-full rounded-xl border border-brand-border bg-white px-4 py-3 text-sm text-ink placeholder:text-brand-soft outline-none transition-colors focus:border-teal focus:ring-2 focus:ring-teal/20",
@@ -143,7 +147,7 @@ export default function EmailForm({
             setRole(e.target.value as WaitlistRole | "");
             clearErrors();
           }}
-          aria-label="Votre rôle"
+          aria-label={copy.rolePlaceholder}
           disabled={state === "loading"}
           className={cn(
             "w-full appearance-none rounded-xl border border-brand-border bg-white px-4 py-3 text-sm text-ink outline-none transition-colors focus:border-teal focus:ring-2 focus:ring-teal/20",
@@ -153,12 +157,12 @@ export default function EmailForm({
           )}
         >
           <option value="" disabled>
-            Je suis...
+            {copy.rolePlaceholder}
           </option>
-          <option value="organisateur">Organisateur d&apos;événements</option>
-          <option value="prestataire">Prestataire de services</option>
-          <option value="gestionnaire">Gestionnaire de lieu / espace</option>
-          <option value="visiteur">Visiteur / participant</option>
+          <option value="organisateur">{copy.roleOptions.organisateur}</option>
+          <option value="prestataire">{copy.roleOptions.prestataire}</option>
+          <option value="gestionnaire">{copy.roleOptions.gestionnaire}</option>
+          <option value="visiteur">{copy.roleOptions.visiteur}</option>
         </select>
         {errors.role && <p className="text-xs text-red-500">{errors.role}</p>}
       </div>
@@ -171,8 +175,8 @@ export default function EmailForm({
             setEmail(e.target.value);
             clearErrors();
           }}
-          placeholder="votre@email.com"
-          aria-label="Votre email"
+          placeholder={copy.emailPlaceholder}
+          aria-label={copy.emailPlaceholder}
           disabled={state === "loading"}
           className={cn(
             "w-full rounded-xl border border-brand-border bg-white px-4 py-3 text-sm text-ink placeholder:text-brand-soft outline-none transition-colors focus:border-teal focus:ring-2 focus:ring-teal/20",

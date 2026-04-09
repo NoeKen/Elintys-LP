@@ -2,10 +2,14 @@
 
 import { useEffect, useRef, useState } from "react";
 import { animate, motion, useInView } from "framer-motion";
+import { useI18n } from "@/contexts/I18nContext";
+import { replaceToken } from "@/lib/i18n";
 
 export default function SocialProof() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-60px" });
+  const { messages } = useI18n();
+  const copy = messages.socialProof;
   const [count, setCount] = useState(0);
   const [displayCount, setDisplayCount] = useState(0);
 
@@ -52,15 +56,14 @@ export default function SocialProof() {
   return (
     <section ref={ref} className="bg-white px-6 py-24">
       <div className="mx-auto max-w-4xl">
-        {count > 10 && (
+        {count > 0 && (
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5 }}
             className="mb-10 text-center text-lg font-medium text-ink"
           >
-            {displayCount} personnes — organisateurs, prestataires et
-            gestionnaires de lieux — ont déjà rejoint la liste.
+            {replaceToken(copy.count, "count", displayCount)}
           </motion.p>
         )}
 
@@ -72,15 +75,9 @@ export default function SocialProof() {
         >
           <div className="border-l-4 border-teal pl-5">
             <p className="text-lg leading-relaxed text-ink">
-              &quot;J&apos;ai construit Elintys parce que l&apos;événementiel
-              mérite mieux. Mieux que des outils déconnectés, mieux que des
-              heures perdues à synchroniser ce qui devrait couler de source.
-              Notre ambition est de devenir la plateforme de référence de toute
-              une industrie — en commençant par Montréal.&quot;
+              &quot;{copy.quote}&quot;
             </p>
-            <footer className="mt-4 text-sm text-brand-mid">
-              — [Votre prénom], fondateur d&apos;Elintys · Montréal, Québec
-            </footer>
+            <footer className="mt-4 text-sm text-brand-mid">{copy.signature}</footer>
           </div>
         </motion.blockquote>
 
@@ -90,9 +87,7 @@ export default function SocialProof() {
           transition={{ duration: 0.5, delay: 0.18 }}
           className="mx-auto mt-8 max-w-3xl text-center text-sm leading-relaxed text-brand-mid"
         >
-          Déjà rejoint par des organisateurs de mariages, conférences, galas,
-          festivals et soirées corporatives — ainsi que par des prestataires et
-          gestionnaires d&apos;espaces.
+          {copy.coverage}
         </motion.p>
       </div>
     </section>

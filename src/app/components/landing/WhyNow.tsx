@@ -2,22 +2,9 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { useI18n } from "@/contexts/I18nContext";
 
-const JOIN_NOW_ITEMS = [
-  "Accès prioritaire à la bêta avant le lancement public",
-  "Tarif fondateur réservé aux premiers inscrits",
-  "Votre feedback influence directement les fonctionnalités",
-  "Accès direct à l'équipe — pas un ticket de support",
-];
-
-const PRODUCT_ITEMS = [
-  "Un seul endroit pour tout votre événement",
-  "Vos prestataires et votre lieu connectés à votre tableau de bord",
-  "Billetterie, invités, scan d'entrée — sans changer d'onglet",
-  "Plus de temps à organiser. Moins à synchroniser.",
-];
-
-function InfoCard({ title, items }: { title: string; items: string[] }) {
+function InfoCard({ title, items }: { title: string; items: readonly string[] }) {
   return (
     <div className="rounded-2xl border border-brand-border bg-white p-6 shadow-sm">
       <h3 className="mb-5 text-lg font-semibold text-ink">{title}</h3>
@@ -36,6 +23,8 @@ function InfoCard({ title, items }: { title: string; items: string[] }) {
 export default function WhyNow() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-60px" });
+  const { messages } = useI18n();
+  const copy = messages.whyNow;
 
   return (
     <section ref={ref} className="bg-brand-bg px-6 py-24">
@@ -46,7 +35,7 @@ export default function WhyNow() {
           transition={{ duration: 0.5 }}
           className="mb-5 inline-flex items-center rounded-full border border-brand-border bg-white px-4 py-1.5 text-xs font-medium text-brand-mid"
         >
-          Pourquoi maintenant
+          {copy.badge}
         </motion.span>
 
         <motion.h2
@@ -55,7 +44,7 @@ export default function WhyNow() {
           transition={{ duration: 0.5, delay: 0.08 }}
           className="mb-4 max-w-3xl text-[2.1rem] font-[500] leading-tight tracking-tight text-ink"
         >
-          Les premiers arrivés construisent quelque chose avec nous.
+          {copy.title}
         </motion.h2>
 
         <motion.p
@@ -64,10 +53,7 @@ export default function WhyNow() {
           transition={{ duration: 0.5, delay: 0.14 }}
           className="mb-10 max-w-3xl text-base leading-relaxed text-brand-mid"
         >
-          Elintys n&apos;est pas encore lancé. C&apos;est une opportunité rare :
-          celle d&apos;influencer une plateforme avant qu&apos;elle existe
-          complètement. Les early adopters ne sont pas juste des utilisateurs —
-          ils sont co-constructeurs.
+          {copy.intro}
         </motion.p>
 
         <motion.div
@@ -76,8 +62,8 @@ export default function WhyNow() {
           transition={{ duration: 0.55, delay: 0.2 }}
           className="grid grid-cols-1 gap-4 md:grid-cols-2"
         >
-          <InfoCard title="En rejoignant aujourd'hui" items={JOIN_NOW_ITEMS} />
-          <InfoCard title="Avec le produit" items={PRODUCT_ITEMS} />
+          <InfoCard title={copy.leftTitle} items={copy.left} />
+          <InfoCard title={copy.rightTitle} items={copy.right} />
         </motion.div>
       </div>
     </section>

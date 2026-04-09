@@ -21,14 +21,15 @@ export interface WaitlistEntry {
 async function sendConfirmationEmail(
   firstName: string,
   email: string,
-  role: WaitlistRole
+  role: WaitlistRole,
+  locale: WaitlistEntry["locale"]
 ): Promise<boolean> {
   try {
     await getResend().emails.send({
       from: process.env.RESEND_FROM_EMAIL!,
       to: email,
-      subject: "Vous êtes sur la liste Elintys 🎉",
-      html: waitlistConfirmationEmail({ firstName, role, email }),
+      subject: locale === "fr" ? "Vous êtes sur la liste Elintys 🎉" : "You're on the Elintys list 🎉",
+      html: waitlistConfirmationEmail({ firstName, role, email, locale }),
     });
     return true;
   } catch (error) {
@@ -65,7 +66,7 @@ export async function addToWaitlist(
 
     await waitlistRef.add(entry);
 
-    const emailSent = await sendConfirmationEmail(normalizedFirstName, normalizedEmail, role);
+    const emailSent = await sendConfirmationEmail(normalizedFirstName, normalizedEmail, role, locale);
 
     return { success: true, alreadyExists: false, emailSent };
   } catch (error) {
