@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { useI18n } from "@/contexts/I18nContext";
+import Image from "next/image";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -47,11 +48,12 @@ export default function Navbar() {
           transition={{ duration: 0.5, delay: 0.08, ease: "easeOut" }}
           className="flex items-center gap-2"
         >
-          <img
+          <Image
             src="/images/elintys_logo.webp"
             alt="Elintys logo"
-            width={150}
-            className="h-8 w-auto object-contain"
+            width={90}
+            height={40}
+            className="h-7 w-auto object-contain"
             loading="eager"
           />
         </motion.a>
