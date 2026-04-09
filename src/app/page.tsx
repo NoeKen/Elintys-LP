@@ -5,30 +5,31 @@ import Hero from "@/app/components/landing/Hero";
 import Marquee from "@/app/components/landing/Marquee";
 import Problem from "@/app/components/landing/Problem";
 import Solution from "@/app/components/landing/Solution";
-import Stats from "@/app/components/landing/Stats";
+import SocialProof from "@/app/components/landing/SocialProof";
 import Comparison from "@/app/components/landing/Comparison";
+import WhyNow from "@/app/components/landing/WhyNow";
 import FAQ from "@/app/components/landing/FAQ";
 import CTAFinal from "@/app/components/landing/CTAFinal";
 import Footer from "@/app/components/landing/Footer";
 
 export const metadata: Metadata = {
-  title: "Elintys — Tout le parcours événementiel. Un seul endroit.",
+  title: "Elintys — L'événementiel réinventé",
   description:
-    "Elintys centralise la billetterie, la gestion des invités, les prestataires et le scan d'entrée pour les organisateurs d'événements au Québec.",
+    "Elintys réunit organisateurs, prestataires et gestionnaires de lieux dans un seul écosystème. Créez, équipez, vendez, gérez et accueillez — sans friction. Rejoignez la liste d'attente.",
   robots: { index: true, follow: true },
   openGraph: {
-    title: "Elintys — Tout le parcours événementiel. Un seul endroit.",
+    title: "Elintys — L'événementiel réinventé",
     description:
-      "La première plateforme tout-en-un pour les événements au Québec. Billetterie, invités, prestataires, scan QR — en français.",
+      "Elintys réunit organisateurs, prestataires et gestionnaires de lieux dans un seul écosystème. Créez, équipez, vendez, gérez et accueillez — sans friction. Rejoignez la liste d'attente.",
     type: "website",
     locale: "fr_CA",
     siteName: "Elintys",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Elintys — Tout le parcours événementiel. Un seul endroit.",
+    title: "Elintys — L'événementiel réinventé",
     description:
-      "La première plateforme tout-en-un pour les événements au Québec.",
+      "Elintys réunit organisateurs, prestataires et gestionnaires de lieux dans un seul écosystème. Rejoignez la liste d'attente.",
   },
 };
 
@@ -41,8 +42,9 @@ export default function HomePage() {
         <Marquee />
         <Problem />
         <Solution />
-        <Stats />
-        <Comparison />
+        <SocialProof />
+        {/* <Comparison /> */}
+        <WhyNow />
         <FAQ />
         <CTAFinal />
         <Footer />

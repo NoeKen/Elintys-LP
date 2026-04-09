@@ -24,7 +24,11 @@ const FAQS = [
   },
   {
     q: "Je suis prestataire — comment ça fonctionne pour moi ?",
-    a: "Vous pourrez créer un profil prestataire sur la marketplace, être découvert par des organisateurs et recevoir des mandats directement depuis la plateforme.",
+    a: "Créez votre profil prestataire sur Elintys et devenez visible au moment exact où un organisateur cherche à équiper son événement. Photographes, traiteurs, DJ, décorateurs, animateurs — tous les profils sont les bienvenus. L'inscription est gratuite pendant la bêta.",
+  },
+  {
+    q: "Je gère un espace événementiel — puis-je le lister sur Elintys ?",
+    a: "Oui. Elintys permet aux propriétaires et gestionnaires d'espaces de lister leur lieu directement sur la plateforme. Vous recevez des demandes qualifiées liées à des événements structurés — avec date, nombre d'invités et contexte. La visibilité est gratuite pendant la bêta.",
   },
   {
     q: "Y aura-t-il des frais sur la billetterie et les paiements ?",

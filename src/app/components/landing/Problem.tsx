@@ -3,46 +3,53 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
-const TOOLS = [
+const PORTRAITS = [
   {
-    emoji: "🎟️",
-    name: "Billetterie",
-    tool: "Eventbrite / Billetech",
-    accent: "from-rose-100 via-white to-rose-50",
-    iconBg: "bg-rose-100",
-    tone: "text-rose-600",
+    title: "L'organisateur",
+    description:
+      "Jongle entre une plateforme de billetterie, un tableur d'invités, des recherches Google pour ses prestataires, et une app de scan le jour J. Il gère des outils, pas son événement.",
+    icon: (
+      <svg viewBox="0 0 20 20" fill="none" className="h-5 w-5 text-teal">
+        <rect x="3" y="4" width="14" height="13" rx="2" stroke="currentColor" strokeWidth="1.6" />
+        <path
+          d="M6 2.8v2.4M14 2.8v2.4M3 8.2h14M6.5 11.2h2.5M11 11.2h2.5M6.5 14h2.5"
+          stroke="currentColor"
+          strokeWidth="1.6"
+          strokeLinecap="round"
+        />
+      </svg>
+    ),
   },
   {
-    emoji: "📣",
-    name: "Promotion",
-    tool: "Facebook / Instagram",
-    accent: "from-amber-100 via-white to-orange-50",
-    iconBg: "bg-amber-100",
-    tone: "text-amber-600",
+    title: "Le prestataire",
+    description:
+      "Talentueux et disponible, mais invisible. Il dépend du bouche-à-oreille et d'annuaires génériques — sans connexion directe aux événements qui ont besoin de lui.",
+    icon: (
+      <svg viewBox="0 0 20 20" fill="none" className="h-5 w-5 text-teal">
+        <path
+          d="M10 2.7l2.2 4.45 4.92.72-3.56 3.47.84 4.9L10 13.96 5.58 16.24l.84-4.9L2.86 7.87l4.92-.72L10 2.7Z"
+          stroke="currentColor"
+          strokeWidth="1.6"
+          strokeLinejoin="round"
+        />
+      </svg>
+    ),
   },
   {
-    emoji: "🤝",
-    name: "Prestataires",
-    tool: "Annuaires éparpillés",
-    accent: "from-emerald-100 via-white to-teal-50",
-    iconBg: "bg-emerald-100",
-    tone: "text-emerald-600",
-  },
-  {
-    emoji: "📋",
-    name: "Invités",
-    tool: "Google Sheets",
-    accent: "from-sky-100 via-white to-cyan-50",
-    iconBg: "bg-sky-100",
-    tone: "text-sky-600",
-  },
-  {
-    emoji: "📱",
-    name: "Scan entrée",
-    tool: "Outil séparé",
-    accent: "from-violet-100 via-white to-fuchsia-50",
-    iconBg: "bg-violet-100",
-    tone: "text-violet-600",
+    title: "Le gestionnaire de lieu",
+    description:
+      "Son espace est prêt. Mais les demandes arrivent par email, sans contexte, sans date claire, sans nombre de participants. Chaque réservation commence par une conversation floue.",
+    icon: (
+      <svg viewBox="0 0 20 20" fill="none" className="h-5 w-5 text-teal">
+        <path
+          d="M3.5 16.5h13M5 16.5V8.4L10 4.8l5 3.6v8.1M7.5 16.5v-4.2h5v4.2M8 9.2h.01M12 9.2h.01"
+          stroke="currentColor"
+          strokeWidth="1.6"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    ),
   },
 ];
 
@@ -69,111 +76,57 @@ export default function Problem() {
   const isInView = useInView(ref, { once: true, margin: "-60px" });
 
   return (
-    <section
-      id="problem"
-      className="border-y border-brand-border bg-brand-bg px-6 py-20"
-      ref={ref}
-    >
+    <section id="probleme" className="border-y border-brand-border bg-brand-bg px-6 py-20" ref={ref}>
       <motion.div
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
         variants={containerVariants}
         className="mx-auto max-w-5xl"
       >
-        {/* Badge */}
         <motion.span
           variants={itemVariants}
           className="mb-5 inline-flex items-center rounded-full border border-brand-border bg-white px-4 py-1.5 text-xs font-medium text-brand-mid"
         >
-          Le problème actuel
+          Le problème
         </motion.span>
 
         <motion.h2
           variants={itemVariants}
           className="mb-3 text-[2.1rem] font-[500] leading-tight tracking-tight text-ink"
         >
-          Organiser un événement, c&apos;est jongler avec trop d&apos;outils.
+          Dans l&apos;événementiel, tout le monde subit la même fragmentation.
         </motion.h2>
 
         <motion.p
           variants={itemVariants}
-          className="mb-10 max-w-xl text-base text-brand-mid"
+          className="mb-10 max-w-3xl text-base leading-relaxed text-brand-mid"
         >
-          Les organisateurs d&apos;événements utilisent en moyenne 5 outils
-          distincts, sans aucune connexion entre eux.
+          L&apos;industrie événementielle est vivante, créative et en pleine
+          croissance. Pourtant, les outils qui la soutiennent sont dispersés,
+          déconnectés, et conçus en silos.
         </motion.p>
 
-        {/* Tool grid */}
-        <motion.div
-          variants={itemVariants}
-          className="mb-8 grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-5"
-        >
-          {TOOLS.map((t) => (
+        <motion.div variants={itemVariants} className="mb-8 grid grid-cols-1 gap-4 md:grid-cols-3">
+          {PORTRAITS.map((portrait) => (
             <motion.div
-              key={t.name}
+              key={portrait.title}
               variants={itemVariants}
-              whileHover={{ y: -10, scale: 1.01 }}
+              whileHover={{ y: -8, scale: 1.01 }}
               transition={{ duration: 0.22, ease: "easeOut" }}
-              className="group relative overflow-hidden rounded-[28px] border border-white/70 bg-white p-6 text-left shadow-[0_20px_60px_-40px_rgba(13,17,23,0.22)] transition-shadow hover:shadow-[0_30px_70px_-36px_rgba(13,17,23,0.3)]"
+              className="rounded-2xl border border-brand-border bg-white p-5 shadow-sm"
             >
-              <div
-                className={`absolute inset-0 bg-gradient-to-br ${t.accent} opacity-90 transition-transform duration-300 group-hover:scale-105`}
-              />
-              <div className="absolute -right-10 -top-10 h-28 w-28 rounded-full bg-white/70 blur-2xl" />
-
-              <div className="relative flex h-full min-h-[210px] flex-col">
-                <div className="mb-6 flex items-start justify-between">
-                  <span
-                    className={`flex h-14 w-14 items-center justify-center rounded-2xl ${t.iconBg} text-2xl shadow-[inset_0_1px_0_rgba(255,255,255,0.8)]`}
-                  >
-                    {t.emoji}
-                  </span>
-                  <span className="rounded-full border border-black/5 bg-white/80 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-brand-soft">
-                    Outil
-                  </span>
-                </div>
-
-                <div className="mb-4">
-                  <p className="mb-1 text-lg font-semibold tracking-tight text-ink">
-                    {t.name}
-                  </p>
-                  <p className="text-sm leading-relaxed text-brand-mid">{t.tool}</p>
-                </div>
-
-                <div className="mt-auto flex items-center justify-between border-t border-black/5 pt-4">
-                  <span className="text-[11px] font-medium uppercase tracking-[0.18em] text-brand-soft">
-                    Fragmenté
-                  </span>
-                  <span
-                    className={`inline-flex items-center gap-1.5 rounded-full bg-white/80 px-2.5 py-1 text-xs font-medium ${t.tone}`}
-                  >
-                    <span className="h-1.5 w-1.5 rounded-full bg-current" />
-                    Séparé
-                  </span>
-                </div>
+              <div className="mb-4 flex h-[38px] w-[38px] items-center justify-center rounded-[10px] bg-teal-light">
+                {portrait.icon}
               </div>
+              <h3 className="mb-2 text-lg font-semibold tracking-tight text-ink">{portrait.title}</h3>
+              <p className="text-sm leading-relaxed text-brand-mid">{portrait.description}</p>
             </motion.div>
           ))}
         </motion.div>
 
-        {/* Warning */}
-        <motion.div
-          variants={itemVariants}
-          whileHover={{ y: -4 }}
-          transition={{ duration: 0.2, ease: "easeOut" }}
-          className="rounded-[24px] border border-amber-200/80 bg-gradient-to-r from-amber-50 via-yellow-50 to-amber-50 px-5 py-4 shadow-[0_18px_50px_-38px_rgba(217,119,6,0.55)]"
-        >
-          <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-            <p className="text-sm font-medium text-amber-900">
-              ⚠️&nbsp; Résultat : erreurs de synchronisation, données dispersées
-              et expérience dégradée pour les participants.
-            </p>
-            <div className="inline-flex w-fit items-center gap-2 rounded-full border border-amber-200 bg-white/70 px-3 py-1 text-xs font-semibold text-amber-700">
-              <span className="h-2 w-2 rounded-full bg-amber-500" />
-              Trop de points de friction
-            </div>
-          </div>
-        </motion.div>
+        <motion.p variants={itemVariants} className="mx-auto max-w-3xl text-center text-base font-medium text-ink">
+          Trois acteurs. Un même problème : ils ne sont pas connectés. Elintys change ça.
+        </motion.p>
       </motion.div>
     </section>
   );

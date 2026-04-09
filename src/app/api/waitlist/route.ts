@@ -1,7 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
-import { addToWaitlist } from "@/lib/waitlist";
+import { addToWaitlist, type WaitlistRole } from "@/lib/waitlist";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const VALID_ROLES: WaitlistRole[] = [
+  "organisateur",
+  "prestataire",
+  "gestionnaire",
+  "visiteur",
+];
 
 // In-memory rate limiter: IP -> array of timestamps
 const ipRequests = new Map<string, number[]>();
@@ -27,25 +33,47 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  let body: { email?: string; source?: string; locale?: string; role?: string };
+  let body: {
+    firstName?: string;
+    email?: string;
+    source?: string;
+    locale?: "fr" | "en";
+    role?: string;
+  };
   try {
     body = await req.json();
   } catch {
     return NextResponse.json({ success: false, error: "Email invalide" }, { status: 400 });
   }
 
-  const { email, source, locale = "fr", role } = body;
+  const { firstName, email, source, locale = "fr", role } = body;
+
+  if (!firstName || typeof firstName !== "string" || firstName.trim().length < 1) {
+    return NextResponse.json({ success: false, error: "Prénom requis" }, { status: 400 });
+  }
+
+  if (firstName.trim().length > 50) {
+    return NextResponse.json({ success: false, error: "Prénom requis" }, { status: 400 });
+  }
 
   if (!email || !EMAIL_REGEX.test(email)) {
     return NextResponse.json({ success: false, error: "Email invalide" }, { status: 400 });
+  }
+
+  if (!role || !VALID_ROLES.includes(role as WaitlistRole)) {
+    return NextResponse.json({ success: false, error: "Rôle invalide" }, { status: 400 });
   }
 
   if (source !== "hero" && source !== "cta") {
     return NextResponse.json({ success: false, error: "Source invalide" }, { status: 400 });
   }
 
+  if (locale !== "fr" && locale !== "en") {
+    return NextResponse.json({ success: false, error: "Langue invalide" }, { status: 400 });
+  }
+
   try {
-    const result = await addToWaitlist(email, source, locale, role);
+    const result = await addToWaitlist(firstName, email, role as WaitlistRole, source, locale);
 
     if (!result.success) {
       return NextResponse.json({ success: false, error: "Erreur serveur" }, { status: 500 });
