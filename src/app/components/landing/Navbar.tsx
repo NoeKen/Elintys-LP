@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 const links = [
   { label: "Fonctionnalités", href: "#solution" },
@@ -33,16 +34,16 @@ export default function Navbar() {
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         {/* Logo */}
-        <motion.a
+        {/* <motion.a
           href="#"
           whileHover={{ y: -2, scale: 1.02 }}
           transition={{ duration: 0.18, ease: "easeOut" }}
           className="text-xl font-semibold tracking-tight text-ink"
         >
           el<span className="text-teal">i</span>ntys
-        </motion.a>
+        </motion.a> */}
 
-        {/* <motion.a
+        <motion.a
           href="#"
           whileHover={{ y: -2, scale: 1.02 }}
           transition={{ duration: 0.18, ease: "easeOut" }}
@@ -56,7 +57,7 @@ export default function Navbar() {
             priority
             className="h-24 w-auto"
           />
-        </motion.a> */}
+        </motion.a>
 
         {/* Desktop links */}
         <div className="hidden items-center gap-7 md:flex">
