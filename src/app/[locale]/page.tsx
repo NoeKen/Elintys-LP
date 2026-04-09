@@ -1,17 +1,16 @@
-import type { Metadata } from "next";
-import { notFound } from "next/navigation";
-import Navbar from "@/app/components/landing/Navbar";
+import CTAFinal from "@/app/components/landing/CTAFinal";
+import FAQ from "@/app/components/landing/FAQ";
+import Footer from "@/app/components/landing/Footer";
 import Hero from "@/app/components/landing/Hero";
 import Marquee from "@/app/components/landing/Marquee";
+import Navbar from "@/app/components/landing/Navbar";
 import Problem from "@/app/components/landing/Problem";
-import Solution from "@/app/components/landing/Solution";
 import SocialProof from "@/app/components/landing/SocialProof";
-import Comparison from "@/app/components/landing/Comparison";
+import Solution from "@/app/components/landing/Solution";
 import WhyNow from "@/app/components/landing/WhyNow";
-import FAQ from "@/app/components/landing/FAQ";
-import CTAFinal from "@/app/components/landing/CTAFinal";
-import Footer from "@/app/components/landing/Footer";
 import { getOpenGraphLocale, isValidLocale, type SiteLocale } from "@/lib/i18n";
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 function getMetadataForLocale(locale: SiteLocale): Metadata {
   if (locale === "fr") {
