@@ -1,5 +1,4 @@
-import type { WaitlistRole } from "@/lib/waitlist";
-type WaitlistLocale = "fr" | "en";
+import type { WaitlistLocale, WaitlistRole } from "@/lib/waitlist.types";
 
 function escapeHtml(value: string) {
   return value

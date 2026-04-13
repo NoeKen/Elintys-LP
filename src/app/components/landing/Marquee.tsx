@@ -1,16 +1,16 @@
 "use client";
 
-import { useI18n } from "@/contexts/I18nContext";
+import { useTranslations } from "next-intl";
 
 export default function Marquee() {
-  const { messages } = useI18n();
-  const copy = messages.marquee;
-  const doubled = [...copy.items, ...copy.items];
+  const t = useTranslations("marquee");
+  const items = t.raw("items") as string[];
+  const doubled = [...items, ...items];
 
   return (
     <section className="overflow-hidden border-y border-brand-border bg-brand-bg py-5">
       <p className="mb-4 text-center text-xs font-semibold uppercase tracking-widest text-brand-soft">
-        {copy.label}
+        {t("label")}
       </p>
       <div className="flex w-max animate-marquee gap-10">
         {doubled.map((item, i) => (

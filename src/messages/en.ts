@@ -187,10 +187,197 @@ const en = {
       { label: "Solution", href: "#solution" },
       { label: "FAQ", href: "#faq" },
       { label: "Beta access", href: "#cta" },
+      { label: "Privacy policy", href: "/confidentialite" },
+      { label: "Terms", href: "/conditions" },
     ],
     rights: "All rights reserved.",
   },
+  legal: {
+    backToHome: "← Back to home",
+    privacyPolicy: {
+      metadata: {
+        title: "Privacy Policy — Elintys",
+        description: "Elintys privacy policy, aligned with Quebec Law 25.",
+      },
+      title: "Privacy Policy",
+      lastUpdated: "Last updated: April 2026 · Aligned with Quebec Law 25",
+      sections: {
+        identity: {
+          title: "1. Identity of the person in charge of processing",
+          body:
+            "This policy is established by Elintys (currently being incorporated in Canada), represented by Noe Kenfack, founder. Address: Montreal, Quebec, Canada. Email: ",
+        },
+        collectedData: {
+          title: "2. Personal information collected",
+          headers: ["Information", "Purpose"],
+          rows: [
+            ["First name", "Identify the person and personalize communications"],
+            ["Email address", "Primary communication channel - beta access and updates"],
+            [
+              "Role / profile",
+              "Category (organizer, service provider, venue manager, visitor) - adapt communications and the product",
+            ],
+          ],
+          footnote:
+            "No other data is collected (no phone number, no payment data, no location data).",
+        },
+        purposes: {
+          title: "3. Purposes of processing",
+          items: [
+            "Build the waitlist and send priority beta access",
+            "Send an immediate confirmation email after signup",
+            "Share updates on project progress and launch timing",
+            "Analyze registered profiles to guide product decisions",
+            "Contact registered users at official launch",
+          ],
+          body: "Data is not sold or used for third-party advertising purposes.",
+        },
+        legalBasis: {
+          title: "4. Legal basis for processing",
+          body:
+            "Collection is based on explicit consent given at signup. This consent is freely given, informed, and may be withdrawn at any time.",
+        },
+        processors: {
+          title: "5. Processors and transfers outside Quebec",
+          headers: ["Processor", "Use"],
+          rows: [
+            [
+              "Firebase / Firestore (Google)",
+              "Storage of signup data. Hosted in the United States.",
+              "https://firebase.google.com/support/privacy",
+              "firebase.google.com/support/privacy",
+            ],
+            [
+              "Resend",
+              "Delivery of confirmation emails. Hosted in the United States.",
+              "https://resend.com/legal/privacy-policy",
+              "resend.com/legal/privacy-policy",
+            ],
+            [
+              "Vercel",
+              "Website hosting. Hosted in the United States.",
+              "https://vercel.com/legal/privacy-policy",
+              "vercel.com/legal/privacy-policy",
+            ],
+          ],
+          body:
+            "Elintys ensures these processors provide a level of protection comparable to Law 25, notably through GDPR compliance policies and SOC 2 certifications.",
+        },
+        retention: {
+          title: "6. Retention period",
+          intro: "Data is kept:",
+          items: [
+            "Until public launch, after which it may be transferred if the person creates an account",
+            "Or until the person requests deletion",
+            "If neither happens, deleted no later than 24 months after signup",
+          ],
+        },
+        rights: {
+          title: "7. Rights of data subjects",
+          headers: ["Right", "Description"],
+          rows: [
+            ["Right of access", "Obtain a copy of the information held"],
+            ["Right to rectification", "Correct inaccurate information"],
+            [
+              "Withdrawal of consent",
+              "Unsubscribe at any time via the link in our emails or by contacting us",
+            ],
+            ["Right to erasure", "Request deletion of data"],
+            ["Right to portability", "Receive your data in a structured format"],
+          ],
+          beforeEmail: "To exercise these rights: ",
+          afterEmail: " - Response within 30 days.",
+        },
+        security: {
+          title: "8. Security measures",
+          items: [
+            "Firestore access restricted through security rules and Firebase authentication",
+            "Encrypted HTTPS/TLS communications",
+            "API keys stored in environment variables and not exposed client-side",
+            "Data access limited according to least-privilege principles",
+            "No financial data collected",
+          ],
+        },
+        cookies: {
+          title: "9. Cookies and trackers",
+          body:
+            "The site uses only strictly necessary technical cookies. No advertising cookies and no third-party tracking. No ad network has access to visitor data.",
+        },
+        changes: {
+          title: "10. Changes",
+          body:
+            "Elintys may update this policy at any time. In the event of a material change, registered users will be informed by email at least 30 days before it takes effect.",
+        },
+        contact: {
+          title: "11. Contact and complaint",
+          emailLabel: "Email: ",
+          complaintPrefix: "If a complaint remains unresolved: Commission d'acces a l'information du Quebec (CAI) - ",
+          complaintLinkLabel: "www.cai.gouv.qc.ca",
+          complaintLinkHref: "https://www.cai.gouv.qc.ca",
+        },
+      },
+    },
+    terms: {
+      metadata: {
+        title: "Terms of Use — Elintys",
+        description: "Elintys terms of use for the pre-launch waitlist.",
+      },
+      title: "Terms of Use",
+      lastUpdated: "Last updated: April 2026 · Aligned with Quebec Law 25",
+      sections: {
+        purpose: {
+          title: "1. Purpose",
+          body:
+            "These terms govern registration to the Elintys waitlist (elintys.com). By signing up, you accept them in full.",
+        },
+        serviceNature: {
+          title: "2. Nature of the service at this stage",
+          body:
+            "Elintys is currently in pre-launch development. Registration does not constitute a service contract, creates no financial obligation, and does not guarantee access to the final product. Beta access will be granted in signup order according to team priorities. Elintys reserves the right to modify, postpone, or cancel the launch without notice.",
+        },
+        commitments: {
+          title: "3. Registrant commitments",
+          items: [
+            "Provide accurate information (first name, email, role)",
+            "Not impersonate another person",
+            "Not submit multiple registrations to accumulate priority access",
+          ],
+        },
+        elintysCommitments: {
+          title: "4. Elintys commitments",
+          items: [
+            "Handle your information in accordance with the",
+            "Keep you informed about project progress by email",
+            "Never sell your data to third parties",
+            "Allow you to unsubscribe at any time, free of charge",
+          ],
+          privacyLinkLabel: "Privacy Policy",
+        },
+        intellectualProperty: {
+          title: "5. Intellectual property",
+          body:
+            "All elements of the site (name, logo, text, design, code) are the exclusive property of Elintys. Any unauthorized reproduction is prohibited.",
+        },
+        liability: {
+          title: "6. Limitation of liability",
+          body:
+            "Elintys cannot be held liable for direct or indirect damages resulting from use of the site, nor for service interruptions caused by external factors.",
+        },
+        governingLaw: {
+          title: "7. Governing law",
+          body:
+            "These terms are governed by the laws of Quebec, Canada (Law 25, Civil Code of Quebec). Any dispute will be submitted to the courts of the judicial district of Montreal.",
+        },
+        changes: {
+          title: "8. Changes",
+          body:
+            "Elintys may modify these terms at any time. Registrants will be notified by email in the event of a material change.",
+        },
+      },
+    },
+  },
   form: {
+    buttonLabel: "Join the waitlist",
     firstNamePlaceholder: "Your first name",
     rolePlaceholder: "I am...",
     emailPlaceholder: "you@email.com",
@@ -210,6 +397,20 @@ const en = {
     },
     success: "Welcome {firstName}! You're on the list.",
     exists: "You're already on the list! We'll be in touch soon.",
+    consentPrefix: "By signing up, you agree to our",
+    privacyLinkLabel: "Privacy Policy",
+    consentMiddle: "and our",
+    termsLinkLabel: "Terms of Use",
+    consentSuffix: ", and consent to receiving communications from Elintys.",
+  },
+  metadata: {
+    home: {
+      title: "Elintys — Events, reinvented",
+      description:
+        "Elintys brings organizers, service providers, and venue managers together in one ecosystem. Create, equip, sell, manage, and welcome — without friction. Join the waitlist.",
+      twitterDescription:
+        "Elintys brings organizers, service providers, and venue managers together in one ecosystem. Join the waitlist.",
+    },
   },
 } as const;
 

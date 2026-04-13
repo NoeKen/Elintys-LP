@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { useI18n } from "@/contexts/I18nContext";
+import { useTranslations } from "next-intl";
 
 const PORTRAIT_ICONS = [
   <svg key="organizer" viewBox="0 0 20 20" fill="none" className="h-5 w-5 text-teal">
@@ -54,8 +54,8 @@ const itemVariants = {
 export default function Problem() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-60px" });
-  const { messages } = useI18n();
-  const copy = messages.problem;
+  const t = useTranslations("problem");
+  const portraits = t.raw("portraits") as Array<{ title: string; description: string }>;
 
   return (
     <section
@@ -73,25 +73,25 @@ export default function Problem() {
           variants={itemVariants}
           className="mb-5 inline-flex items-center rounded-full border border-brand-border bg-white px-4 py-1.5 text-xs font-medium text-brand-mid"
         >
-          {copy.badge}
+          {t("badge")}
         </motion.span>
 
         <motion.h2
           variants={itemVariants}
           className="mb-3 text-[2.1rem] font-[500] leading-tight tracking-tight text-ink"
         >
-          {copy.title}
+          {t("title")}
         </motion.h2>
 
         <motion.p
           variants={itemVariants}
           className="mb-10 max-w-3xl text-base leading-relaxed text-brand-mid"
         >
-          {copy.intro}
+          {t("intro")}
         </motion.p>
 
         <motion.div variants={itemVariants} className="mb-8 grid grid-cols-1 gap-4 md:grid-cols-3">
-          {copy.portraits.map((portrait, index) => (
+          {portraits.map((portrait, index) => (
             <motion.div
               key={portrait.title}
               variants={itemVariants}
@@ -116,7 +116,7 @@ export default function Problem() {
           variants={itemVariants}
           className="mx-auto max-w-3xl text-center text-base font-medium text-ink"
         >
-          {copy.transition}
+          {t("transition")}
         </motion.p>
       </motion.div>
     </section>

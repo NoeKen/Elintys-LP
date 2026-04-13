@@ -1,9 +1,12 @@
 import { notFound } from "next/navigation";
-import { I18nProvider } from "@/contexts/I18nContext";
-import { getDictionary, isValidLocale, locales, type SiteLocale } from "@/lib/i18n";
+import Footer from "@/app/components/landing/Footer";
+import Navbar from "@/app/components/landing/Navbar";
+import { NextIntlClientProvider, hasLocale } from "next-intl";
+import { getMessages, setRequestLocale } from "next-intl/server";
+import { routing } from "@/i18n/routing";
 
 export function generateStaticParams() {
-  return locales.map((locale) => ({ locale }));
+  return routing.locales.map((locale) => ({ locale }));
 }
 
 export default async function LocaleLayout({
@@ -15,15 +18,18 @@ export default async function LocaleLayout({
 }) {
   const { locale } = await params;
 
-  if (!isValidLocale(locale)) {
+  if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
 
-  const messages = await getDictionary(locale as SiteLocale);
+  setRequestLocale(locale);
+  const messages = await getMessages();
 
   return (
-    <I18nProvider locale={locale as SiteLocale} messages={messages}>
-      {children}
-    </I18nProvider>
+    <NextIntlClientProvider messages={messages}>
+      <Navbar />
+      <main>{children}</main>
+      <Footer />
+    </NextIntlClientProvider>
   );
 }

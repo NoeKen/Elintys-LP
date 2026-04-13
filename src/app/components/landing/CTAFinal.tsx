@@ -3,13 +3,12 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import EmailForm from "@/app/components/ui/EmailForm";
-import { useI18n } from "@/contexts/I18nContext";
+import { useTranslations } from "next-intl";
 
 export default function CTAFinal() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-60px" });
-  const { messages } = useI18n();
-  const copy = messages.ctaFinal;
+  const t = useTranslations("ctaFinal");
 
   return (
     <section id="cta" className="relative overflow-hidden bg-ink px-6 py-28" ref={ref}>
@@ -31,7 +30,7 @@ export default function CTAFinal() {
           transition={{ duration: 0.5 }}
           className="mb-6 inline-flex items-center rounded-full border border-teal/30 bg-teal/10 px-4 py-1.5 text-xs font-medium text-teal-mid"
         >
-          {copy.badge}
+          {t("badge")}
         </motion.span>
 
         <motion.h2
@@ -40,7 +39,7 @@ export default function CTAFinal() {
           transition={{ duration: 0.5, delay: 0.08 }}
           className="mb-4 text-[clamp(2rem,5vw,3rem)] font-[500] leading-tight tracking-tight text-white"
         >
-          {copy.title}
+          {t("title")}
         </motion.h2>
 
         <motion.p
@@ -49,7 +48,7 @@ export default function CTAFinal() {
           transition={{ duration: 0.5, delay: 0.14 }}
           className="mb-10 text-base text-white/50"
         >
-          {copy.subtitle}
+          {t("subtitle")}
         </motion.p>
 
         <motion.div
@@ -60,7 +59,7 @@ export default function CTAFinal() {
         >
           <EmailForm
             source="cta"
-            buttonLabel={copy.button}
+            buttonLabel={t("button")}
             inputClassName="border-white/15 bg-white/[0.08] text-white placeholder:text-white/30 focus:border-teal"
             buttonClassName="bg-teal hover:bg-teal-dark"
             wrapperClassName="[&_.text-brand-mid]:text-white/60"
@@ -73,7 +72,7 @@ export default function CTAFinal() {
           transition={{ duration: 0.5, delay: 0.28 }}
           className="text-center text-xs text-white/30"
         >
-          {copy.reassurance}
+          {t("reassurance")}
         </motion.div>
       </div>
     </section>

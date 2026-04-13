@@ -1,13 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
-import { addToWaitlist, type WaitlistRole } from "@/lib/waitlist";
+import { addToWaitlist } from "@/lib/waitlist";
+import {
+  WAITLIST_LOCALES,
+  WAITLIST_ROLES,
+  WAITLIST_SOURCES,
+  type WaitlistLocale,
+  type WaitlistRole,
+  type WaitlistSource,
+} from "@/lib/waitlist.types";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const VALID_ROLES: WaitlistRole[] = [
-  "organisateur",
-  "prestataire",
-  "gestionnaire",
-  "visiteur",
-];
 
 // In-memory rate limiter: IP -> array of timestamps
 const ipRequests = new Map<string, number[]>();
@@ -36,8 +38,8 @@ export async function POST(req: NextRequest) {
   let body: {
     firstName?: string;
     email?: string;
-    source?: string;
-    locale?: "fr" | "en";
+    source?: WaitlistSource;
+    locale?: WaitlistLocale;
     role?: string;
   };
   try {
@@ -60,20 +62,26 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ success: false, error: "Email invalide" }, { status: 400 });
   }
 
-  if (!role || !VALID_ROLES.includes(role as WaitlistRole)) {
+  if (!role || !WAITLIST_ROLES.includes(role as WaitlistRole)) {
     return NextResponse.json({ success: false, error: "Rôle invalide" }, { status: 400 });
   }
 
-  if (source !== "hero" && source !== "cta") {
+  if (!source || !WAITLIST_SOURCES.includes(source)) {
     return NextResponse.json({ success: false, error: "Source invalide" }, { status: 400 });
   }
 
-  if (locale !== "fr" && locale !== "en") {
+  if (!WAITLIST_LOCALES.includes(locale)) {
     return NextResponse.json({ success: false, error: "Langue invalide" }, { status: 400 });
   }
 
   try {
-    const result = await addToWaitlist(firstName, email, role as WaitlistRole, source, locale);
+    const result = await addToWaitlist(
+      firstName,
+      email,
+      role as WaitlistRole,
+      source,
+      locale
+    );
 
     if (!result.success) {
       return NextResponse.json({ success: false, error: "Erreur serveur" }, { status: 500 });

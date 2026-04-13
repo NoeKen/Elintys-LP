@@ -2,14 +2,12 @@
 
 import { useEffect, useRef, useState } from "react";
 import { animate, motion, useInView } from "framer-motion";
-import { useI18n } from "@/contexts/I18nContext";
-import { replaceToken } from "@/lib/i18n";
+import { useTranslations } from "next-intl";
 
 export default function SocialProof() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-60px" });
-  const { messages } = useI18n();
-  const copy = messages.socialProof;
+  const t = useTranslations("socialProof");
   const [count, setCount] = useState(0);
   const [displayCount, setDisplayCount] = useState(0);
 
@@ -60,10 +58,10 @@ export default function SocialProof() {
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5 }}
-            className="mb-10 text-center text-lg font-medium text-ink"
-          >
-            {replaceToken(copy.count, "count", displayCount)}
+          transition={{ duration: 0.5 }}
+          className="mb-10 text-center text-lg font-medium text-ink"
+        >
+            {t("count", { count: displayCount })}
           </motion.p>
         )}
 
@@ -75,9 +73,9 @@ export default function SocialProof() {
         >
           <div className="border-l-4 border-teal pl-5">
             <p className="text-lg leading-relaxed text-ink">
-              &quot;{copy.quote}&quot;
+              &quot;{t("quote")}&quot;
             </p>
-            <footer className="mt-4 text-sm text-brand-mid">{replaceToken(copy.signature, "nom", "Noe Kenfack")}</footer>
+            <footer className="mt-4 text-sm text-brand-mid">{t("signature", { nom: "Noe Kenfack" })}</footer>
           </div>
         </motion.blockquote>
 
@@ -87,7 +85,7 @@ export default function SocialProof() {
           transition={{ duration: 0.5, delay: 0.18 }}
           className="mx-auto mt-8 max-w-3xl text-center text-sm leading-relaxed text-brand-mid"
         >
-          {copy.coverage}
+          {t("coverage")}
         </motion.p>
       </div>
     </section>

@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { useI18n } from "@/contexts/I18nContext";
+import { useTranslations } from "next-intl";
 
 function InfoCard({ title, items }: { title: string; items: readonly string[] }) {
   return (
@@ -23,8 +23,9 @@ function InfoCard({ title, items }: { title: string; items: readonly string[] })
 export default function WhyNow() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-60px" });
-  const { messages } = useI18n();
-  const copy = messages.whyNow;
+  const t = useTranslations("whyNow");
+  const left = t.raw("left") as string[];
+  const right = t.raw("right") as string[];
 
   return (
     <section ref={ref} className="bg-brand-bg px-6 py-24">
@@ -35,7 +36,7 @@ export default function WhyNow() {
           transition={{ duration: 0.5 }}
           className="mb-5 inline-flex items-center rounded-full border border-brand-border bg-white px-4 py-1.5 text-xs font-medium text-brand-mid"
         >
-          {copy.badge}
+          {t("badge")}
         </motion.span>
 
         <motion.h2
@@ -44,7 +45,7 @@ export default function WhyNow() {
           transition={{ duration: 0.5, delay: 0.08 }}
           className="mb-4 max-w-3xl text-[2.1rem] font-[500] leading-tight tracking-tight text-ink"
         >
-          {copy.title}
+          {t("title")}
         </motion.h2>
 
         <motion.p
@@ -53,7 +54,7 @@ export default function WhyNow() {
           transition={{ duration: 0.5, delay: 0.14 }}
           className="mb-10 max-w-3xl text-base leading-relaxed text-brand-mid"
         >
-          {copy.intro}
+          {t("intro")}
         </motion.p>
 
         <motion.div
@@ -62,8 +63,8 @@ export default function WhyNow() {
           transition={{ duration: 0.55, delay: 0.2 }}
           className="grid grid-cols-1 gap-4 md:grid-cols-2"
         >
-          <InfoCard title={copy.leftTitle} items={copy.left} />
-          <InfoCard title={copy.rightTitle} items={copy.right} />
+          <InfoCard title={t("leftTitle")} items={left} />
+          <InfoCard title={t("rightTitle")} items={right} />
         </motion.div>
       </div>
     </section>

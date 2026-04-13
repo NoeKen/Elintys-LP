@@ -2,19 +2,14 @@ import { FieldValue } from "firebase-admin/firestore";
 import { adminDb } from "./firebase-admin";
 import { getResend } from "./resend";
 import waitlistConfirmationEmail from "./emails/WaitlistConfirmation";
-
-export type WaitlistRole =
-  | "organisateur"
-  | "prestataire"
-  | "gestionnaire"
-  | "visiteur";
+import type { WaitlistLocale, WaitlistRole, WaitlistSource } from "./waitlist.types";
 
 export interface WaitlistEntry {
   firstName: string;
   email: string;
   role: WaitlistRole;
-  source: "hero" | "cta";
-  locale: "fr" | "en";
+  source: WaitlistSource;
+  locale: WaitlistLocale;
   createdAt: ReturnType<typeof FieldValue.serverTimestamp>;
 }
 
@@ -22,7 +17,7 @@ async function sendConfirmationEmail(
   firstName: string,
   email: string,
   role: WaitlistRole,
-  locale: WaitlistEntry["locale"]
+  locale: WaitlistLocale
 ): Promise<boolean> {
   try {
     await getResend().emails.send({
@@ -42,8 +37,8 @@ export async function addToWaitlist(
   firstName: string,
   email: string,
   role: WaitlistRole,
-  source: WaitlistEntry["source"] = "hero",
-  locale: WaitlistEntry["locale"] = "fr"
+  source: WaitlistSource = "hero",
+  locale: WaitlistLocale = "fr"
 ): Promise<{ success: boolean; alreadyExists?: boolean; emailSent?: boolean }> {
   try {
     const normalizedFirstName = firstName.trim();

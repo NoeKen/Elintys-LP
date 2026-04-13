@@ -2,15 +2,49 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { useI18n } from "@/contexts/I18nContext";
+import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const { locale, messages } = useI18n();
-  const copy = messages.navbar;
+  const pathname = usePathname();
+  const locale = useLocale();
+  const t = useTranslations("navbar");
+  const links = t.raw("links") as Array<{ label: string; href: string }>;
+
+  function getLocalizedHref(href: string) {
+    if (href.startsWith("#")) {
+      return `/${locale}${href}`;
+    }
+
+    if (href.startsWith("/")) {
+      return `/${locale}${href}`;
+    }
+
+    return href;
+  }
+
+  function getLocaleSwitchHref(targetLocale: "fr" | "en") {
+    if (!pathname) {
+      return `/${targetLocale}`;
+    }
+
+    const segments = pathname.split("/").filter(Boolean);
+
+    if (segments.length === 0) {
+      return `/${targetLocale}`;
+    }
+
+    if (segments[0] === "fr" || segments[0] === "en") {
+      segments[0] = targetLocale;
+      return `/${segments.join("/")}`;
+    }
+
+    return `/${targetLocale}${pathname.startsWith("/") ? pathname : `/${pathname}`}`;
+  }
 
   useEffect(() => {
     function onScroll() {
@@ -41,7 +75,7 @@ export default function Navbar() {
           el<span className="text-teal">i</span>ntys
         </motion.a> */}
         <motion.a
-          href="#"
+          href={`/${locale}`}
           initial={{ opacity: 0, x: -18 }}
           whileHover={{ y: -2, scale: 1.03 }}
           animate={{ opacity: 1, x: 0 }}
@@ -59,10 +93,10 @@ export default function Navbar() {
         </motion.a>
 
         <div className="hidden items-center gap-7 md:flex">
-          {copy.links.map((l) => (
+          {links.map((l) => (
             <motion.a
               key={l.href}
-              href={l.href}
+              href={getLocalizedHref(l.href)}
               whileHover={{ y: -2 }}
               transition={{ duration: 0.18, ease: "easeOut" }}
               className="text-sm text-brand-mid transition-colors hover:text-ink"
@@ -77,12 +111,12 @@ export default function Navbar() {
             {(["fr", "en"] as const).map((option) => (
               <Link
                 key={option}
-                href={`/${option}`}
+                href={getLocaleSwitchHref(option)}
                 className={cn(
                   "rounded-lg px-3 py-1.5 text-xs font-medium transition-colors",
                   locale === option ? "bg-ink text-white" : "text-brand-mid",
                 )}
-                aria-label={`${copy.languageLabel}: ${option.toUpperCase()}`}
+                aria-label={`${t("languageLabel")}: ${option.toUpperCase()}`}
               >
                 {option.toUpperCase()}
               </Link>
@@ -90,12 +124,12 @@ export default function Navbar() {
           </div>
 
           <motion.a
-            href="#cta"
+            href={`/${locale}#cta`}
             whileHover={{ y: -2, scale: 1.03 }}
             transition={{ duration: 0.18, ease: "easeOut" }}
             className="hidden items-center gap-1.5 rounded-xl bg-ink px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-ink-mid md:flex"
           >
-            {copy.cta}
+            {t("cta")}
             <motion.span
               whileHover={{ x: 2, y: -2 }}
               className="inline-block rotate-45"
@@ -106,19 +140,19 @@ export default function Navbar() {
 
           <div className="flex items-center gap-2 md:hidden">
             <Link
-              href={locale === "fr" ? "/en" : "/fr"}
+              href={getLocaleSwitchHref(locale === "fr" ? "en" : "fr")}
               className="rounded-xl border border-brand-border bg-white/80 px-3 py-2 text-xs font-medium text-brand-mid"
-              aria-label={copy.languageLabel}
+              aria-label={t("languageLabel")}
             >
               {locale.toUpperCase()}
             </Link>
             <motion.a
-              href="#cta"
+              href={`/${locale}#cta`}
               whileHover={{ y: -2, scale: 1.03 }}
               transition={{ duration: 0.18, ease: "easeOut" }}
               className="flex items-center gap-1 rounded-xl bg-ink px-4 py-2 text-sm font-medium text-white"
             >
-              {copy.cta}
+              {t("cta")}
             </motion.a>
           </div>
         </div>

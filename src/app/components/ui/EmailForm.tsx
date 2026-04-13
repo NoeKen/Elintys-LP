@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { useI18n } from "@/contexts/I18nContext";
-import { replaceToken } from "@/lib/i18n";
+import { useLocale, useTranslations } from "next-intl";
 
 type WaitlistRole = "organisateur" | "prestataire" | "gestionnaire" | "visiteur";
 type FormState = "idle" | "loading" | "success" | "error" | "exists";
@@ -24,10 +24,11 @@ export default function EmailForm({
   inputClassName,
   buttonClassName,
   wrapperClassName,
-  buttonLabel = "Rejoindre la liste d'attente",
+  buttonLabel,
 }: EmailFormProps) {
-  const { locale, messages } = useI18n();
-  const copy = messages.form;
+  const locale = useLocale();
+  const t = useTranslations("form");
+  const submitLabel = buttonLabel ?? t("buttonLabel");
   const [firstName, setFirstName] = useState("");
   const [role, setRole] = useState<WaitlistRole | "">("");
   const [email, setEmail] = useState("");
@@ -52,17 +53,17 @@ export default function EmailForm({
     const nextErrors: typeof errors = {};
 
     if (!firstName.trim()) {
-      nextErrors.firstName = copy.errors.firstName;
+      nextErrors.firstName = t("errors.firstName");
     }
 
     if (!role) {
-      nextErrors.role = copy.errors.role;
+      nextErrors.role = t("errors.role");
     }
 
     if (!email.trim()) {
-      nextErrors.email = copy.errors.emailRequired;
+      nextErrors.email = t("errors.emailRequired");
     } else if (!EMAIL_REGEX.test(email)) {
-      nextErrors.email = copy.errors.emailInvalid;
+      nextErrors.email = t("errors.emailInvalid");
     }
 
     if (Object.keys(nextErrors).length > 0) {
@@ -90,16 +91,16 @@ export default function EmailForm({
 
       if (res.status === 429) {
         setState("error");
-        setErrors({ global: copy.errors.rateLimit });
+        setErrors({ global: t("errors.rateLimit") });
       } else if (res.ok) {
         setState(data.alreadyExists ? "exists" : "success");
       } else {
         setState("error");
-        setErrors({ global: data.error ?? copy.errors.generic });
+        setErrors({ global: data.error ?? t("errors.generic") });
       }
     } catch {
       setState("error");
-      setErrors({ global: copy.errors.generic });
+      setErrors({ global: t("errors.generic") });
     }
   }
 
@@ -110,9 +111,7 @@ export default function EmailForm({
           ✓
         </div>
         <p className="text-sm text-brand-mid">
-          {state === "exists"
-            ? copy.exists
-            : replaceToken(copy.success, "firstName", firstName.trim())}
+          {state === "exists" ? t("exists") : t("success", { firstName: firstName.trim() })}
         </p>
       </div>
     );
@@ -128,8 +127,8 @@ export default function EmailForm({
             setFirstName(e.target.value);
             clearErrors();
           }}
-          placeholder={copy.firstNamePlaceholder}
-          aria-label={copy.firstNamePlaceholder}
+          placeholder={t("firstNamePlaceholder")}
+          aria-label={t("firstNamePlaceholder")}
           disabled={state === "loading"}
           className={cn(
             "w-full rounded-xl border border-brand-border bg-white px-4 py-3 text-sm text-ink placeholder:text-brand-soft outline-none transition-colors focus:border-teal focus:ring-2 focus:ring-teal/20",
@@ -147,7 +146,7 @@ export default function EmailForm({
             setRole(e.target.value as WaitlistRole | "");
             clearErrors();
           }}
-          aria-label={copy.rolePlaceholder}
+          aria-label={t("rolePlaceholder")}
           disabled={state === "loading"}
           className={cn(
             "w-full appearance-none rounded-xl border border-brand-border bg-white px-4 py-3 text-sm text-ink outline-none transition-colors focus:border-teal focus:ring-2 focus:ring-teal/20",
@@ -157,12 +156,12 @@ export default function EmailForm({
           )}
         >
           <option value="" disabled>
-            {copy.rolePlaceholder}
+            {t("rolePlaceholder")}
           </option>
-          <option value="organisateur">{copy.roleOptions.organisateur}</option>
-          <option value="prestataire">{copy.roleOptions.prestataire}</option>
-          <option value="gestionnaire">{copy.roleOptions.gestionnaire}</option>
-          <option value="visiteur">{copy.roleOptions.visiteur}</option>
+          <option value="organisateur">{t("roleOptions.organisateur")}</option>
+          <option value="prestataire">{t("roleOptions.prestataire")}</option>
+          <option value="gestionnaire">{t("roleOptions.gestionnaire")}</option>
+          <option value="visiteur">{t("roleOptions.visiteur")}</option>
         </select>
         {errors.role && <p className="text-xs text-red-500">{errors.role}</p>}
       </div>
@@ -175,8 +174,8 @@ export default function EmailForm({
             setEmail(e.target.value);
             clearErrors();
           }}
-          placeholder={copy.emailPlaceholder}
-          aria-label={copy.emailPlaceholder}
+          placeholder={t("emailPlaceholder")}
+          aria-label={t("emailPlaceholder")}
           disabled={state === "loading"}
           className={cn(
             "w-full rounded-xl border border-brand-border bg-white px-4 py-3 text-sm text-ink placeholder:text-brand-soft outline-none transition-colors focus:border-teal focus:ring-2 focus:ring-teal/20",
@@ -202,11 +201,45 @@ export default function EmailForm({
           {state === "loading" ? (
             <span className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
           ) : (
-            <span>{buttonLabel}</span>
+            <span>{submitLabel}</span>
           )}
         </motion.button>
         {errors.global && <p className="text-xs text-red-500">{errors.global}</p>}
       </div>
+
+      {(() => {
+        const isDark = inputClassName?.includes("white/");
+        return (
+          <p
+            className={cn(
+              "text-xs text-center leading-relaxed mt-2",
+              isDark ? "text-white/40" : "text-brand-soft"
+            )}
+          >
+            {t("consentPrefix")}{" "}
+            <Link
+              href={`/${locale}/confidentialite`}
+              className={cn(
+                "underline hover:text-teal transition-colors",
+                isDark && "text-white/60"
+              )}
+            >
+              {t("privacyLinkLabel")}
+            </Link>{" "}
+            {t("consentMiddle")}{" "}
+            <Link
+              href={`/${locale}/conditions`}
+              className={cn(
+                "underline hover:text-teal transition-colors",
+                isDark && "text-white/60"
+              )}
+            >
+              {t("termsLinkLabel")}
+            </Link>
+            {t("consentSuffix")}
+          </p>
+        );
+      })()}
     </form>
   );
 }

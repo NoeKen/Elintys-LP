@@ -4,13 +4,13 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import * as Accordion from "@radix-ui/react-accordion";
 import { cn } from "@/lib/utils";
-import { useI18n } from "@/contexts/I18nContext";
+import { useTranslations } from "next-intl";
 
 export default function FAQ() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-60px" });
-  const { messages } = useI18n();
-  const copy = messages.faq;
+  const t = useTranslations("faq");
+  const items = t.raw("items") as [string, string][];
 
   return (
     <section id="faq" className="bg-brand-bg px-6 py-24" ref={ref}>
@@ -21,7 +21,7 @@ export default function FAQ() {
           transition={{ duration: 0.5 }}
           className="mb-5 inline-flex items-center rounded-full border border-brand-border bg-white px-4 py-1.5 text-xs font-medium text-brand-mid"
         >
-          {copy.badge}
+          {t("badge")}
         </motion.span>
 
         <motion.h2
@@ -30,7 +30,7 @@ export default function FAQ() {
           transition={{ duration: 0.5, delay: 0.08 }}
           className="mb-10 text-[2.1rem] font-[500] leading-tight tracking-tight text-ink"
         >
-          {copy.title}
+          {t("title")}
         </motion.h2>
 
         <motion.div
@@ -39,7 +39,7 @@ export default function FAQ() {
           transition={{ duration: 0.55, delay: 0.18 }}
         >
           <Accordion.Root type="single" collapsible defaultValue="item-0" className="flex flex-col gap-3">
-            {copy.items.map(([q, a], i) => (
+            {items.map(([q, a], i) => (
               <Accordion.Item
                 key={i}
                 value={`item-${i}`}

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useI18n } from "@/contexts/I18nContext";
+import { useLocale, useTranslations } from "next-intl";
 
 const containerVariants = {
   hidden: {},
@@ -24,8 +24,9 @@ const itemVariants = {
 };
 
 export default function Hero() {
-  const { messages } = useI18n();
-  const copy = messages.hero;
+  const t = useTranslations("hero");
+  const locale = useLocale();
+  const trust = t.raw("trust") as string[];
 
   return (
     <section className="relative overflow-hidden bg-white px-6 pb-24 pt-20">
@@ -54,47 +55,47 @@ export default function Hero() {
           variants={itemVariants}
           className="mb-6 inline-flex items-center rounded-full border border-brand-border bg-brand-bg px-4 py-1.5 text-xs font-medium text-brand-mid"
         >
-          {copy.badge}
+          {t("badge")}
         </motion.span>
 
         <motion.h1
           variants={itemVariants}
           className="mb-5 text-[clamp(2rem,5vw,3.25rem)] font-[500] leading-tight tracking-tight text-ink"
         >
-          {copy.title}
+          {t("title")}
         </motion.h1>
 
         <motion.p
           variants={itemVariants}
           className="mb-8 max-w-[680px] text-base leading-relaxed text-brand-mid"
         >
-          {copy.subtitle}
+          {t("subtitle")}
         </motion.p>
 
         <motion.div variants={itemVariants} className="mb-4">
           <motion.a
-            href="#cta"
+            href={`/${locale}#cta`}
             whileHover={{ y: -2, scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             transition={{ duration: 0.18, ease: "easeOut" }}
             className="inline-flex items-center justify-center rounded-xl bg-ink px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-ink-mid"
           >
-            {copy.primaryCta}
+            {t("primaryCta")}
           </motion.a>
         </motion.div>
 
         <motion.a
           variants={itemVariants}
-          href="#probleme"
+          href={`/${locale}#probleme`}
           whileHover={{ x: 6 }}
           transition={{ duration: 0.22, ease: "easeOut" }}
           className="mb-10 text-sm text-brand-soft transition-colors hover:text-brand-mid"
         >
-          {copy.secondaryCta}
+          {t("secondaryCta")}
         </motion.a>
 
         <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-3">
-          {copy.trust.map((item) => (
+          {trust.map((item) => (
             <motion.span
               key={item}
               whileHover={{ y: -4, scale: 1.03 }}

@@ -2,16 +2,19 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { useI18n } from "@/contexts/I18nContext";
+import { useTranslations } from "next-intl";
 
 const QR_CELLS = Array.from({ length: 16 });
 
 export default function Solution() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-60px" });
-  const { messages } = useI18n();
-  const copy = messages.solution;
-  const steps = copy.steps.map((label, index) => ({ n: String(index + 1), label }));
+  const t = useTranslations("solution");
+  const steps = (t.raw("steps") as string[]).map((label, index) => ({ n: String(index + 1), label }));
+  const providers = t.raw("cards.providers") as [string, string][];
+  const tickets = t.raw("cards.tickets") as [string, string][];
+  const createFieldsA = t.raw("cards.createFieldsA") as string[];
+  const createFieldsB = t.raw("cards.createFieldsB") as string[];
 
   return (
     <section
@@ -26,7 +29,7 @@ export default function Solution() {
           transition={{ duration: 0.5 }}
           className="mb-5 inline-flex items-center rounded-full border border-teal/20 bg-teal-light px-4 py-1.5 text-xs font-medium text-teal-dark"
         >
-          {copy.badge}
+          {t("badge")}
         </motion.span>
 
         <motion.h2
@@ -35,7 +38,7 @@ export default function Solution() {
           transition={{ duration: 0.5, delay: 0.08 }}
           className="mb-3 text-[2.1rem] font-[500] leading-tight tracking-tight text-ink"
         >
-          {copy.title}
+          {t("title")}
         </motion.h2>
 
         <motion.p
@@ -44,7 +47,7 @@ export default function Solution() {
           transition={{ duration: 0.5, delay: 0.14 }}
           className="mb-14 max-w-3xl text-base leading-relaxed text-brand-mid"
         >
-          {copy.intro}
+          {t("intro")}
         </motion.p>
 
         <motion.div
@@ -96,12 +99,12 @@ export default function Solution() {
                 {steps[0].n} → {steps[1].n}
               </span>
             </div>
-            <h3 className="mb-1 text-lg font-medium text-white">{copy.cards.createTitle}</h3>
-            <p className="mb-6 text-sm text-white/40">{copy.cards.createText}</p>
+            <h3 className="mb-1 text-lg font-medium text-white">{t("cards.createTitle")}</h3>
+            <p className="mb-6 text-sm text-white/40">{t("cards.createText")}</p>
             <div className="flex gap-3">
               {[
-                { title: steps[0].label, fields: copy.cards.createFieldsA },
-                { title: steps[1].label, fields: copy.cards.createFieldsB },
+                { title: steps[0].label, fields: createFieldsA },
+                { title: steps[1].label, fields: createFieldsB },
               ].map((card) => (
                 <motion.div
                   key={card.title}
@@ -131,13 +134,13 @@ export default function Solution() {
             <span className="mb-2 inline-block rounded-full bg-white/20 px-2.5 py-0.5 text-[10px] font-semibold text-white">
               {steps[2].n}
             </span>
-            <h3 className="mb-1 text-lg font-medium text-white">{copy.cards.equipTitle}</h3>
-            <p className="mb-5 text-sm text-white/70">{copy.cards.equipText}</p>
+            <h3 className="mb-1 text-lg font-medium text-white">{t("cards.equipTitle")}</h3>
+            <p className="mb-5 text-sm text-white/70">{t("cards.equipText")}</p>
             <div className="rounded-xl bg-white/15 p-3">
               <div className="mb-2 rounded-lg bg-white/20 px-3 py-1.5 text-[11px] font-semibold text-white">
-                {copy.cards.equipTitle}
+                {t("cards.equipTitle")}
               </div>
-              {copy.cards.providers.map(([type, status]) => (
+              {providers.map(([type, status]) => (
                 <motion.div
                   key={type}
                   whileHover={{ x: 4, backgroundColor: "rgba(255,255,255,0.18)" }}
@@ -164,13 +167,13 @@ export default function Solution() {
             <span className="mb-2 inline-block rounded-full border border-brand-border bg-brand-bg px-2.5 py-0.5 text-[10px] font-semibold text-brand-mid">
               {steps[3].n}
             </span>
-            <h3 className="mb-1 text-lg font-medium text-ink">{copy.cards.sellTitle}</h3>
-            <p className="mb-5 text-sm text-brand-mid">{copy.cards.sellText}</p>
+            <h3 className="mb-1 text-lg font-medium text-ink">{t("cards.sellTitle")}</h3>
+            <p className="mb-5 text-sm text-brand-mid">{t("cards.sellText")}</p>
             <div className="rounded-xl bg-brand-bg p-4">
               <div className="mb-3 rounded-lg bg-white px-3 py-2 text-[11px] font-semibold text-ink shadow-sm">
-                {copy.cards.sellTitle}
+                {t("cards.sellTitle")}
               </div>
-              {copy.cards.tickets.map(([label, pct], index) => (
+              {tickets.map(([label, pct], index) => (
                 <motion.div
                   key={label}
                   whileHover={{ x: 4 }}
@@ -199,9 +202,9 @@ export default function Solution() {
             <span className="mb-2 inline-block rounded-full border border-brand-border bg-brand-bg px-2.5 py-0.5 text-[10px] font-semibold text-brand-mid">
               {steps[4].n}
             </span>
-            <h3 className="mb-3 text-lg font-medium text-ink">{copy.cards.manageTitle}</h3>
+            <h3 className="mb-3 text-lg font-medium text-ink">{t("cards.manageTitle")}</h3>
             <p className="text-sm leading-relaxed text-brand-mid">
-              {copy.cards.manageText}
+              {t("cards.manageText")}
             </p>
           </motion.div>
 
@@ -213,8 +216,8 @@ export default function Solution() {
             <span className="mb-2 inline-block rounded-full bg-white/10 px-2.5 py-0.5 text-[10px] font-semibold text-white/50">
               {steps[5].n}
             </span>
-            <h3 className="mb-3 text-lg font-medium text-white">{copy.cards.welcomeTitle}</h3>
-            <p className="text-sm leading-relaxed text-white/40">{copy.cards.welcomeText}</p>
+            <h3 className="mb-3 text-lg font-medium text-white">{t("cards.welcomeTitle")}</h3>
+            <p className="text-sm leading-relaxed text-white/40">{t("cards.welcomeText")}</p>
           </motion.div>
         </motion.div>
 
@@ -227,7 +230,7 @@ export default function Solution() {
           <span className="flex h-7 w-7 items-center justify-center rounded-full bg-teal-light text-base text-teal">
             →
           </span>
-          <span>{copy.tagline}</span>
+          <span>{t("tagline")}</span>
         </motion.p>
       </div>
     </section>
