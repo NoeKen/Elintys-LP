@@ -45,7 +45,7 @@ const fr = {
     intro:
       "L'industrie événementielle est vivante, créative et en pleine croissance. Pourtant, les outils qui la soutiennent sont dispersés, déconnectés, et conçus en silos.",
     transition:
-      "Trois acteurs. Un même problème : ils ne sont pas connectés. Elintys change ça.",
+      "Quatre acteurs. Un même problème : ils ne sont pas connectés. Elintys change ça.",
     portraits: [
       {
         title: "L'organisateur",
@@ -62,23 +62,28 @@ const fr = {
         description:
           "Son espace est prêt. Mais les demandes arrivent par email, sans contexte, sans date claire, sans nombre de participants. Chaque réservation commence par une conversation floue.",
       },
+      {
+        title: "Le participant",
+        description:
+          "Informé trop tard, il cherche l'événement sur plusieurs plateformes. Quand il trouve, l'achat est compliqué, le billet se perd dans sa boîte de réception. La découverte et l'expérience d'accueil méritent mieux.",
+      },
     ],
   },
   solution: {
     badge: "La solution Elintys",
     title: "Un seul endroit. Chaque étape. Chaque acteur connecté.",
     intro:
-      "Avec Elintys, vous n'avancez plus seul. Chaque étape de votre événement est connectée à la suivante — et chaque acteur trouve sa place dans l'écosystème.",
-    steps: ["Créer", "Trouver un lieu", "Équiper", "Vendre", "Gérer", "Accueillir"],
+      "Avec Elintys, vous n'avancez plus seul. Chaque étape est connectée à la suivante — et peut être effectuée maintenant ou plus tard depuis votre tableau de bord.",
+    steps: ["Créer", "Équiper", "Trouver un lieu", "Vendre", "Gérer", "Diffuser", "Accueillir"],
     cards: {
       createTitle: "Créer et trouver un lieu",
       createText:
-        "Donnez vie à votre événement en quelques minutes. Titre, date, lieu, description, visuel. Votre événement existe.",
+        "Donnez vie à votre événement en quelques minutes. Titre, date, lieu, description, visuel. Votre événement existe — le reste peut attendre.",
       createFieldsA: ["Titre", "Date", "Visuel"],
       createFieldsB: ["Capacité", "Quartier", "Demande"],
       equipTitle: "Équiper",
       equipText:
-        "Accédez à un catalogue de prestataires locaux. Choisissez, mandatez, avancez. Ils sont là parce qu'ils veulent l'être.",
+        "Accédez à un catalogue de prestataires locaux. Ou ajoutez vos propres contacts — même s'ils ne sont pas encore sur Elintys. Invitez-les à rejoindre la plateforme en un clic.",
       providers: [
         ["Photographe", "Disponible"],
         ["Traiteur", "Mandatable"],
@@ -95,12 +100,15 @@ const fr = {
       manageTitle: "Gérer",
       manageText:
         "Confirmations, liste d'invités, revenus en temps réel. Tout est là. Rien ne manque.",
+      diffuseTitle: "Diffuser",
+      diffuseText:
+        "Votre événement reçoit automatiquement une page publique indexée dans le catalogue Elintys. Partagez, soyez trouvé, remplissez votre salle.",
       welcomeTitle: "Accueillir",
       welcomeText:
         "Scannez les entrées depuis votre téléphone. Votre événement commence. Vous y êtes pleinement.",
     },
     tagline:
-      "Ce n'est pas juste un outil de plus. C'est l'écosystème que l'événementiel attendait.",
+      "Chaque étape à votre rythme. Tout connecté dans un seul tableau de bord.",
   },
   socialProof: {
     count:
@@ -139,6 +147,7 @@ const fr = {
       "Tarif fondateur réservé aux premiers inscrits",
       "Votre feedback influence directement les fonctionnalités",
       "Accès direct à l'équipe — pas un ticket de support",
+      "Vision Canada — Elintys commence à Montréal, mais l'ambition est nationale",
     ],
     right: [
       "Un seul endroit pour tout votre événement",
@@ -169,15 +178,15 @@ const fr = {
       ],
       [
         "Je suis prestataire — comment ça fonctionne pour moi ?",
-        "Créez votre profil prestataire sur Elintys et devenez visible au moment exact où un organisateur cherche à équiper son événement. Photographes, traiteurs, DJ, décorateurs, animateurs — tous les profils sont les bienvenus. L'inscription est gratuite pendant la bêta.",
+        "Créez votre profil prestataire et soyez visible au moment exact où un organisateur cherche à équiper son événement. Photographes, traiteurs, DJ, décorateurs, animateurs — tous les profils sont bienvenus. Autre avantage : même si vous n'êtes pas encore inscrit, un organisateur peut vous mentionner dans son événement et vous envoyer une invitation directe pour rejoindre la plateforme.",
       ],
       [
         "Je gère un espace événementiel — puis-je le lister sur Elintys ?",
-        "Oui. Elintys permet aux propriétaires et gestionnaires d'espaces de lister leur lieu directement sur la plateforme. Vous recevez des demandes qualifiées liées à des événements structurés — avec date, nombre d'invités et contexte. La visibilité est gratuite pendant la bêta.",
+        "Oui. Créez votre profil de lieu — capacité, équipements, tarifs, photos. Votre espace devient visible dans notre catalogue public, consultable par n'importe quel organisateur, même en dehors d'un événement en cours. Vous recevez des demandes qualifiées avec date, nombre de participants et contexte. La visibilité est gratuite pendant la bêta.",
       ],
       [
         "Y aura-t-il des frais sur la billetterie et les paiements ?",
-        "Nous prévoyons une structure tarifaire transparente avec des frais faibles sur les transactions. Les détails seront communiqués aux membres de la liste d'attente en avant-première.",
+        "Oui. Elintys prélève une commission de 6 % sur chaque billet vendu, plus des frais fixes de 1,49 CAD par billet pour couvrir les frais de traitement de paiement. Ces frais peuvent être absorbés par l'organisateur ou répercutés sur le participant. Pour les événements gratuits et la gestion des invités : aucun frais.",
       ],
     ],
   },
@@ -213,7 +222,12 @@ const fr = {
         identity: {
           title: "1. Identité du responsable du traitement",
           body:
-            "La présente politique est établie par Elintys (en cours d'incorporation au Canada), représentée par Noe Kenfack, fondateur. Adresse : Montréal, Québec, Canada. Courriel : ",
+            "La présente politique est établie par [Prénom + Nom], faisant affaires sous le nom commercial Elintys, immatriculé(e) au Registre des entreprises du Québec (REQ) sous le numéro d'entreprise (NEQ) : [À compléter]. Responsable de la protection des renseignements personnels (RPR) : [Prénom + Nom] — privacy@elintys.com",
+        },
+        rpr: {
+          title: "1a. Responsable de la protection des renseignements personnels (RPR)",
+          body:
+            "Conformément à l'article 3.1 de la Loi 25, [Prénom + Nom] est désigné(e) Responsable de la protection des renseignements personnels. Le RPR est joignable à privacy@elintys.com. Toute demande reçoit une réponse dans un délai de 30 jours.",
         },
         collectedData: {
           title: "2. Renseignements personnels collectés",
@@ -228,6 +242,8 @@ const fr = {
               "Rôle / profil",
               "Catégorie (organisateur, prestataire, gestionnaire de lieu, visiteur) - adapter les communications et le produit",
             ],
+            ["Consentement marketing", "Enregistrement du choix de recevoir des communications commerciales (CASL) — case optionnelle"],
+            ["Horodatage d'inscription", "Preuve de consentement conservée à des fins légales (3 ans)"],
           ],
           footnote:
             "Aucune autre donnée n'est collectée (pas de téléphone, pas de paiement, pas de localisation).",
@@ -310,6 +326,20 @@ const fr = {
             "Aucune donnée financière collectée",
           ],
         },
+        incidents: {
+          title: "8a. Gestion des incidents de confidentialité",
+          items: [
+            "Tout incident de confidentialité est consigné dans un registre interne des incidents",
+            "Si l'incident présente un risque de préjudice sérieux, la CAI est notifiée sans délai indu et les personnes concernées sont avisées",
+            "Le registre est conservé 5 ans et disponible sur demande de la CAI",
+          ],
+          contactPrefix: "Pour signaler un incident : ",
+        },
+        minAge: {
+          title: "8b. Âge minimum",
+          body:
+            "Le service est destiné aux personnes de 18 ans et plus. Les mineurs de 14 à 17 ans peuvent s'inscrire avec le consentement d'un parent ou tuteur légal. Elintys ne collecte pas sciemment de données sur des enfants de moins de 14 ans.",
+        },
         cookies: {
           title: "9. Cookies et traceurs",
           body:
@@ -365,6 +395,16 @@ const fr = {
           ],
           privacyLinkLabel: "Politique de confidentialité",
         },
+        casl: {
+          title: "4a. Communications commerciales (CASL)",
+          body:
+            "Les communications commerciales sont envoyées uniquement aux personnes ayant coché la case optionnelle de consentement lors de l'inscription, conformément à la Loi canadienne anti-pourriel (CASL — L.C. 2010, ch. 23). Vous pouvez retirer votre consentement à tout moment via le lien de désabonnement dans chaque courriel, ou en écrivant à contact@elintys.com — traitement dans les 10 jours ouvrables.",
+        },
+        minAge: {
+          title: "4b. Âge minimum",
+          body:
+            "En vous inscrivant, vous confirmez avoir 18 ans ou plus, ou disposer du consentement d'un parent ou tuteur légal.",
+        },
         intellectualProperty: {
           title: "5. Propriété intellectuelle",
           body:
@@ -406,14 +446,16 @@ const fr = {
       emailInvalid: "Veuillez entrer une adresse email valide.",
       rateLimit: "Trop de tentatives. Réessayez dans quelques minutes.",
       generic: "Une erreur est survenue. Veuillez réessayer.",
+      consentRequired: "Veuillez accepter la politique de confidentialité et les conditions d'utilisation pour continuer.",
     },
     success: "Bienvenue {firstName} ! Vous êtes sur la liste.",
     exists: "Vous êtes déjà sur la liste ! On vous contacte bientôt.",
-    consentPrefix: "En vous inscrivant, vous acceptez notre",
+    consentCGUPrefix: "J'accepte la",
     privacyLinkLabel: "Politique de confidentialité",
-    consentMiddle: "et nos",
+    consentMiddle: "et les",
     termsLinkLabel: "Conditions d'utilisation",
-    consentSuffix: ", et consentez à recevoir des communications d'Elintys.",
+    consentCGUSuffix: "d'Elintys. Je confirme avoir 18 ans ou plus.",
+    consentMarketingLabel: "J'accepte de recevoir les nouvelles, mises à jour et offres d'Elintys par courriel. Je peux me désabonner à tout moment.",
   },
   metadata: {
     home: {

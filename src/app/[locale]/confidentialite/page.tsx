@@ -54,15 +54,12 @@ export default async function ConfidentialitePage({
     >
           <section>
             <h2 className="mb-3 text-lg font-medium text-teal">{t("sections.identity.title")}</h2>
-            <p>
-              {t("sections.identity.body")}
-              <a
-                href="mailto:contact@elintys.com"
-                className="underline transition-colors hover:text-teal"
-              >
-                contact@elintys.com
-              </a>
-            </p>
+            <p>{t("sections.identity.body")}</p>
+          </section>
+
+          <section>
+            <h2 className="mb-3 text-lg font-medium text-teal">{t("sections.rpr.title")}</h2>
+            <p>{t("sections.rpr.body")}</p>
           </section>
 
           <section>
@@ -196,6 +193,29 @@ export default async function ConfidentialitePage({
                 <li key={item}>{item}</li>
               ))}
             </ul>
+          </section>
+
+          <section>
+            <h2 className="mb-3 text-lg font-medium text-teal">{t("sections.incidents.title")}</h2>
+            <ul className="mb-3 list-disc space-y-1 pl-5">
+              {(t.raw("sections.incidents.items") as string[]).map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+            <p>
+              {t("sections.incidents.contactPrefix")}
+              <a
+                href="mailto:privacy@elintys.com"
+                className="underline transition-colors hover:text-teal"
+              >
+                privacy@elintys.com
+              </a>
+            </p>
+          </section>
+
+          <section>
+            <h2 className="mb-3 text-lg font-medium text-teal">{t("sections.minAge.title")}</h2>
+            <p>{t("sections.minAge.body")}</p>
           </section>
 
           <section>

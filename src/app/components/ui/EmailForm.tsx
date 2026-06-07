@@ -39,6 +39,8 @@ export default function EmailForm({
     email?: string;
     global?: string;
   }>({});
+  const [consentCGU, setConsentCGU] = useState(false);
+  const [consentMarketing, setConsentMarketing] = useState(false);
 
   function clearErrors() {
     setErrors({});
@@ -72,6 +74,12 @@ export default function EmailForm({
       return;
     }
 
+    if (!consentCGU) {
+      setErrors({ global: t("errors.consentRequired") });
+      setState("error");
+      return;
+    }
+
     setState("loading");
     setErrors({});
 
@@ -85,6 +93,7 @@ export default function EmailForm({
           email: email.trim(),
           source,
           locale,
+          consentMarketing,
         }),
       });
       const data = await res.json();
@@ -210,34 +219,56 @@ export default function EmailForm({
       {(() => {
         const isDark = inputClassName?.includes("white/");
         return (
-          <p
-            className={cn(
-              "text-xs text-center leading-relaxed mt-2",
-              isDark ? "text-white/40" : "text-brand-soft"
-            )}
-          >
-            {t("consentPrefix")}{" "}
-            <Link
-              href={`/${locale}/confidentialite`}
-              className={cn(
-                "underline hover:text-teal transition-colors",
-                isDark && "text-white/60"
-              )}
-            >
-              {t("privacyLinkLabel")}
-            </Link>{" "}
-            {t("consentMiddle")}{" "}
-            <Link
-              href={`/${locale}/conditions`}
-              className={cn(
-                "underline hover:text-teal transition-colors",
-                isDark && "text-white/60"
-              )}
-            >
-              {t("termsLinkLabel")}
-            </Link>
-            {t("consentSuffix")}
-          </p>
+          <div className="flex flex-col gap-3 mt-2">
+            {/* Case 1 — Obligatoire : CGU */}
+            <label className={cn(
+              "flex items-start gap-2.5 cursor-pointer",
+              isDark ? "text-white/60" : "text-brand-soft"
+            )}>
+              <input
+                type="checkbox"
+                checked={consentCGU}
+                onChange={(e) => {
+                  setConsentCGU(e.target.checked);
+                  if (errors.global) setErrors({});
+                }}
+                className="mt-0.5 h-4 w-4 shrink-0 rounded border-brand-border accent-teal cursor-pointer"
+              />
+              <span className="text-xs leading-relaxed">
+                {t("consentCGUPrefix")}{" "}
+                <Link
+                  href={`/${locale}/confidentialite`}
+                  className={cn("underline hover:text-teal transition-colors", isDark && "text-white/70")}
+                >
+                  {t("privacyLinkLabel")}
+                </Link>{" "}
+                {t("consentMiddle")}{" "}
+                <Link
+                  href={`/${locale}/conditions`}
+                  className={cn("underline hover:text-teal transition-colors", isDark && "text-white/70")}
+                >
+                  {t("termsLinkLabel")}
+                </Link>
+                {t("consentCGUSuffix")}
+              </span>
+            </label>
+
+            {/* Case 2 — Optionnelle : Communications marketing (CASL) */}
+            <label className={cn(
+              "flex items-start gap-2.5 cursor-pointer",
+              isDark ? "text-white/60" : "text-brand-soft"
+            )}>
+              <input
+                type="checkbox"
+                checked={consentMarketing}
+                onChange={(e) => setConsentMarketing(e.target.checked)}
+                className="mt-0.5 h-4 w-4 shrink-0 rounded border-brand-border accent-teal cursor-pointer"
+              />
+              <span className="text-xs leading-relaxed">
+                {t("consentMarketingLabel")}
+              </span>
+            </label>
+          </div>
         );
       })()}
     </form>

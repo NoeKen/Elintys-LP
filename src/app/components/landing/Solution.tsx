@@ -56,7 +56,7 @@ export default function Solution() {
           transition={{ duration: 0.55, delay: 0.2 }}
           className="mb-14 -mx-6 overflow-x-auto px-6"
         >
-          <div className="relative grid min-w-[480px] grid-cols-6 gap-4">
+          <div className="relative grid min-w-[560px] grid-cols-7 gap-4">
             <div className="pointer-events-none absolute left-[4%] right-[4%] top-5 z-0 h-px bg-gradient-to-r from-teal-mid to-teal-light" />
             {steps.map((step) => (
               <motion.div
@@ -211,10 +211,22 @@ export default function Solution() {
           <motion.div
             whileHover={{ y: -8, scale: 1.01 }}
             transition={{ duration: 0.22, ease: "easeOut" }}
+            className="rounded-2xl border border-brand-border bg-white p-8 transition-shadow hover:shadow-[0_24px_50px_-28px_rgba(13,17,23,0.28)]"
+          >
+            <span className="mb-2 inline-block rounded-full border border-brand-border bg-brand-bg px-2.5 py-0.5 text-[10px] font-semibold text-brand-mid">
+              {steps[5].n}
+            </span>
+            <h3 className="mb-3 text-lg font-medium text-ink">{t("cards.diffuseTitle")}</h3>
+            <p className="text-sm leading-relaxed text-brand-mid">{t("cards.diffuseText")}</p>
+          </motion.div>
+
+          <motion.div
+            whileHover={{ y: -8, scale: 1.01 }}
+            transition={{ duration: 0.22, ease: "easeOut" }}
             className="rounded-2xl bg-ink p-8 transition-shadow hover:shadow-[0_24px_50px_-28px_rgba(13,17,23,0.5)]"
           >
             <span className="mb-2 inline-block rounded-full bg-white/10 px-2.5 py-0.5 text-[10px] font-semibold text-white/50">
-              {steps[5].n}
+              {steps[6].n}
             </span>
             <h3 className="mb-3 text-lg font-medium text-white">{t("cards.welcomeTitle")}</h3>
             <p className="text-sm leading-relaxed text-white/40">{t("cards.welcomeText")}</p>

@@ -13,3 +13,7 @@ export type WaitlistRole = (typeof WAITLIST_ROLES)[number];
 export type WaitlistSource = (typeof WAITLIST_SOURCES)[number];
 export type WaitlistLocale = (typeof WAITLIST_LOCALES)[number];
 
+export interface WaitlistConsent {
+  consentMarketing: boolean;
+}
+

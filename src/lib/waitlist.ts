@@ -10,6 +10,8 @@ export interface WaitlistEntry {
   role: WaitlistRole;
   source: WaitlistSource;
   locale: WaitlistLocale;
+  consentMarketing: boolean;
+  consentCGU: boolean;
   createdAt: ReturnType<typeof FieldValue.serverTimestamp>;
 }
 
@@ -38,7 +40,8 @@ export async function addToWaitlist(
   email: string,
   role: WaitlistRole,
   source: WaitlistSource = "hero",
-  locale: WaitlistLocale = "fr"
+  locale: WaitlistLocale = "fr",
+  consentMarketing: boolean = false
 ): Promise<{ success: boolean; alreadyExists?: boolean; emailSent?: boolean }> {
   try {
     const normalizedFirstName = firstName.trim();
@@ -56,6 +59,8 @@ export async function addToWaitlist(
       role,
       source,
       locale,
+      consentMarketing: consentMarketing ?? false,
+      consentCGU: true,
       createdAt: FieldValue.serverTimestamp(),
     };
 

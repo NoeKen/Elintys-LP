@@ -40,7 +40,7 @@ const en = {
     title: "In events, everyone suffers from the same fragmentation.",
     intro:
       "The events industry is vibrant, creative, and growing fast. Yet the tools supporting it are scattered, disconnected, and built in silos.",
-    transition: "Three players. One shared problem: they are not connected. Elintys changes that.",
+    transition: "Four actors. One shared problem: they are not connected. Elintys changes that.",
     portraits: [
       {
         title: "The organizer",
@@ -57,23 +57,28 @@ const en = {
         description:
           "The space is ready. But requests come in by email, without context, without a clear date, without a guest count. Every booking starts with a vague conversation.",
       },
+      {
+        title: "The attendee",
+        description:
+          "Informed too late, they search for the event across multiple platforms. When they find it, the purchase is complicated and the ticket gets lost in their inbox. Discovery and the welcome experience deserve better.",
+      },
     ],
   },
   solution: {
     badge: "The Elintys solution",
     title: "One place. Every step. Every stakeholder connected.",
     intro:
-      "With Elintys, you no longer move forward alone. Every step of your event connects to the next — and every stakeholder finds their place in the ecosystem.",
-    steps: ["Create", "Find a venue", "Equip", "Sell", "Manage", "Welcome"],
+      "With Elintys, you're no longer on your own. Each step connects to the next — and can be done now or later from your dashboard.",
+    steps: ["Create", "Equip", "Find a venue", "Sell", "Manage", "Broadcast", "Welcome"],
     cards: {
       createTitle: "Create and find a venue",
       createText:
-        "Bring your event to life in minutes. Title, date, venue, description, visual. Your event exists.",
+        "Bring your event to life in minutes. Title, date, venue, description, visual. Your event exists — the rest can wait.",
       createFieldsA: ["Title", "Date", "Visual"],
       createFieldsB: ["Capacity", "Area", "Request"],
       equipTitle: "Equip",
       equipText:
-        "Access a catalog of local service providers. Choose, assign, move forward. They are there because they want to be.",
+        "Access a catalog of local service providers. Or add your own contacts — even if they're not yet on Elintys. Invite them to join the platform in one click.",
       providers: [
         ["Photographer", "Available"],
         ["Caterer", "Bookable"],
@@ -90,10 +95,13 @@ const en = {
       manageTitle: "Manage",
       manageText:
         "Confirmations, guest list, real-time revenue. Everything is there. Nothing is missing.",
+      diffuseTitle: "Broadcast",
+      diffuseText:
+        "Your event automatically gets a public page indexed in the Elintys catalogue. Share it, get found, fill your venue.",
       welcomeTitle: "Welcome",
       welcomeText: "Scan entries from your phone. Your event begins. You are fully present.",
     },
-    tagline: "This is not just another tool. It's the ecosystem the events industry has been waiting for.",
+    tagline: "Each step at your own pace. Everything connected in one dashboard.",
   },
   socialProof: {
     count: "{count} people — organizers, service providers, and venue managers — have already joined the list.",
@@ -131,6 +139,7 @@ const en = {
       "Founder pricing reserved for the earliest signups",
       "Your feedback directly influences features",
       "Direct access to the team — not a support ticket",
+      "Canada vision — Elintys starts in Montreal, with national ambitions",
     ],
     right: [
       "One place for your entire event",
@@ -161,15 +170,15 @@ const en = {
       ],
       [
         "I'm a service provider — how does it work for me?",
-        "Create your service provider profile on Elintys and become visible at the exact moment an organizer is looking to equip their event. Photographers, caterers, DJs, decorators, entertainers — all profiles are welcome. Joining is free during beta.",
+        "Create your service provider profile and be visible at the exact moment an organizer is looking to equip their event. Photographers, caterers, DJs, decorators, entertainers — all profiles are welcome. Bonus: even if you're not yet registered, an organizer can mention you in their event and send you a direct invitation to join the platform.",
       ],
       [
         "I manage an event space — can I list it on Elintys?",
-        "Yes. Elintys allows owners and venue managers to list their space directly on the platform. You receive qualified requests tied to structured events — with date, guest count, and context. Visibility is free during beta.",
+        "Yes. Create your venue profile — capacity, equipment, pricing, photos. Your space becomes visible in our public catalogue, searchable by any organizer, even outside of an active event. You receive qualified requests with date, attendee count, and context. Visibility is free during beta.",
       ],
       [
         "Will there be fees on ticketing and payments?",
-        "We are planning a transparent pricing structure with low transaction fees. Details will be shared with waitlist members first.",
+        "Yes. Elintys charges a 6% commission on each ticket sold, plus a fixed fee of $1.49 CAD per ticket to cover payment processing costs. These fees can be absorbed by the organizer or passed on to the attendee. For free events and guest management: no fees.",
       ],
     ],
   },
@@ -205,7 +214,12 @@ const en = {
         identity: {
           title: "1. Identity of the person in charge of processing",
           body:
-            "This policy is established by Elintys (currently being incorporated in Canada), represented by Noe Kenfack, founder. Address: Montreal, Quebec, Canada. Email: ",
+            "This policy is established by [First name + Last name], doing business under the trade name Elintys, registered with the Quebec Business Registry (REQ) under business number (NEQ): [To be completed]. Privacy Officer: [First name + Last name] — privacy@elintys.com",
+        },
+        rpr: {
+          title: "1a. Privacy Officer",
+          body:
+            "In accordance with section 3.1 of Law 25, [First name + Last name] is designated as Privacy Officer. The Privacy Officer can be reached at privacy@elintys.com. All requests receive a response within 30 days.",
         },
         collectedData: {
           title: "2. Personal information collected",
@@ -217,6 +231,8 @@ const en = {
               "Role / profile",
               "Category (organizer, service provider, venue manager, visitor) - adapt communications and the product",
             ],
+            ["Marketing consent", "Recording the choice to receive commercial communications (CASL) — optional checkbox"],
+            ["Signup timestamp", "Proof of consent retained for legal purposes (3 years)"],
           ],
           footnote:
             "No other data is collected (no phone number, no payment data, no location data).",
@@ -298,6 +314,20 @@ const en = {
             "No financial data collected",
           ],
         },
+        incidents: {
+          title: "8a. Privacy incident management",
+          items: [
+            "All privacy incidents are recorded in an internal incident register",
+            "If an incident poses a risk of serious harm, the CAI is notified without undue delay and affected individuals are informed",
+            "The register is retained for 5 years and available upon request from the CAI",
+          ],
+          contactPrefix: "To report an incident: ",
+        },
+        minAge: {
+          title: "8b. Minimum age",
+          body:
+            "The service is intended for persons aged 18 and over. Minors aged 14 to 17 may register with the consent of a parent or legal guardian. Elintys does not knowingly collect data on children under 14.",
+        },
         cookies: {
           title: "9. Cookies and trackers",
           body:
@@ -353,6 +383,16 @@ const en = {
           ],
           privacyLinkLabel: "Privacy Policy",
         },
+        casl: {
+          title: "4a. Commercial communications (CASL)",
+          body:
+            "Commercial communications are sent only to persons who checked the optional consent checkbox at registration, in accordance with Canada's Anti-Spam Legislation (CASL — S.C. 2010, c. 23). You may withdraw your consent at any time via the unsubscribe link in each email, or by writing to contact@elintys.com — processed within 10 business days.",
+        },
+        minAge: {
+          title: "4b. Minimum age",
+          body:
+            "By registering, you confirm that you are 18 years of age or older, or that you have the consent of a parent or legal guardian.",
+        },
         intellectualProperty: {
           title: "5. Intellectual property",
           body:
@@ -394,14 +434,16 @@ const en = {
       emailInvalid: "Please enter a valid email address.",
       rateLimit: "Too many attempts. Please try again in a few minutes.",
       generic: "Something went wrong. Please try again.",
+      consentRequired: "Please accept the privacy policy and terms of use to continue.",
     },
     success: "Welcome {firstName}! You're on the list.",
     exists: "You're already on the list! We'll be in touch soon.",
-    consentPrefix: "By signing up, you agree to our",
+    consentCGUPrefix: "I accept the",
     privacyLinkLabel: "Privacy Policy",
-    consentMiddle: "and our",
+    consentMiddle: "and the",
     termsLinkLabel: "Terms of Use",
-    consentSuffix: ", and consent to receiving communications from Elintys.",
+    consentCGUSuffix: "of Elintys. I confirm I am 18 years or older.",
+    consentMarketingLabel: "I agree to receive news, updates and offers from Elintys by email. I can unsubscribe at any time.",
   },
   metadata: {
     home: {

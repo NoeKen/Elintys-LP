@@ -41,6 +41,7 @@ export async function POST(req: NextRequest) {
     source?: WaitlistSource;
     locale?: WaitlistLocale;
     role?: string;
+    consentMarketing?: boolean;
   };
   try {
     body = await req.json();
@@ -48,7 +49,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ success: false, error: "Email invalide" }, { status: 400 });
   }
 
-  const { firstName, email, source, locale = "fr", role } = body;
+  const { firstName, email, source, locale = "fr", role, consentMarketing } = body;
 
   if (!firstName || typeof firstName !== "string" || firstName.trim().length < 1) {
     return NextResponse.json({ success: false, error: "Prénom requis" }, { status: 400 });
@@ -80,7 +81,8 @@ export async function POST(req: NextRequest) {
       email,
       role as WaitlistRole,
       source,
-      locale
+      locale,
+      consentMarketing ?? false
     );
 
     if (!result.success) {

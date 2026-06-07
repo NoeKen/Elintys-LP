@@ -91,6 +91,16 @@ export default async function ConditionsPage({
           </section>
 
           <section>
+            <h2 className="mb-3 text-lg font-medium text-teal">{t("sections.casl.title")}</h2>
+            <p>{t("sections.casl.body")}</p>
+          </section>
+
+          <section>
+            <h2 className="mb-3 text-lg font-medium text-teal">{t("sections.minAge.title")}</h2>
+            <p>{t("sections.minAge.body")}</p>
+          </section>
+
+          <section>
             <h2 className="mb-3 text-lg font-medium text-teal">
               {t("sections.intellectualProperty.title")}
             </h2>

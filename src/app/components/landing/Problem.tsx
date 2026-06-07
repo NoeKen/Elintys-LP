@@ -31,6 +31,10 @@ const PORTRAIT_ICONS = [
       strokeLinejoin="round"
     />
   </svg>,
+  <svg key="participant" viewBox="0 0 20 20" fill="none" className="h-5 w-5 text-teal">
+    <rect x="2" y="6" width="16" height="8" rx="2" stroke="currentColor" strokeWidth="1.6"/>
+    <path d="M13 6v8M6 9h3.5M6 11h2.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/>
+  </svg>,
 ];
 
 const containerVariants = {
@@ -90,7 +94,7 @@ export default function Problem() {
           {t("intro")}
         </motion.p>
 
-        <motion.div variants={itemVariants} className="mb-8 grid grid-cols-1 gap-4 md:grid-cols-3">
+        <motion.div variants={itemVariants} className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4">
           {portraits.map((portrait, index) => (
             <motion.div
               key={portrait.title}
