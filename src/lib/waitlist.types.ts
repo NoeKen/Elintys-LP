@@ -5,7 +5,13 @@ export const WAITLIST_ROLES = [
   "visiteur",
 ] as const;
 
-export const WAITLIST_SOURCES = ["hero", "cta"] as const;
+export const WAITLIST_SOURCES = [
+  "hero",
+  "cta",
+  "events-page",
+  "providers-page",
+  "venues-page",
+] as const;
 
 export const WAITLIST_LOCALES = ["fr", "en"] as const;
 
@@ -16,4 +22,3 @@ export type WaitlistLocale = (typeof WAITLIST_LOCALES)[number];
 export interface WaitlistConsent {
   consentMarketing: boolean;
 }
-

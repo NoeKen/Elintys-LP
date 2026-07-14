@@ -8,6 +8,8 @@ const fr = {
     ],
     cta: "Rejoindre le mouvement",
     languageLabel: "Langue",
+    mobileMenu: "Ouvrir le menu",
+    mobileClose: "Fermer le menu",
   },
   hero: {
     badge: "Écosystème bêta — Montréal, Québec",
@@ -75,6 +77,13 @@ const fr = {
     intro:
       "Avec Elintys, vous n'avancez plus seul. Chaque étape est connectée à la suivante — et peut être effectuée maintenant ou plus tard depuis votre tableau de bord.",
     steps: ["Créer", "Équiper", "Trouver un lieu", "Vendre", "Gérer", "Diffuser", "Accueillir"],
+    carousel: {
+      previous: "Étape précédente",
+      next: "Étape suivante",
+      goTo: "Voir l'étape {step}",
+      active: "Étape active",
+      nextPreview: "Prochaine étape",
+    },
     cards: {
       createTitle: "Créer et trouver un lieu",
       createText:
@@ -84,6 +93,9 @@ const fr = {
       equipTitle: "Équiper",
       equipText:
         "Accédez à un catalogue de prestataires locaux. Ou ajoutez vos propres contacts — même s'ils ne sont pas encore sur Elintys. Invitez-les à rejoindre la plateforme en un clic.",
+      venueText:
+        "Comparez les lieux selon la capacité, le quartier, les disponibilités et les services offerts. Gardez vos demandes au même endroit.",
+      venueFields: ["Capacité", "Quartier", "Disponible", "Services"],
       providers: [
         ["Photographe", "Disponible"],
         ["Traiteur", "Mandatable"],

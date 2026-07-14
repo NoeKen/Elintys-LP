@@ -8,6 +8,8 @@ const en = {
     ],
     cta: "Join the movement",
     languageLabel: "Language",
+    mobileMenu: "Open menu",
+    mobileClose: "Close menu",
   },
   hero: {
     badge: "Beta ecosystem — Montreal, Quebec",
@@ -70,6 +72,13 @@ const en = {
     intro:
       "With Elintys, you're no longer on your own. Each step connects to the next — and can be done now or later from your dashboard.",
     steps: ["Create", "Equip", "Find a venue", "Sell", "Manage", "Broadcast", "Welcome"],
+    carousel: {
+      previous: "Previous step",
+      next: "Next step",
+      goTo: "View step {step}",
+      active: "Active step",
+      nextPreview: "Next step",
+    },
     cards: {
       createTitle: "Create and find a venue",
       createText:
@@ -79,6 +88,9 @@ const en = {
       equipTitle: "Equip",
       equipText:
         "Access a catalog of local service providers. Or add your own contacts — even if they're not yet on Elintys. Invite them to join the platform in one click.",
+      venueText:
+        "Compare venues by capacity, area, availability, and included services. Keep every request in the same place.",
+      venueFields: ["Capacity", "Area", "Available", "Services"],
       providers: [
         ["Photographer", "Available"],
         ["Caterer", "Bookable"],

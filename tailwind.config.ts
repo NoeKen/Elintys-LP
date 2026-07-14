@@ -27,6 +27,18 @@ const config: Config = {
           border: "#E5E7EB",
           bg: "#F9FAFB",
         },
+        // --- new design-system tokens (spec section 6.1) ---
+        surface: "hsl(var(--color-surface) / <alpha-value>)",
+        "text-primary": "hsl(var(--color-text-primary) / <alpha-value>)",
+        "text-secondary": "hsl(var(--color-text-secondary) / <alpha-value>)",
+        "border-default": "hsl(var(--color-border) / <alpha-value>)",
+        success: "hsl(var(--color-success) / <alpha-value>)",
+        "background-warm": "hsl(var(--color-background) / <alpha-value>)",
+        "accent-orange": "hsl(var(--palette-accent-orange) / <alpha-value>)",
+        "accent-gold": "hsl(var(--palette-accent-gold) / <alpha-value>)",
+        sage: "hsl(var(--palette-sage) / <alpha-value>)",
+        "teal-brand": "hsl(var(--palette-teal) / <alpha-value>)",
+        "petrol-dark": "hsl(var(--palette-petrol-dark) / <alpha-value>)",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {
@@ -77,6 +89,13 @@ const config: Config = {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+      },
+      fontSize: {
+        hero: ["72px", { lineHeight: "1.05", letterSpacing: "-0.02em", fontWeight: "500" }],
+        "hero-mobile": ["44px", { lineHeight: "1.1", letterSpacing: "-0.01em", fontWeight: "500" }],
+        h2: ["40px", { lineHeight: "1.15", fontWeight: "500" }],
+        subtitle: ["22px", { lineHeight: "1.4", fontWeight: "400" }],
+        "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }],
       },
       borderRadius: {
         lg: "var(--radius)",

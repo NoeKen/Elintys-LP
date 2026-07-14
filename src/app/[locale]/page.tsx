@@ -1,4 +1,5 @@
 import CTAFinal from "@/app/components/landing/CTAFinal";
+import AudienceExperience from "@/app/components/landing/AudienceExperience";
 import FAQ from "@/app/components/landing/FAQ";
 import Hero from "@/app/components/landing/Hero";
 import Marquee from "@/app/components/landing/Marquee";
@@ -48,6 +49,7 @@ export default async function LocaleHomePage({
       <Marquee />
       <Problem />
       <Solution />
+      <AudienceExperience />
       <SocialProof />
       <WhyNow />
       <FAQ />

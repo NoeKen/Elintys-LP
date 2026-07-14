@@ -1,0 +1,43 @@
+import type { Metadata } from "next";
+import { hasLocale } from "next-intl";
+import { setRequestLocale } from "next-intl/server";
+import { notFound } from "next/navigation";
+import { routing } from "@/i18n/routing";
+import { buildPageMetadata } from "@/lib/metadata";
+import ProvidersShowcase from "@/app/components/providers/ProvidersShowcase";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+
+  if (!hasLocale(routing.locales, locale) || locale !== "en") {
+    return {};
+  }
+
+  return buildPageMetadata(
+    locale,
+    "Event service providers | Join Elintys",
+    "Present your services and be discovered by organizers looking for event professionals.",
+    "Present your services and be discovered by organizers looking for event professionals.",
+    { canonicalPath: "/en/providers", languages: { fr: "/fr/prestataires", en: "/en/providers" } }
+  );
+}
+
+export default async function ProvidersPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+
+  if (!hasLocale(routing.locales, locale) || locale !== "en") {
+    notFound();
+  }
+
+  setRequestLocale(locale);
+
+  return <ProvidersShowcase locale="en" />;
+}

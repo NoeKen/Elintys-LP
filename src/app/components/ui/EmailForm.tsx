@@ -4,13 +4,14 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import type { WaitlistRole, WaitlistSource } from "@/lib/waitlist.types";
 import { useLocale, useTranslations } from "next-intl";
 
-type WaitlistRole = "organisateur" | "prestataire" | "gestionnaire" | "visiteur";
 type FormState = "idle" | "loading" | "success" | "error" | "exists";
 
 interface EmailFormProps {
-  source: "hero" | "cta";
+  source: WaitlistSource;
+  defaultRole?: WaitlistRole;
   inputClassName?: string;
   buttonClassName?: string;
   wrapperClassName?: string;
@@ -21,6 +22,7 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export default function EmailForm({
   source,
+  defaultRole,
   inputClassName,
   buttonClassName,
   wrapperClassName,
@@ -30,7 +32,7 @@ export default function EmailForm({
   const t = useTranslations("form");
   const submitLabel = buttonLabel ?? t("buttonLabel");
   const [firstName, setFirstName] = useState("");
-  const [role, setRole] = useState<WaitlistRole | "">("");
+  const [role, setRole] = useState<WaitlistRole | "">(defaultRole ?? "");
   const [email, setEmail] = useState("");
   const [state, setState] = useState<FormState>("idle");
   const [errors, setErrors] = useState<{

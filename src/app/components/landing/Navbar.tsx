@@ -1,35 +1,89 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-import { cn } from "@/lib/utils";
 import { useLocale, useTranslations } from "next-intl";
-import Image from "next/image";
+import { audienceRouteMap, audienceSolutionLinks } from "@/lib/audience-routes";
+import { cn } from "@/lib/utils";
+
+function ArrowIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 20 20"
+      className="h-4 w-4"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+    >
+      <path d="M5 10h9m-3.5-3.5L14 10l-3.5 3.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function MenuIcon({ open }: { open: boolean }) {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      className="h-5 w-5"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+    >
+      {open ? (
+        <path d="M6 6l12 12M18 6 6 18" strokeLinecap="round" />
+      ) : (
+        <path d="M5 7h14M5 12h14M5 17h14" strokeLinecap="round" />
+      )}
+    </svg>
+  );
+}
+
+const equivalentRoutes: Record<string, string> = {
+  [audienceRouteMap.events.fr]: audienceRouteMap.events.en,
+  [audienceRouteMap.events.en]: audienceRouteMap.events.fr,
+  [audienceRouteMap.providers.fr]: audienceRouteMap.providers.en,
+  [audienceRouteMap.providers.en]: audienceRouteMap.providers.fr,
+  [audienceRouteMap.venues.fr]: audienceRouteMap.venues.en,
+  [audienceRouteMap.venues.en]: audienceRouteMap.venues.fr,
+};
+
+const transparentUntilScrollRoutes = new Set<string>([
+  audienceRouteMap.venues.fr,
+  audienceRouteMap.venues.en,
+]);
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
   const locale = useLocale();
+  const currentLocale = locale === "en" ? "en" : "fr";
+  const isTransparentHeroRoute = pathname ? transparentUntilScrollRoutes.has(pathname) : false;
   const t = useTranslations("navbar");
-  const links = t.raw("links") as Array<{ label: string; href: string }>;
+  const solutionLinks = audienceSolutionLinks[currentLocale];
 
-  function getLocalizedHref(href: string) {
-    if (href.startsWith("#")) {
-      return `/${locale}${href}`;
-    }
-
-    if (href.startsWith("/")) {
-      return `/${locale}${href}`;
-    }
-
-    return href;
-  }
+  const labels = {
+    home: currentLocale === "fr" ? "Accueil" : "Home",
+  };
 
   function getLocaleSwitchHref(targetLocale: "fr" | "en") {
     if (!pathname) {
       return `/${targetLocale}`;
+    }
+
+    if (targetLocale === currentLocale) {
+      return pathname;
+    }
+
+    const equivalent = equivalentRoutes[pathname];
+
+    if (equivalent) {
+      return equivalent;
     }
 
     const segments = pathname.split("/").filter(Boolean);
@@ -50,9 +104,15 @@ export default function Navbar() {
     function onScroll() {
       setScrolled(window.scrollY > 12);
     }
+
+    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const homeHref = `/${currentLocale}`;
+  const betaHref = `/${currentLocale}#cta`;
+  const targetLocale = currentLocale === "fr" ? "en" : "fr";
 
   return (
     <nav
@@ -60,27 +120,20 @@ export default function Navbar() {
         "sticky top-0 z-50 w-full transition-all duration-300",
         scrolled
           ? "border-b border-brand-border bg-white/90 shadow-sm backdrop-blur-md"
-          : "bg-transparent",
+          : isTransparentHeroRoute
+            ? "bg-transparent"
+            : "bg-white/70 backdrop-blur-md"
       )}
     >
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        {/* <motion.a
-          href="#"
-          initial={{ opacity: 0, x: -18 }}
-          whileHover={{ y: -2, scale: 1.02 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, delay: 0.08, ease: "easeOut" }}
-          className="text-xl font-semibold tracking-tight text-ink"
-        >
-          el<span className="text-teal">i</span>ntys
-        </motion.a> */}
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3.5">
         <motion.a
-          href={`/${locale}`}
+          href={homeHref}
           initial={{ opacity: 0, x: -18 }}
           whileHover={{ y: -2, scale: 1.03 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.08, ease: "easeOut" }}
-          className="flex items-center gap-2"
+          className="flex items-center gap-2 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal"
+          onClick={() => setMobileOpen(false)}
         >
           <Image
             src="/images/elintys_logo.webp"
@@ -92,29 +145,34 @@ export default function Navbar() {
           />
         </motion.a>
 
-        <div className="hidden items-center gap-7 md:flex">
-          {links.map((l) => (
-            <motion.a
-              key={l.href}
-              href={getLocalizedHref(l.href)}
-              whileHover={{ y: -2 }}
-              transition={{ duration: 0.18, ease: "easeOut" }}
-              className="text-sm text-brand-mid transition-colors hover:text-ink"
+        <div className="hidden items-center gap-6 md:flex">
+          <Link
+            href={homeHref}
+            className="text-sm font-medium text-brand-mid transition-colors hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal"
+          >
+            {labels.home}
+          </Link>
+
+          {solutionLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-sm font-medium text-brand-mid transition-colors hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal"
             >
-              {l.label}
-            </motion.a>
+              {link.label}
+            </Link>
           ))}
         </div>
 
-        <div className="flex items-center gap-2">
-          <div className="hidden items-center rounded-xl border border-brand-border bg-white/80 p-1 md:flex">
+        <div className="hidden items-center gap-2 md:flex">
+          <div className="flex items-center rounded-xl border border-brand-border bg-white/80 p-1">
             {(["fr", "en"] as const).map((option) => (
               <Link
                 key={option}
                 href={getLocaleSwitchHref(option)}
                 className={cn(
-                  "rounded-lg px-3 py-1.5 text-xs font-medium transition-colors",
-                  locale === option ? "bg-ink text-white" : "text-brand-mid",
+                  "rounded-lg px-3 py-1.5 text-xs font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal",
+                  currentLocale === option ? "bg-ink text-white" : "text-brand-mid"
                 )}
                 aria-label={`${t("languageLabel")}: ${option.toUpperCase()}`}
               >
@@ -124,39 +182,68 @@ export default function Navbar() {
           </div>
 
           <motion.a
-            href={`/${locale}#cta`}
+            href={betaHref}
             whileHover={{ y: -2, scale: 1.03 }}
             transition={{ duration: 0.18, ease: "easeOut" }}
-            className="hidden items-center gap-1.5 rounded-xl bg-ink px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-ink-mid md:flex"
+            className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-ink px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-ink-mid focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal"
           >
             {t("cta")}
-            <motion.span
-              whileHover={{ x: 2, y: -2 }}
-              className="inline-block rotate-45"
-            >
-              ↗
-            </motion.span>
+            <ArrowIcon />
           </motion.a>
+        </div>
 
-          <div className="flex items-center gap-2 md:hidden">
-            <Link
-              href={getLocaleSwitchHref(locale === "fr" ? "en" : "fr")}
-              className="rounded-xl border border-brand-border bg-white/80 px-3 py-2 text-xs font-medium text-brand-mid"
-              aria-label={t("languageLabel")}
-            >
-              {locale.toUpperCase()}
-            </Link>
-            <motion.a
-              href={`/${locale}#cta`}
-              whileHover={{ y: -2, scale: 1.03 }}
-              transition={{ duration: 0.18, ease: "easeOut" }}
-              className="flex items-center gap-1 rounded-xl bg-ink px-4 py-2 text-sm font-medium text-white"
-            >
-              {t("cta")}
-            </motion.a>
-          </div>
+        <div className="flex items-center gap-2 md:hidden">
+          <Link
+            href={getLocaleSwitchHref(targetLocale)}
+            className="rounded-xl border border-brand-border bg-white/80 px-3 py-2 text-xs font-medium text-brand-mid focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal"
+            aria-label={t("languageLabel")}
+          >
+            {targetLocale.toUpperCase()}
+          </Link>
+          <button
+            type="button"
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-public-menu"
+            aria-label={mobileOpen ? t("mobileClose") : t("mobileMenu")}
+            onClick={() => setMobileOpen((open) => !open)}
+            className="flex h-11 w-11 items-center justify-center rounded-xl border border-brand-border bg-white/85 text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal"
+          >
+            <MenuIcon open={mobileOpen} />
+          </button>
         </div>
       </div>
+
+      {mobileOpen && (
+        <div id="mobile-public-menu" className="border-t border-brand-border bg-white px-6 py-4 md:hidden">
+          <div className="mx-auto grid max-w-6xl gap-2">
+            <Link
+              href={homeHref}
+              onClick={() => setMobileOpen(false)}
+              className="rounded-xl px-3 py-3 text-sm font-semibold text-ink hover:bg-brand-bg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal"
+            >
+              {labels.home}
+            </Link>
+            {solutionLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setMobileOpen(false)}
+                className="rounded-xl px-3 py-3 text-sm font-semibold text-ink hover:bg-brand-bg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal"
+              >
+                {link.label}
+              </Link>
+            ))}
+            <Link
+              href={betaHref}
+              onClick={() => setMobileOpen(false)}
+              className="mt-1 inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-ink px-5 py-3 text-sm font-semibold text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal"
+            >
+              {t("cta")}
+              <ArrowIcon />
+            </Link>
+          </div>
+        </div>
+      )}
     </nav>
   );
 }
