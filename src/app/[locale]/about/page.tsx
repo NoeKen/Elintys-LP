@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { hasLocale } from "next-intl";
-import { setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
+import AboutPageContent from "@/app/components/landing/AboutPageContent";
 import { routing } from "@/i18n/routing";
 import { buildPageMetadata } from "@/lib/metadata";
-import OrganizersShowcase from "@/app/components/organizers/OrganizersShowcase";
 
 export function generateStaticParams() {
   return [{ locale: "en" }];
@@ -21,16 +21,14 @@ export async function generateMetadata({
     return {};
   }
 
-  return buildPageMetadata(
-    locale,
-    "Event organizer platform | Elintys",
-    "See how Elintys brings venues, providers, ticketing, guests, and event-day check-in into one connected workspace.",
-    "See how Elintys brings venues, providers, ticketing, guests, and event-day check-in into one connected workspace.",
-    { routeKey: "organizers" }
-  );
+  const t = await getTranslations({ locale, namespace: "aboutPage.metadata" });
+
+  return buildPageMetadata(locale, t("title"), t("description"), t("description"), {
+    routeKey: "about",
+  });
 }
 
-export default async function OrganizersPage({
+export default async function AboutPage({
   params,
 }: {
   params: Promise<{ locale: string }>;
@@ -42,6 +40,16 @@ export default async function OrganizersPage({
   }
 
   setRequestLocale(locale);
+  const t = await getTranslations({ locale, namespace: "aboutPage" });
 
-  return <OrganizersShowcase locale="en" />;
+  return (
+    <AboutPageContent
+      eyebrow={t("eyebrow")}
+      title={t("title")}
+      intro={t("intro")}
+      sections={t.raw("sections") as { title: string; body: string }[]}
+      ctaTitle={t("ctaTitle")}
+      ctaBody={t("ctaBody")}
+    />
+  );
 }

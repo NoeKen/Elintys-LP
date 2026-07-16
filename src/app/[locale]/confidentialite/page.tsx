@@ -19,7 +19,9 @@ export async function generateMetadata({
 
   const t = await getTranslations({ locale, namespace: "legal.privacyPolicy.metadata" });
 
-  return buildPageMetadata(locale, t("title"), t("description"));
+  return buildPageMetadata(locale, t("title"), t("description"), t("description"), {
+    routeKey: "privacy",
+  });
 }
 
 export default async function ConfidentialitePage({

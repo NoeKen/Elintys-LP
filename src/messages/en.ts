@@ -163,6 +163,7 @@ const en = {
   faq: {
     badge: "Frequently asked questions",
     title: "Everything you want to know.",
+    fullPageLink: "View the full FAQ",
     items: [
       [
         "Is it free to join the waitlist?",
@@ -191,6 +192,103 @@ const en = {
       [
         "Will there be fees on ticketing and payments?",
         "Yes. Elintys charges a 6% commission on each ticket sold, plus a fixed fee of $1.49 CAD per ticket to cover payment processing costs. These fees can be absorbed by the organizer or passed on to the attendee. For free events and guest management: no fees.",
+      ],
+    ],
+  },
+  aboutPage: {
+    metadata: {
+      title: "About Elintys",
+      description:
+        "Learn about Elintys' mission to reduce event fragmentation by connecting organizers, service providers, venues, and attendees.",
+    },
+    eyebrow: "About",
+    title: "Elintys is building a meeting point for the event ecosystem.",
+    intro:
+      "Planning an event still too often depends on separate tools, scattered conversations, and information that gets lost between stakeholders.",
+    sections: [
+      {
+        title: "The problem",
+        body:
+          "Organizers, service providers, venue managers, and attendees each experience a different part of the same journey. When tools do not communicate, coordination becomes heavier than the event itself.",
+      },
+      {
+        title: "The mission",
+        body:
+          "Elintys aims to bring the main event stakeholders into one ecosystem to create, equip, sell, manage, share, and welcome with more clarity.",
+      },
+      {
+        title: "The product vision",
+        body:
+          "The platform is designed as a modular workspace: every team can start with immediate needs, then progressively connect venues, providers, guests, tickets, and event-day operations.",
+      },
+      {
+        title: "Current status",
+        body:
+          "Elintys is preparing for beta access. People joining the waitlist help guide product priorities before a broader opening.",
+      },
+    ],
+    ctaTitle: "Join the beta",
+    ctaBody:
+      "Join the waitlist to follow progress and be among the first invited users.",
+  },
+  faqPage: {
+    metadata: {
+      title: "Frequently asked questions | Elintys",
+      description:
+        "Answers to common questions about Elintys, the beta, organizers, providers, venues, attendees, data, and fees.",
+    },
+    eyebrow: "FAQ",
+    title: "Frequently asked questions",
+    intro:
+      "Short, verifiable answers about the platform, waitlist, beta, and the audiences Elintys serves.",
+    items: [
+      [
+        "Is it free to join the waitlist?",
+        "Yes. Joining the waitlist is free and does not create any financial commitment.",
+      ],
+      [
+        "When will the platform be available?",
+        "Elintys is currently preparing for beta access. Waitlist members will be informed when invitations begin.",
+      ],
+      [
+        "Who can join Elintys?",
+        "Organizers, event service providers, venue managers, and attendees can join the waitlist.",
+      ],
+      [
+        "What will organizers be able to do?",
+        "The landing presents a journey to create an event, define needs, find venues and providers, prepare ticketing, guests, and check-in.",
+      ],
+      [
+        "How does Elintys help service providers?",
+        "Elintys plans provider profiles to present services, strengthen discoverability, and receive better contextualized requests.",
+      ],
+      [
+        "Can venue managers list their spaces?",
+        "Yes. The venues page presents a listing experience for showcasing capacity, services, atmosphere, and contextualized requests.",
+      ],
+      [
+        "Are attendees part of the product vision?",
+        "Yes. The vision includes a smoother experience to discover an event, receive a ticket, and be welcomed on event day.",
+      ],
+      [
+        "Does Elintys only cover Montreal?",
+        "Current content indicates a start in Montreal and a Canadian vision. Exact coverage will evolve with the beta.",
+      ],
+      [
+        "Will there be fees?",
+        "The waitlist is free. The landing mentions planned ticketing fees, but final commercial terms will be confirmed later.",
+      ],
+      [
+        "What data is collected on the waitlist?",
+        "The form collects first name, email, role, language, signup source, and consent choices. Details are described in the privacy policy.",
+      ],
+      [
+        "How does the waitlist work?",
+        "You sign up with your role and email. Elintys may then contact you about beta access and updates according to your consent choices.",
+      ],
+      [
+        "Is Elintys bilingual?",
+        "Yes. The landing and product positioning are available in French and English.",
       ],
     ],
   },

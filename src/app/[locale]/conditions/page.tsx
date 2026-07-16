@@ -20,7 +20,9 @@ export async function generateMetadata({
 
   const t = await getTranslations({ locale, namespace: "legal.terms.metadata" });
 
-  return buildPageMetadata(locale, t("title"), t("description"));
+  return buildPageMetadata(locale, t("title"), t("description"), t("description"), {
+    routeKey: "terms",
+  });
 }
 
 export default async function ConditionsPage({

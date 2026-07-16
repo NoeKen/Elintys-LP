@@ -1,7 +1,9 @@
+import { localizedRoutes } from "@/lib/localized-routes";
+
 export const audienceRouteMap = {
-  events: { fr: "/fr/organisateurs", en: "/en/organizers" },
-  providers: { fr: "/fr/prestataires", en: "/en/providers" },
-  venues: { fr: "/fr/lieux", en: "/en/venues" },
+  events: localizedRoutes.organizers,
+  providers: localizedRoutes.providers,
+  venues: localizedRoutes.venues,
 } as const;
 
 export const audienceSolutionLinks = {

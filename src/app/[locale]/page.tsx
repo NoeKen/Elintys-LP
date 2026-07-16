@@ -27,7 +27,13 @@ export async function generateMetadata({
 
   const t = await getTranslations({ locale, namespace: "metadata.home" });
 
-  return buildPageMetadata(locale, t("title"), t("description"), t("twitterDescription"));
+  return buildPageMetadata(locale, t("title"), t("description"), t("twitterDescription"), {
+    routeKey: "home",
+    imageAlt:
+      locale === "fr"
+        ? "Identité Elintys pour le partage social"
+        : "Elintys identity for social sharing",
+  });
 }
 
 export default async function LocaleHomePage({

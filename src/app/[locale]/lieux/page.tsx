@@ -6,6 +6,10 @@ import { routing } from "@/i18n/routing";
 import { buildPageMetadata } from "@/lib/metadata";
 import VenuesShowcase from "@/app/components/venues/VenuesShowcase";
 
+export function generateStaticParams() {
+  return [{ locale: "fr" }];
+}
+
 export async function generateMetadata({
   params,
 }: {
@@ -19,10 +23,10 @@ export async function generateMetadata({
 
   return buildPageMetadata(
     locale,
-    "Référencer un lieu événementiel | Elintys",
+    "Plateforme pour lieux et espaces événementiels | Elintys",
     "Présentez votre espace, ses capacités, ses services et recevez des demandes événementielles mieux contextualisées.",
     "Présentez votre espace, ses capacités, ses services et recevez des demandes événementielles mieux contextualisées.",
-    { canonicalPath: "/fr/lieux", languages: { fr: "/fr/lieux", en: "/en/venues" } }
+    { routeKey: "venues" }
   );
 }
 

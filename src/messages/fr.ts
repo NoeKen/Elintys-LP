@@ -171,6 +171,7 @@ const fr = {
   faq: {
     badge: "Questions fréquentes",
     title: "Tout ce que vous voulez savoir.",
+    fullPageLink: "Voir la FAQ complète",
     items: [
       [
         "Est-ce gratuit pour rejoindre la liste d'attente ?",
@@ -199,6 +200,103 @@ const fr = {
       [
         "Y aura-t-il des frais sur la billetterie et les paiements ?",
         "Oui. Elintys prélève une commission de 6 % sur chaque billet vendu, plus des frais fixes de 1,49 CAD par billet pour couvrir les frais de traitement de paiement. Ces frais peuvent être absorbés par l'organisateur ou répercutés sur le participant. Pour les événements gratuits et la gestion des invités : aucun frais.",
+      ],
+    ],
+  },
+  aboutPage: {
+    metadata: {
+      title: "À propos d'Elintys",
+      description:
+        "Découvrez la mission d'Elintys : réduire la fragmentation événementielle en connectant organisateurs, prestataires, lieux et participants.",
+    },
+    eyebrow: "À propos",
+    title: "Elintys construit un point de rencontre pour l'écosystème événementiel.",
+    intro:
+      "L'organisation d'un événement repose encore trop souvent sur des outils séparés, des échanges dispersés et des informations qui se perdent entre les acteurs.",
+    sections: [
+      {
+        title: "Le problème",
+        body:
+          "Organisateurs, prestataires, gestionnaires de lieux et participants vivent chacun une partie différente du même parcours. Quand les outils ne communiquent pas, la coordination devient plus lourde que l'événement lui-même.",
+      },
+      {
+        title: "La mission",
+        body:
+          "Elintys vise à réunir les principaux acteurs de l'événementiel dans un même écosystème pour créer, équiper, vendre, gérer, diffuser et accueillir avec plus de clarté.",
+      },
+      {
+        title: "La vision produit",
+        body:
+          "La plateforme est pensée comme un espace modulaire : chaque équipe peut commencer par ses besoins immédiats, puis connecter progressivement les lieux, prestataires, invités, billets et opérations du jour J.",
+      },
+      {
+        title: "Le statut",
+        body:
+          "Elintys est en préparation pour un accès bêta. Les personnes inscrites à la liste d'attente contribuent à orienter les priorités produit avant l'ouverture plus large.",
+      },
+    ],
+    ctaTitle: "Participer à la bêta",
+    ctaBody:
+      "Rejoignez la liste d'attente pour suivre l'avancement et faire partie des premiers utilisateurs invités.",
+  },
+  faqPage: {
+    metadata: {
+      title: "Questions fréquentes | Elintys",
+      description:
+        "Réponses aux questions fréquentes sur Elintys, la bêta, les organisateurs, prestataires, lieux, participants, données et frais.",
+    },
+    eyebrow: "FAQ",
+    title: "Questions fréquentes",
+    intro:
+      "Des réponses courtes et vérifiables sur la plateforme, la liste d'attente, la bêta et les publics concernés.",
+    items: [
+      [
+        "Est-ce gratuit pour rejoindre la liste d'attente ?",
+        "Oui. L'inscription à la liste d'attente est gratuite et ne crée aucun engagement financier.",
+      ],
+      [
+        "Quand la plateforme sera-t-elle disponible ?",
+        "Elintys est actuellement en préparation pour son accès bêta. Les membres de la liste d'attente seront informés lorsque les invitations commenceront.",
+      ],
+      [
+        "Qui peut rejoindre Elintys ?",
+        "Les organisateurs, prestataires événementiels, gestionnaires de lieux et participants peuvent rejoindre la liste d'attente.",
+      ],
+      [
+        "Que pourra faire un organisateur ?",
+        "La landing présente un parcours pour créer un événement, définir ses besoins, chercher des lieux et prestataires, préparer la billetterie, les invités et l'accueil.",
+      ],
+      [
+        "Comment Elintys aide les prestataires ?",
+        "Elintys prévoit des profils prestataires pour présenter les services, renforcer la découvrabilité et recevoir des demandes mieux contextualisées.",
+      ],
+      [
+        "Les gestionnaires de lieux peuvent-ils référencer leurs espaces ?",
+        "Oui. La page lieux présente une expérience de référencement pour mettre en avant capacités, services, atmosphère et demandes contextualisées.",
+      ],
+      [
+        "Les participants sont-ils concernés ?",
+        "Oui. La vision inclut une expérience plus fluide pour découvrir un événement, recevoir un billet et être accueilli le jour J.",
+      ],
+      [
+        "Elintys couvre-t-il seulement Montréal ?",
+        "Le contenu actuel indique un démarrage à Montréal et une vision canadienne. La couverture exacte évoluera avec la bêta.",
+      ],
+      [
+        "Y aura-t-il des frais ?",
+        "La liste d'attente est gratuite. La landing mentionne des frais de billetterie envisagés, mais les conditions commerciales finales seront confirmées plus tard.",
+      ],
+      [
+        "Quelles données sont collectées sur la liste d'attente ?",
+        "Le formulaire collecte le prénom, le courriel, le rôle, la langue, la source d'inscription et les consentements. Les détails sont décrits dans la politique de confidentialité.",
+      ],
+      [
+        "Comment fonctionne la liste d'attente ?",
+        "Vous vous inscrivez avec votre rôle et votre courriel. Elintys peut ensuite vous contacter au sujet de l'accès bêta et des mises à jour selon vos consentements.",
+      ],
+      [
+        "Elintys est-il bilingue ?",
+        "Oui. La landing et le positionnement produit sont disponibles en français et en anglais.",
       ],
     ],
   },

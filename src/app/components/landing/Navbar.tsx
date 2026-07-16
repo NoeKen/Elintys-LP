@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
 import { audienceRouteMap, audienceSolutionLinks } from "@/lib/audience-routes";
+import { localizedRoutes, resolveLocaleSwitchPath } from "@/lib/localized-routes";
 import { cn } from "@/lib/utils";
 
 function ArrowIcon() {
@@ -43,15 +44,6 @@ function MenuIcon({ open }: { open: boolean }) {
   );
 }
 
-const equivalentRoutes: Record<string, string> = {
-  [audienceRouteMap.events.fr]: audienceRouteMap.events.en,
-  [audienceRouteMap.events.en]: audienceRouteMap.events.fr,
-  [audienceRouteMap.providers.fr]: audienceRouteMap.providers.en,
-  [audienceRouteMap.providers.en]: audienceRouteMap.providers.fr,
-  [audienceRouteMap.venues.fr]: audienceRouteMap.venues.en,
-  [audienceRouteMap.venues.en]: audienceRouteMap.venues.fr,
-};
-
 const transparentUntilScrollRoutes = new Set<string>([
   audienceRouteMap.venues.fr,
   audienceRouteMap.venues.en,
@@ -69,6 +61,8 @@ export default function Navbar() {
 
   const labels = {
     home: currentLocale === "fr" ? "Accueil" : "Home",
+    about: currentLocale === "fr" ? "À propos" : "About",
+    faq: "FAQ",
   };
 
   function getLocaleSwitchHref(targetLocale: "fr" | "en") {
@@ -80,24 +74,7 @@ export default function Navbar() {
       return pathname;
     }
 
-    const equivalent = equivalentRoutes[pathname];
-
-    if (equivalent) {
-      return equivalent;
-    }
-
-    const segments = pathname.split("/").filter(Boolean);
-
-    if (segments.length === 0) {
-      return `/${targetLocale}`;
-    }
-
-    if (segments[0] === "fr" || segments[0] === "en") {
-      segments[0] = targetLocale;
-      return `/${segments.join("/")}`;
-    }
-
-    return `/${targetLocale}${pathname.startsWith("/") ? pathname : `/${pathname}`}`;
+    return resolveLocaleSwitchPath(pathname, targetLocale);
   }
 
   useEffect(() => {
@@ -162,6 +139,18 @@ export default function Navbar() {
               {link.label}
             </Link>
           ))}
+          <Link
+            href={localizedRoutes.about[currentLocale]}
+            className="text-sm font-medium text-brand-mid transition-colors hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal"
+          >
+            {labels.about}
+          </Link>
+          <Link
+            href={localizedRoutes.faq[currentLocale]}
+            className="text-sm font-medium text-brand-mid transition-colors hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal"
+          >
+            {labels.faq}
+          </Link>
         </div>
 
         <div className="hidden items-center gap-2 md:flex">
@@ -233,6 +222,20 @@ export default function Navbar() {
                 {link.label}
               </Link>
             ))}
+            <Link
+              href={localizedRoutes.about[currentLocale]}
+              onClick={() => setMobileOpen(false)}
+              className="rounded-xl px-3 py-3 text-sm font-semibold text-ink hover:bg-brand-bg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal"
+            >
+              {labels.about}
+            </Link>
+            <Link
+              href={localizedRoutes.faq[currentLocale]}
+              onClick={() => setMobileOpen(false)}
+              className="rounded-xl px-3 py-3 text-sm font-semibold text-ink hover:bg-brand-bg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal"
+            >
+              {labels.faq}
+            </Link>
             <Link
               href={betaHref}
               onClick={() => setMobileOpen(false)}

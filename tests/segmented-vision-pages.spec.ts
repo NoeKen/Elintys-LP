@@ -126,8 +126,12 @@ test.describe.serial("segmented public vision pages", () => {
     );
     await expect(nav.getByRole("link", { name: "Prestataires" })).toBeVisible();
     await expect(nav.getByRole("link", { name: "Lieux" })).toBeVisible();
+    await expect(nav.getByRole("link", { name: "À propos" })).toHaveAttribute(
+      "href",
+      "/fr/a-propos"
+    );
+    await expect(nav.getByRole("link", { name: "FAQ" })).toHaveAttribute("href", "/fr/faq");
     await expect(nav.getByText("Solutions")).toHaveCount(0);
-    await expect(nav.getByRole("link", { name: "FAQ" })).toHaveCount(0);
     await expect(nav.getByRole("link", { name: "Accès bêta" })).toHaveCount(0);
   });
 

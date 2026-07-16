@@ -3,12 +3,15 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import * as Accordion from "@radix-ui/react-accordion";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
+import { localizedRoutes } from "@/lib/localized-routes";
 
 export default function FAQ() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-60px" });
+  const locale = useLocale() === "en" ? "en" : "fr";
   const t = useTranslations("faq");
   const items = t.raw("items") as [string, string][];
 
@@ -66,6 +69,14 @@ export default function FAQ() {
               </Accordion.Item>
             ))}
           </Accordion.Root>
+          <div className="mt-8">
+            <Link
+              href={localizedRoutes.faq[locale]}
+              className="inline-flex min-h-11 items-center rounded-xl border border-brand-border bg-white px-5 py-2.5 text-sm font-medium text-ink transition-colors hover:border-teal hover:text-teal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal"
+            >
+              {t("fullPageLink")}
+            </Link>
+          </div>
         </motion.div>
       </div>
     </section>

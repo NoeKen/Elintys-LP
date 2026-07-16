@@ -6,6 +6,10 @@ import { routing } from "@/i18n/routing";
 import { buildPageMetadata } from "@/lib/metadata";
 import ProvidersShowcase from "@/app/components/providers/ProvidersShowcase";
 
+export function generateStaticParams() {
+  return [{ locale: "en" }];
+}
+
 export async function generateMetadata({
   params,
 }: {
@@ -19,10 +23,10 @@ export async function generateMetadata({
 
   return buildPageMetadata(
     locale,
-    "Event service providers | Join Elintys",
+    "Platform for event service providers | Elintys",
     "Present your services and be discovered by organizers looking for event professionals.",
     "Present your services and be discovered by organizers looking for event professionals.",
-    { canonicalPath: "/en/providers", languages: { fr: "/fr/prestataires", en: "/en/providers" } }
+    { routeKey: "providers" }
   );
 }
 

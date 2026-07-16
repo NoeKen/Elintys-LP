@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
 import { audienceSolutionLinks } from "@/lib/audience-routes";
+import { localizedRoutes } from "@/lib/localized-routes";
 
 export default function Footer() {
   const ref = useRef(null);
@@ -17,6 +18,7 @@ export default function Footer() {
     currentLocale === "fr"
       ? {
           home: "Accueil",
+          about: "À propos",
           faq: "FAQ",
           beta: "Accès bêta",
           privacy: "Confidentialité",
@@ -24,6 +26,7 @@ export default function Footer() {
         }
       : {
           home: "Home",
+          about: "About",
           faq: "FAQ",
           beta: "Beta access",
           privacy: "Privacy policy",
@@ -31,12 +34,13 @@ export default function Footer() {
         };
 
   const links = [
-    { label: labels.home, href: `/${currentLocale}` },
+    { label: labels.home, href: localizedRoutes.home[currentLocale] },
     ...audienceSolutionLinks[currentLocale],
-    { label: labels.faq, href: `/${currentLocale}#faq` },
+    { label: labels.about, href: localizedRoutes.about[currentLocale] },
+    { label: labels.faq, href: localizedRoutes.faq[currentLocale] },
     { label: labels.beta, href: `/${currentLocale}#cta` },
-    { label: labels.privacy, href: `/${currentLocale}/confidentialite` },
-    { label: labels.terms, href: `/${currentLocale}/conditions` },
+    { label: labels.privacy, href: localizedRoutes.privacy[currentLocale] },
+    { label: labels.terms, href: localizedRoutes.terms[currentLocale] },
   ];
 
   return (

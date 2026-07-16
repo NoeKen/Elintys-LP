@@ -1,4 +1,5 @@
 import type { WaitlistLocale, WaitlistRole } from "@/lib/waitlist.types";
+import { siteConfig } from "@/config/site";
 
 function escapeHtml(value: string) {
   return value
@@ -206,7 +207,7 @@ export default function waitlistConfirmationEmail({
   email,
   locale,
 }: WaitlistConfirmationProps) {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://elintys.com";
+  const siteUrl = siteConfig.url;
   const safeFirstName = escapeHtml(firstName);
   const unsubscribeUrl = `${siteUrl}/unsubscribe?email=${encodeURIComponent(email)}`;
   const copy = ROLE_COPY[locale][role];

@@ -6,6 +6,10 @@ import { routing } from "@/i18n/routing";
 import { buildPageMetadata } from "@/lib/metadata";
 import OrganizersShowcase from "@/app/components/organizers/OrganizersShowcase";
 
+export function generateStaticParams() {
+  return [{ locale: "fr" }];
+}
+
 export async function generateMetadata({
   params,
 }: {
@@ -19,10 +23,10 @@ export async function generateMetadata({
 
   return buildPageMetadata(
     locale,
-    "Organiser un événement avec Elintys | Accès bêta",
+    "Solution pour organisateurs d'événements | Elintys",
     "Découvrez comment Elintys centralise les lieux, les prestataires, la billetterie, les invités et l'accueil de vos événements.",
     "Découvrez comment Elintys centralise les lieux, les prestataires, la billetterie, les invités et l'accueil de vos événements.",
-    { canonicalPath: "/fr/organisateurs", languages: { fr: "/fr/organisateurs", en: "/en/organizers" } }
+    { routeKey: "organizers" }
   );
 }
 
