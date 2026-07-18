@@ -15,19 +15,16 @@ test.describe("Section primitive", () => {
     expect(parseInt(paddingTop, 10)).toBeGreaterThanOrEqual(120);
   });
 
-  test("respects prefers-reduced-motion by skipping translate/blur", async ({
+  test("respects prefers-reduced-motion by skipping translation and non-composited effects", async ({
     page,
   }) => {
     await page.emulateMedia({ reducedMotion: "reduce" });
     await page.goto("/en/venues");
     const section = page.getByTestId("section-white");
     await expect(section).toBeVisible();
-    // With reduced motion, opacity must already be 1 without a translate/blur transition mid-flight.
-    // Poll rather than a single evaluate(): the SSR markup bakes the full-motion
-    // `filter: blur(8px)` value, and the client only swaps in the reduced-motion
-    // "none" override a short moment after hydration completes.
+    await expect.poll(() => section.evaluate((el) => getComputedStyle(el).filter)).toBe("none");
     await expect
-      .poll(() => section.evaluate((el) => getComputedStyle(el).filter))
+      .poll(() => section.evaluate((el) => getComputedStyle(el).transform))
       .toBe("none");
   });
 });
