@@ -1,6 +1,30 @@
 import { expect, test } from "@playwright/test";
 
 test.describe.serial("home cinematic experience", () => {
+  test("renders the hero LCP content in the initial HTML with one eager high-priority image", async ({
+    page,
+    request,
+  }) => {
+    const response = await request.get("/en");
+    expect(response.ok()).toBeTruthy();
+    const html = await response.text();
+
+    expect(html).toContain("Events deserve better than tools that don&#x27;t talk to each other.");
+    expect(html).toContain("photo-1511795409834");
+
+    await page.goto("/en", { waitUntil: "domcontentloaded" });
+
+    const highPriorityImages = page.locator('img[fetchpriority="high"]');
+    await expect(highPriorityImages).toHaveCount(1);
+    await expect(highPriorityImages.first()).not.toHaveAttribute("loading", "lazy");
+    await expect(
+      page.getByRole("heading", {
+        level: 1,
+        name: "Events deserve better than tools that don't talk to each other.",
+      })
+    ).toBeVisible();
+  });
+
   test("renders the immersive hero and audience bridge on desktop", async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 960 });
     await page.goto("/en");

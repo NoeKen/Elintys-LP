@@ -11,7 +11,7 @@ describe("getMotionVariants", () => {
     const result = getMotionVariants(true, blurReveal);
     expect(result.hidden).toEqual({ opacity: 0 });
     expect(result.visible).toMatchObject({ opacity: 1 });
-    // must not carry over translation or blur from the full variant
+    // must not carry over translation or non-composited effects from the full variant
     expect(result.visible).not.toHaveProperty("y");
     expect(result.visible).not.toHaveProperty("filter");
   });

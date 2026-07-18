@@ -12,10 +12,9 @@ export const fadeUp: Variants = {
 };
 
 export const blurReveal: Variants = {
-  hidden: { opacity: 0, filter: "blur(8px)" },
+  hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    filter: "blur(0px)",
     transition: { duration: 0.7, ease: EASE_OUT },
   },
 };

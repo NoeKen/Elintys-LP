@@ -28,21 +28,7 @@ export default function Section({
   "data-testid": testId,
 }: SectionProps) {
   const prefersReducedMotion = useReducedMotion();
-  const baseVariants = getMotionVariants(Boolean(prefersReducedMotion), blurReveal);
-  // Server-side rendering always assumes no motion preference (matchMedia is
-  // unavailable), so the initial markup is baked from `blurReveal`, which
-  // includes `filter: blur(8px)`. When the client detects
-  // `prefers-reduced-motion: reduce`, `getMotionVariants` swaps in a variant
-  // that never mentions `filter` at all — Framer Motion only writes keys
-  // present in the active variant, so that stale SSR `filter` value is never
-  // cleared. Pin `filter: none` explicitly on both states in the
-  // reduced-motion path so hydration always converges to no blur.
-  const variants = prefersReducedMotion
-    ? {
-        hidden: { ...baseVariants.hidden, filter: "none" },
-        visible: { ...baseVariants.visible, filter: "none" },
-      }
-    : baseVariants;
+  const variants = getMotionVariants(Boolean(prefersReducedMotion), blurReveal);
 
   return (
     <motion.section
