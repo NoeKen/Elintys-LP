@@ -6,10 +6,6 @@ import { routing } from "@/i18n/routing";
 import { buildPageMetadata } from "@/lib/metadata";
 import OrganizersShowcase from "@/app/components/organizers/OrganizersShowcase";
 
-export function generateStaticParams() {
-  return [{ locale: "fr" }];
-}
-
 export async function generateMetadata({
   params,
 }: {

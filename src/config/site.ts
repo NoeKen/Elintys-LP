@@ -6,8 +6,8 @@ export const siteConfig = {
   locales: ["fr", "en"],
   email: "contact@elintys.com",
   logoPath: "/images/elintys-logo.png",
-  ogImagePath: "/images/og-image.svg",
-  contentLastModified: "2026-07-15",
+  ogImagePath: "/images/og/elintys-og.png",
+  contentLastModified: "2026-07-18",
 } as const;
 
 export type SiteLocale = (typeof siteConfig.locales)[number];

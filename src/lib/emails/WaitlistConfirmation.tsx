@@ -1,4 +1,5 @@
 import type { WaitlistLocale, WaitlistRole } from "@/lib/waitlist.types";
+import { legalConfig } from "@/config/legal";
 import { siteConfig } from "@/config/site";
 
 function escapeHtml(value: string) {
@@ -320,7 +321,7 @@ export default function waitlistConfirmationEmail({
             <tr>
               <td>
                 <p style="margin:0;font-size:13px;color:#6B7280;line-height:1.6;">
-                  © 2026 Elintys · hello@elintys.com · Montréal, Québec
+                  © 2026 ${legalConfig.projectName} · ${legalConfig.contactEmail} · Montréal, Québec
                 </p>
                 <p style="margin:8px 0 0 0;font-size:12px;color:#9CA3AF;">
                   ${emailCopy.footer}

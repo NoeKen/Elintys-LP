@@ -321,23 +321,28 @@ const fr = {
   },
   legal: {
     backToHome: "← Retour à l'accueil",
+    registrationStatus: {
+      unregistered: "{projectName} n'est pas encore immatriculé à titre d'entreprise.",
+      pending: "Les démarches d'immatriculation de {projectName} sont en cours.",
+      registered: "{projectName} est immatriculé à titre d'entreprise.",
+    },
     privacyPolicy: {
       metadata: {
         title: "Politique de confidentialité — Elintys",
         description: "Politique de confidentialité d'Elintys, conforme à la Loi 25 du Québec.",
       },
       title: "Politique de confidentialité",
-      lastUpdated: "Dernière mise à jour : Avril 2026 · Conforme à la Loi 25 (Québec)",
+      lastUpdated: "Dernière mise à jour : {lastUpdated}",
       sections: {
         identity: {
           title: "1. Identité du responsable du traitement",
           body:
-            "La présente politique est établie par [Prénom + Nom], faisant affaires sous le nom commercial Elintys, immatriculé(e) au Registre des entreprises du Québec (REQ) sous le numéro d'entreprise (NEQ) : [À compléter]. Responsable de la protection des renseignements personnels (RPR) : [Prénom + Nom] — privacy@elintys.com",
+            "{projectName} est un projet technologique actuellement exploité par {operatorName}. {projectName} n'est pas encore immatriculé à titre d'entreprise. Les démarches d'immatriculation sont prévues dans une phase prochaine.",
         },
         rpr: {
           title: "1a. Responsable de la protection des renseignements personnels (RPR)",
           body:
-            "Conformément à l'article 3.1 de la Loi 25, [Prénom + Nom] est désigné(e) Responsable de la protection des renseignements personnels. Le RPR est joignable à privacy@elintys.com. Toute demande reçoit une réponse dans un délai de 30 jours.",
+            "Conformément à l'article 3.1 de la Loi 25, {privacyOfficerName} agit comme Responsable de la protection des renseignements personnels. Le RPR est joignable à {privacyOfficerEmail}. Toute demande reçoit une réponse dans un délai de 30 jours.",
         },
         collectedData: {
           title: "2. Renseignements personnels collectés",
@@ -399,7 +404,7 @@ const fr = {
             ],
           ],
           body:
-            "Elintys s'assure que ces sous-traitants offrent un niveau de protection comparable à la Loi 25, notamment via leurs politiques de conformité RGPD et certifications SOC 2.",
+            "{projectName} s'assure que ces sous-traitants offrent un niveau de protection comparable à la Loi 25, notamment via leurs politiques de conformité RGPD et certifications SOC 2.",
         },
         retention: {
           title: "6. Durée de conservation",
@@ -448,7 +453,7 @@ const fr = {
         minAge: {
           title: "8b. Âge minimum",
           body:
-            "Le service est destiné aux personnes de 18 ans et plus. Les mineurs de 14 à 17 ans peuvent s'inscrire avec le consentement d'un parent ou tuteur légal. Elintys ne collecte pas sciemment de données sur des enfants de moins de 14 ans.",
+            "Le service est destiné aux personnes de 18 ans et plus. Les mineurs de 14 à 17 ans peuvent s'inscrire avec le consentement d'un parent ou tuteur légal. {projectName} ne collecte pas sciemment de données sur des enfants de moins de 14 ans.",
         },
         cookies: {
           title: "9. Cookies et traceurs",
@@ -458,7 +463,7 @@ const fr = {
         changes: {
           title: "10. Modifications",
           body:
-            "Elintys peut modifier cette politique à tout moment. En cas de modification substantielle, les inscrits seront informés par courriel au moins 30 jours avant l'entrée en vigueur.",
+            "{projectName} peut modifier cette politique à tout moment. En cas de modification substantielle, les inscrits seront informés par courriel au moins 30 jours avant l'entrée en vigueur.",
         },
         contact: {
           title: "11. Contact et plainte",
@@ -475,20 +480,25 @@ const fr = {
         description: "Conditions d'utilisation d'Elintys pour la liste d'attente pré-lancement.",
       },
       title: "Conditions d'utilisation",
-      lastUpdated: "Dernière mise à jour : Avril 2026 · Conforme à la Loi 25 (Québec)",
+      lastUpdated: "Dernière mise à jour : {lastUpdated}",
       sections: {
-        purpose: {
-          title: "1. Objet",
+        identity: {
+          title: "1. Identité de l'exploitant",
           body:
-            "Les présentes conditions régissent l'inscription à la liste d'attente d'Elintys (elintys.com). En vous inscrivant, vous les acceptez dans leur intégralité.",
+            "{projectName} est un projet technologique actuellement exploité par {operatorName}. {projectName} n'est pas encore immatriculé à titre d'entreprise. Les démarches d'immatriculation sont prévues dans une phase prochaine.",
+        },
+        purpose: {
+          title: "2. Objet",
+          body:
+            "Les présentes conditions régissent l'inscription à la liste d'attente de {projectName} ({canonicalUrl}). En vous inscrivant, vous les acceptez dans leur intégralité.",
         },
         serviceNature: {
-          title: "2. Nature du service à ce stade",
+          title: "3. Nature du service à ce stade",
           body:
-            "Elintys est en phase de développement pré-lancement. L'inscription ne constitue pas un contrat de service, ne crée aucune obligation financière, et ne garantit pas un accès au produit final. L'accès bêta sera accordé par ordre d'inscription selon les priorités de l'équipe. Elintys se réserve le droit de modifier, reporter ou annuler le lancement sans préavis.",
+            "{projectName} est en phase de développement pré-lancement. L'inscription ne constitue pas un contrat de service, ne crée aucune obligation financière, et ne garantit pas un accès au produit final. L'accès bêta sera accordé par ordre d'inscription selon les priorités de l'équipe. {projectName} se réserve le droit de modifier, reporter ou annuler le lancement sans préavis.",
         },
         commitments: {
-          title: "3. Engagements de l'inscrit",
+          title: "4. Engagements de l'inscrit",
           items: [
             "Fournir des informations exactes (prénom, courriel, rôle)",
             "Ne pas usurper l'identité d'une autre personne",
@@ -496,7 +506,7 @@ const fr = {
           ],
         },
         elintysCommitments: {
-          title: "4. Engagements d'Elintys",
+          title: "5. Engagements de {projectName}",
           items: [
             "Traiter vos renseignements conformément à la",
             "Vous informer de l'avancement du projet par courriel",
@@ -506,34 +516,34 @@ const fr = {
           privacyLinkLabel: "Politique de confidentialité",
         },
         casl: {
-          title: "4a. Communications commerciales (CASL)",
+          title: "5a. Communications commerciales (CASL)",
           body:
-            "Les communications commerciales sont envoyées uniquement aux personnes ayant coché la case optionnelle de consentement lors de l'inscription, conformément à la Loi canadienne anti-pourriel (CASL — L.C. 2010, ch. 23). Vous pouvez retirer votre consentement à tout moment via le lien de désabonnement dans chaque courriel, ou en écrivant à contact@elintys.com — traitement dans les 10 jours ouvrables.",
+            "Les communications commerciales sont envoyées uniquement aux personnes ayant coché la case optionnelle de consentement lors de l'inscription, conformément à la Loi canadienne anti-pourriel (CASL — L.C. 2010, ch. 23). Vous pouvez retirer votre consentement à tout moment via le lien de désabonnement dans chaque courriel, ou en écrivant à {contactEmail} — traitement dans les 10 jours ouvrables.",
         },
         minAge: {
-          title: "4b. Âge minimum",
+          title: "5b. Âge minimum",
           body:
             "En vous inscrivant, vous confirmez avoir 18 ans ou plus, ou disposer du consentement d'un parent ou tuteur légal.",
         },
         intellectualProperty: {
-          title: "5. Propriété intellectuelle",
+          title: "6. Propriété intellectuelle",
           body:
-            "L'ensemble des éléments du site (nom, logo, textes, design, code) est la propriété exclusive d'Elintys. Toute reproduction non autorisée est interdite.",
+            "L'ensemble des éléments du site (nom, logo, textes, design, code) est la propriété exclusive de {projectName}. Toute reproduction non autorisée est interdite.",
         },
         liability: {
-          title: "6. Limitation de responsabilité",
+          title: "7. Limitation de responsabilité",
           body:
-            "Elintys ne peut être tenu responsable des dommages directs ou indirects résultant de l'utilisation du site, ni des interruptions de service liées à des causes extérieures.",
+            "{projectName} ne peut être tenu responsable des dommages directs ou indirects résultant de l'utilisation du site, ni des interruptions de service liées à des causes extérieures.",
         },
         governingLaw: {
-          title: "7. Droit applicable",
+          title: "8. Droit applicable",
           body:
             "Ces conditions sont régies par les lois du Québec, Canada (Loi 25, Code civil du Québec). Tout litige sera soumis aux tribunaux du district judiciaire de Montréal.",
         },
         changes: {
-          title: "8. Modifications",
+          title: "9. Modifications",
           body:
-            "Elintys peut modifier ces conditions à tout moment. Les inscrits seront notifiés par courriel en cas de changement substantiel.",
+            "{projectName} peut modifier ces conditions à tout moment. Les inscrits seront notifiés par courriel en cas de changement substantiel.",
         },
       },
     },

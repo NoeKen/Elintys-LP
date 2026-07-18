@@ -3,6 +3,7 @@ import {
   findLocalizedRouteKey,
   getLocalizedRouteAlternates,
   localizedRoutes,
+  redirectedRoutes,
   resolveLocaleSwitchPath,
 } from "./localized-routes";
 
@@ -28,6 +29,14 @@ describe("localizedRoutes", () => {
       fr: "/fr/faq",
       en: "/en/faq",
     });
+    expect(localizedRoutes.privacy).toEqual({
+      fr: "/fr/confidentialite",
+      en: "/en/privacy",
+    });
+    expect(localizedRoutes.terms).toEqual({
+      fr: "/fr/conditions",
+      en: "/en/terms",
+    });
   });
 
   it("resolves the language switch with slug translation", () => {
@@ -35,6 +44,8 @@ describe("localizedRoutes", () => {
     expect(resolveLocaleSwitchPath("/en/providers", "fr")).toBe("/fr/prestataires");
     expect(resolveLocaleSwitchPath("/fr/a-propos", "en")).toBe("/en/about");
     expect(resolveLocaleSwitchPath("/en/faq", "fr")).toBe("/fr/faq");
+    expect(resolveLocaleSwitchPath("/fr/confidentialite", "en")).toBe("/en/privacy");
+    expect(resolveLocaleSwitchPath("/en/terms", "fr")).toBe("/fr/conditions");
   });
 
   it("falls back to the target localized home for unknown routes", () => {
@@ -51,5 +62,14 @@ describe("localizedRoutes", () => {
       "x-default": "https://www.elintys.com/fr/organisateurs",
     });
     expect(findLocalizedRouteKey("/en/organizers")).toBe("organizers");
+  });
+
+  it("keeps permanent redirects for legacy English legal slugs", () => {
+    expect(redirectedRoutes).toEqual({
+      "/en/confidentialite": "/en/privacy",
+      "/en/conditions": "/en/terms",
+    });
+    expect(findLocalizedRouteKey("/en/confidentialite")).toBeUndefined();
+    expect(findLocalizedRouteKey("/en/conditions")).toBeUndefined();
   });
 });

@@ -6,10 +6,6 @@ import AboutPageContent from "@/app/components/landing/AboutPageContent";
 import { routing } from "@/i18n/routing";
 import { buildPageMetadata } from "@/lib/metadata";
 
-export function generateStaticParams() {
-  return [{ locale: "fr" }];
-}
-
 export async function generateMetadata({
   params,
 }: {

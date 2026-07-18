@@ -1,13 +1,18 @@
 import { absoluteUrl, siteConfig, type SiteLocale } from "@/config/site";
+import { legalConfig } from "@/config/legal";
 
 export function organizationJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: siteConfig.name,
-    url: siteConfig.url,
+    name: legalConfig.projectName,
+    url: legalConfig.website.canonicalUrl,
     logo: absoluteUrl(siteConfig.logoPath),
-    email: siteConfig.email,
+    email: legalConfig.contactEmail,
+    founder: {
+      "@type": "Person",
+      name: legalConfig.operatorName,
+    },
   };
 }
 
@@ -28,7 +33,7 @@ export function softwareApplicationJsonLd(locale: SiteLocale) {
     name: siteConfig.name,
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web",
-    url: absoluteUrl(`/${locale}`),
+    url: siteConfig.url,
     inLanguage: locale === "fr" ? "fr-CA" : "en-CA",
     description:
       locale === "fr"

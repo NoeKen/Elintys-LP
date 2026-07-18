@@ -4,6 +4,8 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { localizedRoutes } from "@/lib/localized-routes";
+import type { SiteLocale } from "@/config/site";
 import type { WaitlistRole, WaitlistSource } from "@/lib/waitlist.types";
 import { useLocale, useTranslations } from "next-intl";
 
@@ -29,6 +31,7 @@ export default function EmailForm({
   buttonLabel,
 }: EmailFormProps) {
   const locale = useLocale();
+  const siteLocale = locale as SiteLocale;
   const t = useTranslations("form");
   const submitLabel = buttonLabel ?? t("buttonLabel");
   const [firstName, setFirstName] = useState("");
@@ -239,14 +242,14 @@ export default function EmailForm({
               <span className="text-xs leading-relaxed">
                 {t("consentCGUPrefix")}{" "}
                 <Link
-                  href={`/${locale}/confidentialite`}
+                  href={localizedRoutes.privacy[siteLocale]}
                   className={cn("underline hover:text-teal transition-colors", isDark && "text-white/70")}
                 >
                   {t("privacyLinkLabel")}
                 </Link>{" "}
                 {t("consentMiddle")}{" "}
                 <Link
-                  href={`/${locale}/conditions`}
+                  href={localizedRoutes.terms[siteLocale]}
                   className={cn("underline hover:text-teal transition-colors", isDark && "text-white/70")}
                 >
                   {t("termsLinkLabel")}

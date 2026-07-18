@@ -7,8 +7,13 @@ export const localizedRoutes = {
   venues: { fr: "/fr/lieux", en: "/en/venues" },
   about: { fr: "/fr/a-propos", en: "/en/about" },
   faq: { fr: "/fr/faq", en: "/en/faq" },
-  privacy: { fr: "/fr/confidentialite", en: "/en/confidentialite" },
-  terms: { fr: "/fr/conditions", en: "/en/conditions" },
+  privacy: { fr: "/fr/confidentialite", en: "/en/privacy" },
+  terms: { fr: "/fr/conditions", en: "/en/terms" },
+} as const;
+
+export const redirectedRoutes = {
+  "/en/confidentialite": localizedRoutes.privacy.en,
+  "/en/conditions": localizedRoutes.terms.en,
 } as const;
 
 export type LocalizedRouteKey = keyof typeof localizedRoutes;

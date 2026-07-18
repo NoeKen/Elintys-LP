@@ -4,6 +4,7 @@ import { useRef } from "react";
 import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
+import { legalConfig } from "@/config/legal";
 import { audienceSolutionLinks } from "@/lib/audience-routes";
 import { localizedRoutes } from "@/lib/localized-routes";
 
@@ -85,13 +86,13 @@ export default function Footer() {
           className="flex flex-col gap-1 md:items-end md:text-right"
         >
           <a
-            href="mailto:contact@elintys.com"
+            href={`mailto:${legalConfig.contactEmail}`}
             className="text-sm text-white/35 transition-colors hover:text-white/65 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-teal"
           >
-            contact@elintys.com
+            {legalConfig.contactEmail}
           </a>
           <p className="text-xs text-white/25">
-            © {new Date().getFullYear()} Elintys. {t("rights")}
+            © {new Date().getFullYear()} {legalConfig.projectName}. {t("rights")}
           </p>
         </motion.div>
       </motion.div>
