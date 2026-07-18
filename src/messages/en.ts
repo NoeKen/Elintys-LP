@@ -306,30 +306,35 @@ const en = {
       { label: "Solution", href: "#solution" },
       { label: "FAQ", href: "#faq" },
       { label: "Beta access", href: "#cta" },
-      { label: "Privacy policy", href: "/confidentialite" },
-      { label: "Terms", href: "/conditions" },
+      { label: "Privacy policy", href: "/privacy" },
+      { label: "Terms", href: "/terms" },
     ],
     rights: "All rights reserved.",
   },
   legal: {
     backToHome: "← Back to home",
+    registrationStatus: {
+      unregistered: "{projectName} is not yet registered as a business.",
+      pending: "{projectName}'s business registration process is underway.",
+      registered: "{projectName} is registered as a business.",
+    },
     privacyPolicy: {
       metadata: {
         title: "Privacy Policy — Elintys",
         description: "Elintys privacy policy, aligned with Quebec Law 25.",
       },
       title: "Privacy Policy",
-      lastUpdated: "Last updated: April 2026 · Aligned with Quebec Law 25",
+      lastUpdated: "Last updated: {lastUpdated}",
       sections: {
         identity: {
           title: "1. Identity of the person in charge of processing",
           body:
-            "This policy is established by [First name + Last name], doing business under the trade name Elintys, registered with the Quebec Business Registry (REQ) under business number (NEQ): [To be completed]. Privacy Officer: [First name + Last name] — privacy@elintys.com",
+            "{projectName} is a technology project currently operated by {operatorName}. {projectName} is not yet registered as a business. Business registration is planned for a future phase.",
         },
         rpr: {
           title: "1a. Privacy Officer",
           body:
-            "In accordance with section 3.1 of Law 25, [First name + Last name] is designated as Privacy Officer. The Privacy Officer can be reached at privacy@elintys.com. All requests receive a response within 30 days.",
+            "In accordance with section 3.1 of Law 25, {privacyOfficerName} acts as Privacy Officer. The Privacy Officer can be reached at {privacyOfficerEmail}. All requests receive a response within 30 days.",
         },
         collectedData: {
           title: "2. Personal information collected",
@@ -387,7 +392,7 @@ const en = {
             ],
           ],
           body:
-            "Elintys ensures these processors provide a level of protection comparable to Law 25, notably through GDPR compliance policies and SOC 2 certifications.",
+            "{projectName} ensures these processors provide a level of protection comparable to Law 25, notably through GDPR compliance policies and SOC 2 certifications.",
         },
         retention: {
           title: "6. Retention period",
@@ -436,7 +441,7 @@ const en = {
         minAge: {
           title: "8b. Minimum age",
           body:
-            "The service is intended for persons aged 18 and over. Minors aged 14 to 17 may register with the consent of a parent or legal guardian. Elintys does not knowingly collect data on children under 14.",
+            "The service is intended for persons aged 18 and over. Minors aged 14 to 17 may register with the consent of a parent or legal guardian. {projectName} does not knowingly collect data on children under 14.",
         },
         cookies: {
           title: "9. Cookies and trackers",
@@ -446,7 +451,7 @@ const en = {
         changes: {
           title: "10. Changes",
           body:
-            "Elintys may update this policy at any time. In the event of a material change, registered users will be informed by email at least 30 days before it takes effect.",
+            "{projectName} may update this policy at any time. In the event of a material change, registered users will be informed by email at least 30 days before it takes effect.",
         },
         contact: {
           title: "11. Contact and complaint",
@@ -463,20 +468,25 @@ const en = {
         description: "Elintys terms of use for the pre-launch waitlist.",
       },
       title: "Terms of Use",
-      lastUpdated: "Last updated: April 2026 · Aligned with Quebec Law 25",
+      lastUpdated: "Last updated: {lastUpdated}",
       sections: {
-        purpose: {
-          title: "1. Purpose",
+        identity: {
+          title: "1. Operator identity",
           body:
-            "These terms govern registration to the Elintys waitlist (elintys.com). By signing up, you accept them in full.",
+            "{projectName} is a technology project currently operated by {operatorName}. {projectName} is not yet registered as a business. Business registration is planned for a future phase.",
+        },
+        purpose: {
+          title: "2. Purpose",
+          body:
+            "These terms govern registration to the {projectName} waitlist ({canonicalUrl}). By signing up, you accept them in full.",
         },
         serviceNature: {
-          title: "2. Nature of the service at this stage",
+          title: "3. Nature of the service at this stage",
           body:
-            "Elintys is currently in pre-launch development. Registration does not constitute a service contract, creates no financial obligation, and does not guarantee access to the final product. Beta access will be granted in signup order according to team priorities. Elintys reserves the right to modify, postpone, or cancel the launch without notice.",
+            "{projectName} is currently in pre-launch development. Registration does not constitute a service contract, creates no financial obligation, and does not guarantee access to the final product. Beta access will be granted in signup order according to team priorities. {projectName} reserves the right to modify, postpone, or cancel the launch without notice.",
         },
         commitments: {
-          title: "3. Registrant commitments",
+          title: "4. Registrant commitments",
           items: [
             "Provide accurate information (first name, email, role)",
             "Not impersonate another person",
@@ -484,7 +494,7 @@ const en = {
           ],
         },
         elintysCommitments: {
-          title: "4. Elintys commitments",
+          title: "5. {projectName} commitments",
           items: [
             "Handle your information in accordance with the",
             "Keep you informed about project progress by email",
@@ -494,34 +504,34 @@ const en = {
           privacyLinkLabel: "Privacy Policy",
         },
         casl: {
-          title: "4a. Commercial communications (CASL)",
+          title: "5a. Commercial communications (CASL)",
           body:
-            "Commercial communications are sent only to persons who checked the optional consent checkbox at registration, in accordance with Canada's Anti-Spam Legislation (CASL — S.C. 2010, c. 23). You may withdraw your consent at any time via the unsubscribe link in each email, or by writing to contact@elintys.com — processed within 10 business days.",
+            "Commercial communications are sent only to persons who checked the optional consent checkbox at registration, in accordance with Canada's Anti-Spam Legislation (CASL — S.C. 2010, c. 23). You may withdraw your consent at any time via the unsubscribe link in each email, or by writing to {contactEmail} — processed within 10 business days.",
         },
         minAge: {
-          title: "4b. Minimum age",
+          title: "5b. Minimum age",
           body:
             "By registering, you confirm that you are 18 years of age or older, or that you have the consent of a parent or legal guardian.",
         },
         intellectualProperty: {
-          title: "5. Intellectual property",
+          title: "6. Intellectual property",
           body:
-            "All elements of the site (name, logo, text, design, code) are the exclusive property of Elintys. Any unauthorized reproduction is prohibited.",
+            "All elements of the site (name, logo, text, design, code) are the exclusive property of {projectName}. Any unauthorized reproduction is prohibited.",
         },
         liability: {
-          title: "6. Limitation of liability",
+          title: "7. Limitation of liability",
           body:
-            "Elintys cannot be held liable for direct or indirect damages resulting from use of the site, nor for service interruptions caused by external factors.",
+            "{projectName} cannot be held liable for direct or indirect damages resulting from use of the site, nor for service interruptions caused by external factors.",
         },
         governingLaw: {
-          title: "7. Governing law",
+          title: "8. Governing law",
           body:
             "These terms are governed by the laws of Quebec, Canada (Law 25, Civil Code of Quebec). Any dispute will be submitted to the courts of the judicial district of Montreal.",
         },
         changes: {
-          title: "8. Changes",
+          title: "9. Changes",
           body:
-            "Elintys may modify these terms at any time. Registrants will be notified by email in the event of a material change.",
+            "{projectName} may modify these terms at any time. Registrants will be notified by email in the event of a material change.",
         },
       },
     },

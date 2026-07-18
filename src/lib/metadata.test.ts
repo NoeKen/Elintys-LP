@@ -1,3 +1,5 @@
+import { readFileSync, statSync } from "fs";
+import { join } from "path";
 import { describe, expect, it } from "vitest";
 import { siteConfig } from "@/config/site";
 import { buildPageMetadata } from "./metadata";
@@ -31,7 +33,18 @@ describe("buildPageMetadata", () => {
     expect(metadata.publisher).toBe(siteConfig.name);
     expect(JSON.stringify(metadata.twitter)).toContain("summary_large_image");
     expect(JSON.stringify(metadata.openGraph?.images)).toContain(
-      "https://www.elintys.com/images/og-image.svg"
+      "https://www.elintys.com/images/og/elintys-og.png"
     );
+    expect(JSON.stringify(metadata.openGraph?.images)).not.toContain("/og-image.svg");
+  });
+
+  it("publishes a raster Open Graph image with the expected dimensions", () => {
+    const imagePath = join(process.cwd(), "public/images/og/elintys-og.png");
+    const image = readFileSync(imagePath);
+
+    expect(image.subarray(0, 8).toString("hex")).toBe("89504e470d0a1a0a");
+    expect(image.readUInt32BE(16)).toBe(1200);
+    expect(image.readUInt32BE(20)).toBe(630);
+    expect(statSync(imagePath).size).toBeLessThan(500 * 1024);
   });
 });
